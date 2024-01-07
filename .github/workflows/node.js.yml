@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
-    branches: [ "master" ]
+    branches: ['master']
 
 jobs:
   build:
@@ -19,18 +19,18 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-    - run: npm ci
+      - run: npm ci
 
-    - name: Check code formatting with Prettier
-      run: |
-        npx prettier --check "src/**/*.{js,jsx,ts,tsx,json,css,md}"
+      - name: Check code formatting with Prettier
+        run: |
+          npx prettier --check "src/**/*.{js,jsx,ts,tsx,json,css,md}"
 
-    - run: npm test
+      - run: npm test
