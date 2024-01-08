@@ -1,4 +1,9 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
+# Skip pre-commit hook if -n is provided
+if echo "$@" | grep -E "\-n" > /dev/null; then
+  echo "Skipping pre-commit hook"
+  exit 0
+fi
 
-npx prettier --write .
+# Run lint-staged
+npx lint-staged

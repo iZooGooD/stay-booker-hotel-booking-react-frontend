@@ -41,7 +41,13 @@
       "last 1 safari version"
     ]
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --check"
+    ]
+  },
   "devDependencies": {
+    "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
     "tailwindcss": "^3.4.1"
   },
