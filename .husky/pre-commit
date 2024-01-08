@@ -5,5 +5,8 @@ if echo "$@" | grep -E "\-n" > /dev/null; then
   exit 0
 fi
 
-# Run lint-staged
-npx lint-staged
+# Run lint-staged and check if it fails
+if ! npx lint-staged; then
+  echo "Prettier check failed, please fix the errors or use npm run lint to resolve the errors"
+  exit 1
+fi
