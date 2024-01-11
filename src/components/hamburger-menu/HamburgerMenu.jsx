@@ -6,7 +6,7 @@ const HamburgerMenu = (props) => {
   const { isVisible, onHamburgerMenuToggle, isAuthenticated } = props;
   return (
     <div
-      className={`background-brand ${
+      className={`background-brand transition ease-in-out delay-150 ${
         isVisible ? 'absolute right-0 w-1/2 top-0 h-screen' : 'hidden'
       }`}
     >
