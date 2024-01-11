@@ -8,7 +8,7 @@ class NetworkAdapter {
       return await response.json();
     } catch (error) {
       return {
-        data: [],
+        data: {},
         errors: [error],
       };
     }

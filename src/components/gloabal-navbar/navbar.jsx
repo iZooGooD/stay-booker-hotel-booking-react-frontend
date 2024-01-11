@@ -3,9 +3,21 @@ import logo from '../../assests/logos/stay_booker_logo.png';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { networkAdapter } from '../../services/NetworkAdapter';
+import HamburgerMenu from '../hamburger-menu/HamburgerMenu';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const onHamburgerMenuToggle = () => {
+    if (isVisible) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+  };
 
   useEffect(() => {
     const checkAuthStatus = async () => {
@@ -19,16 +31,13 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flex justify-between px-12 global-navbar__container background-brand shadow-sm">
+    <div className="relative flex flex-wrap justify-between items-center px-12 global-navbar__container background-brand shadow-sm">
       <div className="flex">
         <img src={logo} alt="site logo" className="site-logo__img" />
       </div>
-      <ul className="list-none flex">
+      <ul className="list-none hidden md:flex">
         <li className="p-4">
-          <Link
-            to="/"
-            className="uppercase font-medium text-slate-100 hover:underline"
-          >
+          <Link to="/" className="uppercase font-medium text-slate-100">
             Home
           </Link>
         </li>
@@ -54,6 +63,18 @@ const Navbar = () => {
           )}
         </li>
       </ul>
+      <FontAwesomeIcon
+        icon={faBars}
+        size="2x"
+        color="#fff"
+        className="block md:hidden"
+        onClick={onHamburgerMenuToggle}
+      />
+      <HamburgerMenu
+        isVisible={isVisible}
+        onHamburgerMenuToggle={onHamburgerMenuToggle}
+        isAuthenticated={isAuthenticated}
+      />
     </div>
   );
 };
