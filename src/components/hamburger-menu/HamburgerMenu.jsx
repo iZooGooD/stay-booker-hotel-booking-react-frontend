@@ -6,12 +6,14 @@ const HamburgerMenu = (props) => {
   const { isVisible, onHamburgerMenuToggle, isAuthenticated } = props;
   return (
     <div
+      data-testid="hamburger-menu"
       className={`background-brand shadow-2xl transition ease-in-out delay-150 ${
         isVisible ? 'absolute right-0 w-1/2 top-0 h-screen' : 'hidden'
       }`}
     >
       <div className="absolute right-5 top-2">
         <FontAwesomeIcon
+          data-testid="menu-close__button"
           icon={faXmark}
           size="2x"
           color="#fff"

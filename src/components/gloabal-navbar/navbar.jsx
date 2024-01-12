@@ -78,6 +78,7 @@ const Navbar = () => {
         </li>
       </ul>
       <FontAwesomeIcon
+        data-testid="menu-toggle__button"
         icon={faBars}
         size="2x"
         color="#fff"
