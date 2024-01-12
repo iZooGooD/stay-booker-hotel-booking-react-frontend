@@ -6,7 +6,7 @@ const HamburgerMenu = (props) => {
   const { isVisible, onHamburgerMenuToggle, isAuthenticated } = props;
   return (
     <div
-      className={`background-brand transition ease-in-out delay-150 ${
+      className={`background-brand shadow-2xl transition ease-in-out delay-150 ${
         isVisible ? 'absolute right-0 w-1/2 top-0 h-screen' : 'hidden'
       }`}
     >
@@ -19,22 +19,22 @@ const HamburgerMenu = (props) => {
         />
       </div>
       <ul className="list-none">
-        <li className="p-4">
+        <li className="p-4 hover:bg-sky-700">
           <Link to="/" className="uppercase font-medium text-slate-100">
             Home
           </Link>
         </li>
-        <li className="p-4">
+        <li className="p-4 hover:bg-sky-700">
           <Link to="listings" className="uppercase font-medium text-slate-100">
             Booking
           </Link>
         </li>
-        <li className="p-4">
+        <li className="p-4 hover:bg-sky-700">
           <Link to="/" className="uppercase font-medium text-slate-100">
             About us
           </Link>
         </li>
-        <li className="p-4">
+        <li className="p-4 hover:bg-sky-700">
           {isAuthenticated ? (
             <Link to="/" className="uppercase font-medium text-slate-100">
               My account

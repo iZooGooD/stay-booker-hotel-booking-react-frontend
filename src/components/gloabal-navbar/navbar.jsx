@@ -1,4 +1,3 @@
-import './navbar.scss';
 import logo from '../../assests/logos/stay_booker_logo.png';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -37,27 +36,42 @@ const Navbar = () => {
       </div>
       <ul className="list-none hidden md:flex">
         <li className="p-4">
-          <Link to="/" className="uppercase font-medium text-slate-100">
+          <Link
+            to="/"
+            className="uppercase font-medium text-slate-100 hover-underline-animation"
+          >
             Home
           </Link>
         </li>
         <li className="p-4">
-          <Link to="listings" className="uppercase font-medium text-slate-100">
+          <Link
+            to="listings"
+            className="uppercase font-medium text-slate-100 hover-underline-animation"
+          >
             Booking
           </Link>
         </li>
         <li className="p-4">
-          <Link to="/" className="uppercase font-medium text-slate-100">
+          <Link
+            to="/"
+            className="uppercase font-medium text-slate-100 hover-underline-animation"
+          >
             About us
           </Link>
         </li>
         <li className="p-4">
           {isAuthenticated ? (
-            <Link to="/" className="uppercase font-medium text-slate-100">
+            <Link
+              to="/"
+              className="uppercase font-medium text-slate-100 hover-underline-animation"
+            >
               My account
             </Link>
           ) : (
-            <Link to="/" className="uppercase font-medium text-slate-100">
+            <Link
+              to="/"
+              className="uppercase font-medium text-slate-100 hover-underline-animation"
+            >
               Login/Register
             </Link>
           )}
