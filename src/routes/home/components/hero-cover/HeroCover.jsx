@@ -1,3 +1,4 @@
+import SbInput from '../../../../components/SB-Input/sb-input';
 const HeroCover = () => {
   return (
     <div className="bg-brand min-h-60 text-slate-100 relative">
@@ -10,7 +11,7 @@ const HeroCover = () => {
           </p>
         </div>
         <div className="hero-content__search-box">
-          <input type="text"></input>
+          <SbInput size="sm" placeholder="FROM" />
         </div>
       </div>
     </div>
