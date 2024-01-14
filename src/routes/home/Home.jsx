@@ -1,10 +1,11 @@
 import Navbar from '../../components/gloabal-navbar/navbar';
+import HeroCover from './components/hero-cover/HeroCover';
 
 const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto"></div>
+      <HeroCover />
     </>
   );
 };
