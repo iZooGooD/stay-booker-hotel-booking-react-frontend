@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'react-date-range/dist/styles.css'; // main style file
+@import 'react-date-range/dist/theme/default.css'; // theme css file
+
 @import './styles/constants';
 @import './styles/utility';
 @import './components/gloabal-navbar/navbar.scss';
 @import './components/SB-Input/sb-input.scss';
+@import './components/sb-data-range-picker/sb-date-range-picker.scss';
