@@ -2,6 +2,12 @@
     border-bottom: 1px solid #053679;
 }
 
+.transform-center-y {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 // animations and effects
 .hover-underline-animation {
     display: inline-block;

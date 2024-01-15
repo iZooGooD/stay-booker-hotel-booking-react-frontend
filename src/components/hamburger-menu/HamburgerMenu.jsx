@@ -7,7 +7,7 @@ const HamburgerMenu = (props) => {
   return (
     <div
       data-testid="hamburger-menu"
-      className={`background-brand shadow-2xl transition ease-in-out delay-150 ${
+      className={`bg-brand shadow-2xl z-10 ${
         isVisible ? 'absolute right-0 w-1/2 top-0 h-screen' : 'hidden'
       }`}
     >
