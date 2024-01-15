@@ -4,18 +4,18 @@ const SbInput = (props) => {
   const sizeToClassMapping = {
     sm: 'w-[332px]',
   };
-  const { classes, size, value, onChangeInput, icon } = props;
+  const { classes, size, value, onChangeInput, icon, type, placeholder } =
+    props;
   return (
-    <div
-      className={`relative stay-booker-input__container ${sizeToClassMapping[size]}`}
-    >
+    <div className={`relative stay-booker-input__container w-full md:w-auto`}>
       <input
-        className={`stay-booker__input px-8 py-2 ${classes ? classes : ''} ${
-          sizeToClassMapping[size]
+        className={`stay-booker__input w-full px-8 py-2 ${
+          classes ? classes : ''
         }`}
-        type="text"
+        type={type || 'text'}
         value={value}
         onChange={onChangeInput}
+        placeholder={placeholder}
       ></input>
       {icon && (
         <FontAwesomeIcon
