@@ -39,8 +39,7 @@ jobs:
 
       - name: Check code formatting with Prettier
         run: |
-          npx prettier --check "
-          src/**/*.{js,jsx,ts,tsx,json,css,md}"
+          npx prettier --check "src/**/*.{js,jsx,ts,tsx,json,css,md}"
 
   test:
     name: Run tests
