@@ -26,25 +26,27 @@ const SbDateRangePicker = (props) => {
     : 'Check-out';
 
   return (
-    <div className="relative w-[332px] flex">
+    <div className="relative flex">
       <input
-        className="stay-booker__input px-4 py-2 w-[50%]"
+        className="stay-booker__input px-8 py-2 w-[50%]"
         type="text"
         value={formattedStartDate}
-        readOnly
-      ></input>
-      <input
-        className="stay-booker__input px-4 py-2 w-[50%]"
-        type="text"
-        value={formattedEndDate}
+        onFocus={onDatePickerIconClick}
         readOnly
       ></input>
       <FontAwesomeIcon
         icon={faCalendar}
         color="#074498"
-        className="left-[93%] transform-center-y"
+        className="left-[4%] md:left-[4%] transform-center-y"
         onClick={onDatePickerIconClick}
       />
+      <input
+        className="stay-booker__input px-8 py-2 w-[50%]"
+        type="text"
+        value={formattedEndDate}
+        onFocus={onDatePickerIconClick}
+        readOnly
+      ></input>
       {isDatePickerVisible && (
         <DateRange
           editableDateInputs={true}

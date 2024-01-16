@@ -30,7 +30,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-wrap justify-between items-center px-12 global-navbar__container bg-brand brand-divider-bottom">
+    <div className="relative flex flex-wrap justify-between items-center px-4 md:px-12 global-navbar__container bg-brand brand-divider-bottom">
       <div className="flex">
         <img src={logo} alt="site logo" className="site-logo__img" />
       </div>
