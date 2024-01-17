@@ -73,7 +73,34 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
-      // Add more routes as needed
+      this.get('/nearbyHotels', () => {
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              elements: [
+                {
+                  hotelCode: 71222,
+                  image: {
+                    imageUrl: '/images/hotels/481481762/481481762.jpg',
+                    accessibleText: 'hyatt pune hotel',
+                  },
+                  title: 'Hyatt Pune',
+                  subtitle: 'Kalyani Nagar, Pune | 3.3 kms from city center',
+                  benefits: [
+                    'Free cancellation',
+                    'No prepayment needed – pay at the property',
+                  ],
+                  price: '18,900',
+                  ratings: '8.8',
+                },
+              ],
+            },
+          }
+        );
+      });
     },
   });
 
