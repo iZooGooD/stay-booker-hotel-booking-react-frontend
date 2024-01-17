@@ -29,7 +29,7 @@ const HeroCover = () => {
     }
   };
   return (
-    <div className="bg-brand min-h-96 md:min-h-60 text-slate-100 relative">
+    <div className="bg-brand min-h-[400px] md:min-h-72 lg:min-h-60 text-slate-100 relative">
       <div className="hero-content__container flex flex-col items-center container mx-auto px-2 md:px-0">
         <></>
         <div className="hero-content__text py-4">
@@ -41,7 +41,7 @@ const HeroCover = () => {
             relaxation and adventure today.
           </p>
         </div>
-        <div className="flex flex-wrap flex-col md:flex-row hero-content__search-box">
+        <div className="flex flex-wrap flex-col lg:flex-row hero-content__search-box">
           <SbInput
             size="sm"
             value={locationInputValue}
