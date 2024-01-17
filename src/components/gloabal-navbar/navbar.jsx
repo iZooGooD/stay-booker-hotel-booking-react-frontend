@@ -20,7 +20,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const checkAuthStatus = async () => {
-      const response = await networkAdapter.get('/authUser');
+      const response = await networkAdapter.get('api/authUser');
       if (response) {
         setIsAuthenticated(response.data.isAuthenticated);
       }

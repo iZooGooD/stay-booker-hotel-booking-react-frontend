@@ -10,7 +10,7 @@ const Home = () => {
   const [popularDestinationsData, setPopularDestinationsData] = useState([]);
   useEffect(() => {
     const getPopularDestinationsData = async () => {
-      const response = await networkAdapter.get('/popularDestinations');
+      const response = await networkAdapter.get('/api/popularDestinations');
       if (response) {
         setPopularDestinationsData(response.data.elements);
       }
