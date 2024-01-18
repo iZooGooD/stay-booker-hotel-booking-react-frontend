@@ -15,8 +15,8 @@ const HotelViewCard = (props) => {
         </div>
         <ul>
           {benefits.length > 0 &&
-            benefits.map((benefit) => (
-              <li className="text-green-800 font-medium text-sm">
+            benefits.map((benefit, index) => (
+              <li className="text-green-800 font-medium text-sm" key={index}>
                 <FontAwesomeIcon icon={faCheck} /> {benefit}
               </li>
             ))}
