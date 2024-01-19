@@ -5,13 +5,17 @@ const HotelViewCard = (props) => {
   const { image, title, subtitle, benefits, price, ratings } = props;
   return (
     <div className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full">
-      <div className="w-full md:w-[320px]">
-        <img src={image.imageUrl} alt={image.accessibleText} />
+      <div className="">
+        <img
+          src={image.imageUrl}
+          alt={image.accessibleText}
+          className="md:w-[220px] md:h-[140px]"
+        />
       </div>
-      <div className="flex flex-col justify-between ml-0 md:ml-2">
+      <div className="flex flex-col justify-between ml-0 md:ml-2 flex-1">
         <div>
           <h4 className="text-2xl font-bold text-slate-600">{title}</h4>
-          <p className="text-slate-600">{subtitle}</p>
+          <p className="text-slate-600 text-sm">{subtitle}</p>
         </div>
         <ul>
           {benefits.length > 0 &&
