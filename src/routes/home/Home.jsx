@@ -7,22 +7,31 @@ import ResultsContainer from '../../components/results-container/results-contain
 
 const Home = () => {
   const [popularDestinationsData, setPopularDestinationsData] = useState([]);
+  const [filtersData, setFiltersData] = useState([]);
   const [hotelsResults, setHotelsResults] = useState([]);
   useEffect(() => {
-    const getPopularDestinationsData = async () => {
+    const getInitialData = async () => {
       const popularDestinationsResponse = await networkAdapter.get(
         '/api/popularDestinations'
       );
       const hotelsResultsResponse =
         await networkAdapter.get('/api/nearbyHotels');
+
+      const filtersDataResponse = await networkAdapter.get(
+        'api/hotels/verticalFilters'
+      );
+
       if (popularDestinationsResponse) {
         setPopularDestinationsData(popularDestinationsResponse.data.elements);
       }
       if (hotelsResultsResponse) {
         setHotelsResults(hotelsResultsResponse.data.elements);
       }
+      if (filtersDataResponse) {
+        setFiltersData(filtersDataResponse.data.elements);
+      }
     };
-    getPopularDestinationsData();
+    getInitialData();
   }, []);
 
   return (
@@ -38,6 +47,7 @@ const Home = () => {
           <ResultsContainer
             hotelsResults={hotelsResults}
             enableFilters={true}
+            filtersData={filtersData}
           />
         </div>
       </div>
