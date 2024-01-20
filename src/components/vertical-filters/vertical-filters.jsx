@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import SbCheckbox from '../sb-checkbox/sb-checkbox';
 const VerticalFilters = (props) => {
-  const { filtersData } = props;
-  const [selectedFilters, setSelectedFilters] = useState({});
-  const onChange = (state) => {
-    console.log('state', state);
-  };
+  const { filtersData, onFiltersUpdate } = props;
+
+  console.log('filtersData', filtersData);
 
   return (
     <div className="hotels-filters__container border w-[240px]">
@@ -24,7 +21,9 @@ const VerticalFilters = (props) => {
             <SbCheckbox
               id={subfilter.id}
               label={subfilter.title}
-              onChange={onChange}
+              isSelected={subfilter.isSelected}
+              filterId={filter.filterId}
+              onFiltersUpdate={onFiltersUpdate}
             />
           ))}
         </div>
