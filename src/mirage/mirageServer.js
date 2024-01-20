@@ -174,7 +174,7 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
-      this.get('/hotests', (request) => {
+      this.get('/hotels', (request) => {
         if (request.queryParams.city === 'mumbai') {
           return new Response(
             200,
@@ -297,6 +297,56 @@ export function makeServer({ environment = 'development' } = {}) {
             }
           );
         }
+      });
+
+      this.get('/hotels/verticalFilters', () => {
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              elements: [
+                {
+                  filterId: 'star_ratings',
+                  title: 'Start ratings',
+                  filters: [
+                    {
+                      id: '5_star_rating',
+                      title: '5 Star',
+                    },
+                    {
+                      id: '4_star_rating',
+                      title: '4 Star',
+                    },
+                    {
+                      id: '3_star_rating',
+                      title: '3 Star',
+                    },
+                  ],
+                },
+                {
+                  filterId: 'propety_type',
+                  title: 'Property type',
+                  filters: [
+                    {
+                      id: 'prop_type_hotel',
+                      title: 'Hotel',
+                    },
+                    {
+                      id: 'prop_type_apartment',
+                      title: 'Apartment',
+                    },
+                    {
+                      id: 'prop_type_villa',
+                      title: 'Villa',
+                    },
+                  ],
+                },
+              ],
+            },
+          }
+        );
       });
     },
   });
