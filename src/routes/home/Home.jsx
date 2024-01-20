@@ -35,7 +35,10 @@ const Home = () => {
           <h2 className="text-3xl font-medium text-slate-700 text-center">
             Most searched in pune
           </h2>
-          <ResultsContainer hotelsResults={hotelsResults} />
+          <ResultsContainer
+            hotelsResults={hotelsResults}
+            enableFilters={true}
+          />
         </div>
       </div>
     </>
