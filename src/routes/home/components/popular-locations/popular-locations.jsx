@@ -1,4 +1,5 @@
 import ImageCard from '../image-card/image-card';
+import ImageCardSkeleton from '../image-card-skeleton/image-card-skeleton';
 const PopularLocations = (props) => {
   const { popularDestinationsData } = props;
   return (
@@ -7,13 +8,17 @@ const PopularLocations = (props) => {
         Book Hotels at Popular Destinations
       </h2>
       <div className="flex my-4 gap-x-8 gap-y-4 justify-center flex-wrap">
-        {popularDestinationsData.map((data) => (
-          <ImageCard
-            key={data.code}
-            name={data.name}
-            imageUrl={data.imageUrl}
-          />
-        ))}
+        {popularDestinationsData.isLoading
+          ? Array.from({ length: 5 }, (_, index) => (
+              <ImageCardSkeleton key={index} />
+            ))
+          : popularDestinationsData.data.map((city) => (
+              <ImageCard
+                key={city.code}
+                name={city.name}
+                imageUrl={city.imageUrl}
+              />
+            ))}
       </div>
     </div>
   );

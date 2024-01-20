@@ -309,7 +309,7 @@ export function makeServer({ environment = 'development' } = {}) {
               elements: [
                 {
                   filterId: 'star_ratings',
-                  title: 'Start ratings',
+                  title: 'Star ratings',
                   filters: [
                     {
                       id: '5_star_rating',
