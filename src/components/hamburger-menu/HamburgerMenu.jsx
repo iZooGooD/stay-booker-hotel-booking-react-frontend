@@ -36,7 +36,10 @@ const HamburgerMenu = (props) => {
             About us
           </Link>
         </li>
-        <li className="p-4 hover:bg-sky-700">
+        <li
+          className="p-4 hover:bg-sky-700"
+          data-testid="hamburger-menu__account-status"
+        >
           {isAuthenticated ? (
             <Link to="/" className="uppercase font-medium text-slate-100">
               My account

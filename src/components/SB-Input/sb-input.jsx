@@ -1,11 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SbInput = (props) => {
-  const sizeToClassMapping = {
-    sm: 'w-[332px]',
-  };
-  const { classes, size, value, onChangeInput, icon, type, placeholder } =
-    props;
+  const { classes, value, onChangeInput, icon, type, placeholder } = props;
   return (
     <div className={`relative stay-booker-input__container w-full md:w-auto`}>
       <input
