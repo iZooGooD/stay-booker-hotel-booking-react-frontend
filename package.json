@@ -6,8 +6,6 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "husky": "^8.0.3",
     "miragejs": "^0.1.48",
@@ -22,16 +20,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npx cypress run --e2e && npx cypress run --component",
     "eject": "react-scripts eject",
     "lint-fix": "npx prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
-    "prepare": "husky install"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "prepare": "husky install",
+    "cypress:open": "cypress open",
+    "cypress:run": "npx cypress run --e2e && npx cypress run --component"
   },
   "browserslist": {
     "production": [
@@ -51,6 +45,9 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^13.6.3",
+    "eslint": "^8.56.0",
+    "eslint-plugin-cypress": "^2.15.1",
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
     "tailwindcss": "^3.4.1"

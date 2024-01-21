@@ -1,4 +1,4 @@
-import Navbar from '../../components/gloabal-navbar/navbar';
+import Navbar from '../../components/gloabal-navbar/Navbar';
 import HeroCover from './components/hero-cover/HeroCover';
 import PopularLocations from './components/popular-locations/popular-locations';
 import { networkAdapter } from '../../services/NetworkAdapter';

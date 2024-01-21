@@ -3,7 +3,10 @@ const VerticalFilters = (props) => {
   const { filtersData, onFiltersUpdate } = props;
 
   return (
-    <div className="hotels-filters__container border w-[240px]">
+    <div
+      className="hotels-filters__container border w-[240px]"
+      data-testid="vertical-filters"
+    >
       <div className="hotels-filters__header flex justify-between items-center py-2 border-b-2  px-4">
         <h4 className="text-base font-bold text-slate-600 uppercase">
           Filters

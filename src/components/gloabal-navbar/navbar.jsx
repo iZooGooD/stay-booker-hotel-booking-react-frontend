@@ -11,11 +11,7 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const onHamburgerMenuToggle = () => {
-    if (isVisible) {
-      setIsVisible(false);
-    } else {
-      setIsVisible(true);
-    }
+    setIsVisible(!isVisible);
   };
 
   useEffect(() => {
