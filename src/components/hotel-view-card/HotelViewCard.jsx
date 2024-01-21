@@ -4,7 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const HotelViewCard = (props) => {
   const { image, title, subtitle, benefits, price, ratings } = props;
   return (
-    <div className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full">
+    <div
+      className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full"
+      data-testid="hotel-view-card"
+    >
       <div className="">
         <img
           src={image.imageUrl}

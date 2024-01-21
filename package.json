@@ -27,13 +27,6 @@
     "cypress:open": "cypress open",
     "cypress:run": "npx cypress run --e2e && npx cypress run --component"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:cypress/recommended"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -53,6 +46,8 @@
   },
   "devDependencies": {
     "cypress": "^13.6.3",
+    "eslint": "^8.56.0",
+    "eslint-plugin-cypress": "^2.15.1",
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
     "tailwindcss": "^3.4.1"

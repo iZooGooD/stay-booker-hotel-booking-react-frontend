@@ -17,7 +17,7 @@ const HeroCover = () => {
     }
   };
   const onDateSelect = (selection) => {
-    console.log(selection);
+    // console.log(selection);
   };
   const onLocationChangeInput = (e) => {
     setLocationInputValue(e.target.value);

@@ -20,8 +20,11 @@ import './commands'
 // require('./commands')
 
 import { mount } from 'cypress/react18'
+import '../../src/index.scss';
 
-Cypress.Commands.add('mount', mount)
+Cypress.Commands.add('mount', (component) => {
+    return mount(component);
+});
 
 // Example use:
 // cy.mount(<MyComponent />)

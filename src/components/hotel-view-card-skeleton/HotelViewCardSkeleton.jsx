@@ -1,6 +1,9 @@
 const HotelViewCardSkeleton = () => {
   return (
-    <div className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full">
+    <div
+      className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full"
+      data-testid="hotel-view-card-skeleton"
+    >
       <div className="md:w-[220px] md:h-[140px]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <rect x="0" y="0" width="100%" height="100%" fill="#e0e0e0" />

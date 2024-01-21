@@ -1,7 +1,7 @@
-// Navbar.cy.js
+/// <reference types="Cypress" />
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Navbar from './navbar';
+import Navbar from './Navbar';
 
 describe('<Navbar />', () => {
   it('Hamburger menu visibility toggles on click', () => {
