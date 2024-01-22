@@ -1,21 +1,15 @@
 import GlobalNavbar from '../../components/gloabal-navbar/GlobalNavbar';
-import HeroCover from './components/hero-cover/HeroCover';
-import PopularLocations from './components/popular-locations/popular-locations';
-import { networkAdapter } from '../../services/NetworkAdapter';
-import { useState, useEffect } from 'react';
+import GlobalSearchBox from '../../components/global-search-box/GlobalSearchbox';
 import ResultsContainer from '../../components/results-container/ResultsContainer';
+import { useState, useEffect } from 'react';
+import { networkAdapter } from '../../services/NetworkAdapter';
 
 const MAX_GUESTS_INPUT_VALUE = 10;
 
-const Home = () => {
+const HotelsSearch = () => {
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
   const [locationInputValue, setLocationInputValue] = useState('Pune');
   const [numGuestsInputValue, setNumGuestsInputValue] = useState('');
-  const [popularDestinationsData, setPopularDestinationsData] = useState({
-    isLoading: true,
-    data: [],
-    errors: [],
-  });
   const [filtersData, setFiltersData] = useState({
     isLoading: true,
     data: [],
@@ -36,6 +30,7 @@ const Home = () => {
   };
 
   const onLocationChangeInput = (e) => {
+    console.log(e.target.value);
     setLocationInputValue(e.target.value);
   };
 
@@ -46,11 +41,22 @@ const Home = () => {
     }
   };
 
+  const fetchHotels = async (city, star_ratings) => {
+    const filters = { city, star_ratings };
+    const hotelsResultsResponse = await networkAdapter.get('/api/hotels', {
+      filters: JSON.stringify(filters),
+    });
+    if (hotelsResultsResponse) {
+      setHotelsResults({
+        isLoading: false,
+        data: hotelsResultsResponse.data.elements,
+        errors: hotelsResultsResponse.errors,
+      });
+    }
+  };
+
   useEffect(() => {
     const getInitialData = async () => {
-      const popularDestinationsResponse = await networkAdapter.get(
-        '/api/popularDestinations'
-      );
       const hotelsResultsResponse =
         await networkAdapter.get('/api/nearbyHotels');
 
@@ -58,13 +64,6 @@ const Home = () => {
         'api/hotels/verticalFilters'
       );
 
-      if (popularDestinationsResponse) {
-        setPopularDestinationsData({
-          isLoading: false,
-          data: popularDestinationsResponse.data.elements,
-          errors: popularDestinationsResponse.errors,
-        });
-      }
       if (hotelsResultsResponse) {
         setHotelsResults({
           isLoading: false,
@@ -83,33 +82,38 @@ const Home = () => {
     getInitialData();
   }, []);
 
+  useEffect(() => {
+    // TODO
+    // setHotelsResults({
+    //   isLoading: true,
+    //   data: [],
+    //   errors: [],
+    // });
+    // fetchHotels(locationInputValue, '8');
+  }, [locationInputValue]);
+
   return (
-    <>
+    <div className="hotels">
       <GlobalNavbar />
-      <HeroCover
-        locationInputValue={locationInputValue}
-        numGuestsInputValue={numGuestsInputValue}
-        isDatePickerVisible={isDatePickerVisible}
-        onLocationChangeInput={onLocationChangeInput}
-        onNumGuestsInputChange={onNumGuestsInputChange}
-        onDateSelect={onDateSelect}
-        onDatePickerIconClick={onDatePickerIconClick}
-      />
-      <div className="container mx-auto">
-        <PopularLocations popularDestinationsData={popularDestinationsData} />
-        <div className="my-8">
-          <h2 className="text-3xl font-medium text-slate-700 text-center my-2">
-            Handpicked nearby hotels for you
-          </h2>
-          <ResultsContainer
-            hotelsResults={hotelsResults}
-            enableFilters={true}
-            filtersData={filtersData}
-          />
-        </div>
+      <div className="bg-brand px-2 lg:h-[120px] h-[220px] flex items-center justify-center">
+        <GlobalSearchBox
+          locationInputValue={locationInputValue}
+          numGuestsInputValue={numGuestsInputValue}
+          isDatePickerVisible={isDatePickerVisible}
+          onLocationChangeInput={onLocationChangeInput}
+          onNumGuestsInputChange={onNumGuestsInputChange}
+          onDateSelect={onDateSelect}
+          onDatePickerIconClick={onDatePickerIconClick}
+        />
       </div>
-    </>
+      <div className="my-4"></div>
+      <ResultsContainer
+        hotelsResults={hotelsResults}
+        enableFilters={true}
+        filtersData={filtersData}
+      />
+    </div>
   );
 };
 
-export default Home;
+export default HotelsSearch;

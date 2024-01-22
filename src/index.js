@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
-import Listings from './routes/listings/Listings';
+import HotelsSearch from './routes/listings/HotelsSearch';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import Home from './routes/home/Home';
@@ -17,12 +17,12 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/listings',
-    element: <Listings />,
+    path: '/hotels',
+    element: <HotelsSearch />,
   },
   {
     path: '/aboutus',
-    element: <Listings />,
+    element: <HotelsSearch />,
   },
 ]);
 

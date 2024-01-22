@@ -6,7 +6,7 @@ import HamburgerMenu from '../hamburger-menu/HamburgerMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-const Navbar = () => {
+const GlobalNavbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -41,10 +41,10 @@ const Navbar = () => {
         </li>
         <li className="p-4">
           <Link
-            to="listings"
+            to="hotels"
             className="uppercase font-medium text-slate-100 hover-underline-animation"
           >
-            Booking
+            Hotels
           </Link>
         </li>
         <li className="p-4">
@@ -90,4 +90,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default GlobalNavbar;

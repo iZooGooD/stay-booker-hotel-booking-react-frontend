@@ -1,0 +1,200 @@
+[
+  {
+    "hotelCode": 71222,
+    "image": {
+      "imageUrl": "/images/hotels/481481762/481481762.jpg",
+      "accessibleText": "hyatt pune hotel"
+    },
+    "title": "Hyatt Pune",
+    "subtitle": "Kalyani Nagar, Pune | 3.3 kms from city center",
+    "benefits": [
+      "Free cancellation",
+      "No prepayment needed – pay at the property"
+    ],
+    "price": "18,900",
+    "ratings": "8.8",
+    "city": "pune"
+  },
+  {
+    "hotelCode": 71223,
+    "image": {
+      "imageUrl": "/images/hotels/465660377/465660377.jpg",
+      "accessibleText": "Courtyard by Marriott Pune"
+    },
+    "title": "Courtyard by Marriott Pune Hinjewadi",
+    "subtitle": "500 meters from the Rajiv Gandhi Infotech Park",
+    "benefits": [
+      "Free cancellation",
+      "No prepayment needed – pay at the property",
+      "Free wifi",
+      "Free lunch"
+    ],
+    "price": "25,300",
+    "ratings": "8.8",
+    "city": "pune"
+  },
+  {
+    "hotelCode": 71224,
+    "image": {
+      "imageUrl": "/images/hotels/469186143/469186143.jpg",
+      "accessibleText": "The Westin Pune Koregaon Park"
+    },
+    "title": "The Westin Pune Koregaon Park",
+    "subtitle": "5.4 km from centre",
+    "benefits": [
+      "Free cancellation",
+      "No prepayment needed – pay at the property",
+      "Free wifi"
+    ],
+    "price": "11,300",
+    "ratings": "5.8",
+    "city": "pune"
+  },
+  {
+    "hotelCode": 71225,
+    "image": {
+      "imageUrl": "/images/hotels/252004905/252004905.jpg",
+      "accessibleText": "Novotel Pune Viman Nagar Road"
+    },
+    "title": "Novotel Pune Viman Nagar Road",
+    "subtitle": "Weikfield IT City Infopark | 7.1 km from centre",
+    "benefits": [
+      "Pets allowed",
+      "Dinner + Lunch included",
+      "Free wifi",
+      "Free taxi from airport"
+    ],
+    "price": "14,599",
+    "ratings": "7.8",
+    "city": "pune"
+  },
+  {
+    "hotelCode": 71226,
+    "image": {
+      "imageUrl": "/images/hotels/54360345/54360345.jpg",
+      "accessibleText": "Vivanta Pune"
+    },
+    "title": "Vivanta Pune",
+    "subtitle": "Xion Complex, | 14.2 km from centre",
+    "benefits": [
+      "Pets allowed",
+      "Free wifi",
+      "Free cancellation",
+      "No prepayment needed – pay at the property"
+    ],
+    "price": "9,799",
+    "ratings": "9.3",
+    "city": "pune"
+  },
+  {
+    "hotelCode": 81223,
+    "image": {
+      "imageUrl": "/images/hotels/13800549/13800549.jpg",
+      "accessibleText": "Taj Lands End"
+    },
+    "title": "Taj Lands End",
+    "subtitle": "200 metres from the seafrontBandstand",
+    "benefits": [
+      "Daily housekeeping",
+      "Safety deposit box",
+      "Free wifi",
+      "Outdoor swimming pool"
+    ],
+    "price": "34,100",
+    "ratings": "9.2",
+    "city": "mumbai"
+  },
+  {
+    "hotelCode": 81224,
+    "image": {
+      "imageUrl": "/images/hotels/32810889/32810889.jpg",
+      "accessibleText": "Trident Nariman Point"
+    },
+    "title": "Trident Nariman Point",
+    "subtitle": "24 km from Chhatrapati Shivaji International Airport",
+    "benefits": [
+      "Airport shuttle",
+      "Spa and wellness centre",
+      "Free wifi",
+      "Tea/coffee maker in all rooms",
+      "Fitness centre"
+    ],
+    "price": "38,460",
+    "ratings": "8.9",
+    "city": "mumbai"
+  },
+  {
+    "hotelCode": 81225,
+    "image": {
+      "imageUrl": "/images/hotels/503567645/503567645.jpg",
+      "accessibleText": "Aurika - Luxury by Lemon Tree Hotels"
+    },
+    "title": "Aurika - Luxury by Lemon Tree Hotels",
+    "subtitle": "5.1 km from Phoenix Market City Mall, Aurika",
+    "benefits": [
+      "Outdoor swimming pool",
+      "Spa and wellness centre",
+      "Free wifi",
+      "Free parking",
+      "Bar"
+    ],
+    "price": "17,460",
+    "ratings": "7.9",
+    "city": "mumbai"
+  },
+  {
+    "hotelCode": 81226,
+    "image": {
+      "imageUrl": "/images/hotels/472036509/472036509.jpg",
+      "accessibleText": "Four Seasons Hotel Mumbai"
+    },
+    "title": "Four Seasons Hotel Mumbai",
+    "subtitle": "In the heart of Worli, the business hub of India’s largest city",
+    "benefits": [
+      "Kitchen",
+      "Pets allowed",
+      "Free wifi",
+      "Free parking",
+      "24-hour front desk"
+    ],
+    "price": "12,460",
+    "ratings": "6.5",
+    "city": "mumbai"
+  },
+  {
+    "hotelCode": 81227,
+    "image": {
+      "imageUrl": "/images/hotels/516847915/516847915.jpg",
+      "accessibleText": "Treebo Trend New Light Suites"
+    },
+    "title": "Treebo Trend New Light Suites",
+    "subtitle": "6.2 km from The Heritage Centre & Aerospace Museum",
+    "benefits": [
+      "Non-smoking rooms",
+      "Laundry",
+      "Free wifi",
+      "Tea/coffee maker in all rooms"
+    ],
+    "price": "5,460",
+    "ratings": "7.5",
+    "city": "bangalore"
+  },
+  {
+    "hotelCode": 81228,
+    "image": {
+      "imageUrl": "/images/hotels/513923904/513923904.jpg",
+      "accessibleText": "Renaissance Bengaluru Race Course Hotel"
+    },
+    "title": "Renaissance Bengaluru Race Course Hotel",
+    "subtitle": "Located in the heart of Bengaluru Renaissance Bengaluru Race Course Hotel",
+    "benefits": [
+      "Outdoor swimming poo",
+      "Spa and wellness centre",
+      "Airport shuttle",
+      "Bar"
+    ],
+    "price": "21,460",
+    "ratings": "8.5",
+    "city": "bangalore"
+  }
+]
