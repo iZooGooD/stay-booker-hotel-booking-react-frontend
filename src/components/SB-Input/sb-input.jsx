@@ -51,7 +51,7 @@ const SbInput = (props) => {
         />
       )}
       <div
-        className={`z-10 absolute bg-slate-100 w-full ${
+        className={`z-10 absolute bg-white  w-full ${
           isTypeheadVisible ? 'visible' : 'hidden'
         }`}
       >
@@ -60,7 +60,7 @@ const SbInput = (props) => {
             value.length > 0 &&
             filteredResults(value).map((result) => (
               <li
-                className="text-base  text-slate-600 p-2 capitalize cursor-pointer border-b-2"
+                className="text-base  text-slate-600 p-2 capitalize cursor-pointer border-b-2 hover:bg-slate-100"
                 onClick={() => onTypeheadResultClick(result)}
               >
                 {result}
