@@ -10,6 +10,7 @@ const HotelsSearch = () => {
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
   const [locationInputValue, setLocationInputValue] = useState('Pune');
   const [numGuestsInputValue, setNumGuestsInputValue] = useState('');
+  const [availableCities, setAvailableCities] = useState([]);
   const [filtersData, setFiltersData] = useState({
     isLoading: true,
     data: [],
@@ -29,9 +30,17 @@ const HotelsSearch = () => {
     console.log(selection);
   };
 
-  const onLocationChangeInput = (e) => {
-    console.log(e.target.value);
-    setLocationInputValue(e.target.value);
+  const onLocationChangeInput = (newValue) => {
+    setLocationInputValue(newValue);
+    // if city is valid, refresh data.
+    if (availableCities.includes(newValue)) {
+      setHotelsResults({
+        isLoading: true,
+        data: [],
+        errors: [],
+      });
+      fetchHotels(newValue);
+    }
   };
 
   const onNumGuestsInputChange = (e) => {
@@ -41,7 +50,7 @@ const HotelsSearch = () => {
     }
   };
 
-  const fetchHotels = async (city, star_ratings) => {
+  const fetchHotels = async (city, star_ratings = 'any') => {
     const filters = { city, star_ratings };
     const hotelsResultsResponse = await networkAdapter.get('/api/hotels', {
       filters: JSON.stringify(filters),
@@ -52,6 +61,15 @@ const HotelsSearch = () => {
         data: hotelsResultsResponse.data.elements,
         errors: hotelsResultsResponse.errors,
       });
+    }
+  };
+
+  const fetchAvailableCities = async () => {
+    const availableCitiesResponse = await networkAdapter.get(
+      '/api/availableCities'
+    );
+    if (availableCitiesResponse) {
+      setAvailableCities(availableCitiesResponse.data.elements);
     }
   };
 
@@ -79,6 +97,7 @@ const HotelsSearch = () => {
         });
       }
     };
+    fetchAvailableCities();
     getInitialData();
   }, []);
 
@@ -98,6 +117,7 @@ const HotelsSearch = () => {
       <div className="bg-brand px-2 lg:h-[120px] h-[220px] flex items-center justify-center">
         <GlobalSearchBox
           locationInputValue={locationInputValue}
+          locationTypeheadResults={availableCities}
           numGuestsInputValue={numGuestsInputValue}
           isDatePickerVisible={isDatePickerVisible}
           onLocationChangeInput={onLocationChangeInput}

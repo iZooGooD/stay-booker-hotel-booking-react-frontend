@@ -1,4 +1,5 @@
 import { createServer, Model, Response } from 'miragejs';
+import hotelsData from './data/hotels.json';
 
 export function makeServer({ environment = 'development' } = {}) {
   let server = createServer({
@@ -177,48 +178,31 @@ export function makeServer({ environment = 'development' } = {}) {
       this.get('/hotels', (schema, request) => {
         const filters = request.queryParams.filters;
         const parsedFilters = JSON.parse(filters);
+        const city = parsedFilters.city;
+        const filteredResults = hotelsData.filter(
+          (hotel) => hotel.city === city
+        );
+        console.log('city', city);
         return new Response(
           200,
           {},
           {
             errors: [],
             data: {
-              elements: [
-                {
-                  hotelCode: 71222,
-                  image: {
-                    imageUrl: '/images/hotels/481481762/481481762.jpg',
-                    accessibleText: 'hyatt pune hotel',
-                  },
-                  title: 'Hyatt Pune',
-                  subtitle: 'Kalyani Nagar, Pune | 3.3 kms from city center',
-                  benefits: [
-                    'Free cancellation',
-                    'No prepayment needed – pay at the property',
-                  ],
-                  price: '18,900',
-                  ratings: '8.8',
-                  city: 'pune',
-                },
-                {
-                  hotelCode: 71223,
-                  image: {
-                    imageUrl: '/images/hotels/465660377/465660377.jpg',
-                    accessibleText: 'Courtyard by Marriott Pune',
-                  },
-                  title: 'Courtyard by Marriott Pune Hinjewadi',
-                  subtitle: '500 meters from the Rajiv Gandhi Infotech Park',
-                  benefits: [
-                    'Free cancellation',
-                    'No prepayment needed – pay at the property',
-                    'Free wifi',
-                    'Free lunch',
-                  ],
-                  price: '25,300',
-                  ratings: '8.8',
-                  city: 'pune',
-                },
-              ],
+              elements: filteredResults,
+            },
+          }
+        );
+      });
+
+      this.get('/availableCities', () => {
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              elements: ['pune', 'bangalore', 'mumbai'],
             },
           }
         );

@@ -35,8 +35,8 @@ const Home = () => {
     console.log(selection);
   };
 
-  const onLocationChangeInput = (e) => {
-    setLocationInputValue(e.target.value);
+  const onLocationChangeInput = (newValue) => {
+    setLocationInputValue(newValue);
   };
 
   const onNumGuestsInputChange = (e) => {

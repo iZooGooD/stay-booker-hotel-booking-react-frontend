@@ -11,12 +11,15 @@ const GlobalSearchBox = (props) => {
     onNumGuestsInputChange,
     onDateSelect,
     onDatePickerIconClick,
+    locationTypeheadResults,
   } = props;
   return (
     <div className="flex flex-wrap flex-col lg:flex-row hero-content__search-box">
       <SbInput
         size="sm"
         value={locationInputValue}
+        typeheadResults={locationTypeheadResults}
+        maxTypeheadResults={5}
         icon={faLocationDot}
         onChangeInput={onLocationChangeInput}
       />
