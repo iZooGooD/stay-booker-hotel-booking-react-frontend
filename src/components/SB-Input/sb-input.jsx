@@ -58,8 +58,9 @@ const SbInput = (props) => {
         <ul>
           {typeheadResults &&
             value.length > 0 &&
-            filteredResults(value).map((result) => (
+            filteredResults(value).map((result, index) => (
               <li
+                key={index}
                 className="text-base  text-slate-600 p-2 capitalize cursor-pointer border-b-2 hover:bg-slate-100"
                 onClick={() => onTypeheadResultClick(result)}
               >

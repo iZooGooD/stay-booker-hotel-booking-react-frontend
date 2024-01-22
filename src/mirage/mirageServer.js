@@ -182,7 +182,6 @@ export function makeServer({ environment = 'development' } = {}) {
         const filteredResults = hotelsData.filter(
           (hotel) => hotel.city === city
         );
-        console.log('city', city);
         return new Response(
           200,
           {},

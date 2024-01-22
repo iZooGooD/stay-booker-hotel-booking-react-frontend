@@ -30,16 +30,17 @@ const HotelsSearch = () => {
     console.log(selection);
   };
 
-  const onLocationChangeInput = (newValue) => {
-    setLocationInputValue(newValue);
+  const onLocationChangeInput = (value) => {
+    const updatedLocation = value.toLowerCase();
+    setLocationInputValue(value);
     // if city is valid, refresh data.
-    if (availableCities.includes(newValue)) {
+    if (availableCities.includes(updatedLocation)) {
       setHotelsResults({
         isLoading: true,
         data: [],
         errors: [],
       });
-      fetchHotels(newValue);
+      fetchHotels(updatedLocation);
     }
   };
 
