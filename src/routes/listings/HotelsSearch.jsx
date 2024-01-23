@@ -68,6 +68,23 @@ const HotelsSearch = () => {
     );
   };
 
+  const getActiveFilters = () => {
+    const filters = {};
+    selectedFiltersState.forEach((category) => {
+      const selectedValues = category.filters
+        .filter((filter) => filter.isSelected)
+        .map((filter) => filter.value);
+
+      if (selectedValues.length > 0) {
+        filters[category.filterId] = selectedValues;
+      }
+    });
+    if (!isEmpty(filters)) {
+      return filters;
+    }
+    return null;
+  };
+
   // Toggles the visibility of the date picker
   const onDatePickerIconClick = () => {
     setisDatePickerVisible(!isDatePickerVisible);
@@ -87,7 +104,7 @@ const HotelsSearch = () => {
     const updatedLocation = value.toLowerCase();
     setLocationInputValue(value);
     if (availableCities.includes(updatedLocation)) {
-      fetchHotels({ city: updatedLocation });
+      fetchHotels({ city: updatedLocation, ...getActiveFilters() });
     }
   };
 
@@ -173,21 +190,11 @@ const HotelsSearch = () => {
   }, [filtersData]);
 
   useEffect(() => {
-    const filters = {};
     if (selectedFiltersState.length > 0) {
-      selectedFiltersState.forEach((category) => {
-        const selectedValues = category.filters
-          .filter((filter) => filter.isSelected)
-          .map((filter) => filter.value);
-
-        // Only add the category to transformedData if it has selected filters
-        if (selectedValues.length > 0) {
-          filters[category.filterId] = selectedValues;
-        }
-      });
-      filters.city = locationInputValue.toLowerCase();
-      if (!isEmpty(filters)) {
-        fetchHotels(filters);
+      const activeFilters = getActiveFilters();
+      if (activeFilters) {
+        activeFilters.city = locationInputValue.toLowerCase();
+        fetchHotels(activeFilters);
       }
     }
   }, [selectedFiltersState]);
