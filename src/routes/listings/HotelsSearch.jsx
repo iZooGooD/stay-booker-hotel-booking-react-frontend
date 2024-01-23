@@ -87,11 +87,6 @@ const HotelsSearch = () => {
     const updatedLocation = value.toLowerCase();
     setLocationInputValue(value);
     if (availableCities.includes(updatedLocation)) {
-      setHotelsResults({
-        isLoading: true,
-        data: [],
-        errors: [],
-      });
       fetchHotels({ city: updatedLocation });
     }
   };
@@ -108,6 +103,11 @@ const HotelsSearch = () => {
   };
 
   const fetchHotels = async (filters) => {
+    setHotelsResults({
+      isLoading: true,
+      data: [],
+      errors: [],
+    });
     const hotelsResultsResponse = await networkAdapter.get('/api/hotels', {
       filters: JSON.stringify(filters),
     });

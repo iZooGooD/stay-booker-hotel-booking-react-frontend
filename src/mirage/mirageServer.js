@@ -184,10 +184,12 @@ export function makeServer({ environment = 'development' } = {}) {
         const filteredResults = hotelsData.filter((hotel) => {
           const hotelRating = parseFloat(hotel.ratings);
           if (hotel.city === city) {
-            if (star_ratings) {
-              const selectedRating = parseFloat(star_ratings);
-              const range = 0.5;
-              return Math.abs(hotelRating - selectedRating) <= range;
+            if (star_ratings && star_ratings.length > 0) {
+              return star_ratings.some((selectedRating) => {
+                const selected = parseFloat(selectedRating);
+                const range = 0.5;
+                return Math.abs(hotelRating - selected) <= range;
+              });
             } else {
               return true;
             }
