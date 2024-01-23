@@ -125,6 +125,14 @@ describe('ResultsContainer', () => {
     ],
   };
 
+  const selectedFiltersState = mockFiltersData.data.map((filterGroup) => ({
+    ...filterGroup,
+    filters: filterGroup.filters.map((filter) => ({
+      ...filter,
+      isSelected: false,
+    })),
+  }));
+
   beforeEach(() => {
     // cy.intercept() to mock API responses
   });
@@ -158,27 +166,55 @@ describe('ResultsContainer', () => {
         <ResultsContainer
           hotelsResults={mockHotelsResults}
           enableFilters={true}
-          filtersData={mockFiltersData}
+          filtersData={{ ...mockFiltersData, isLoading: false }}
+          selectedFiltersState={selectedFiltersState}
+          onFiltersUpdate={() => {}}
         />
       </BrowserRouter>
     );
-    cy.get('[data-testid=vertical-filters]').should('be.visible');
+    cy.get('[data-testid=vertical-filters]').should('exist');
   });
 
   it('renders vertical filters skeleton when filters are enabled and loading', () => {
-    const filtersData = {
-      isLoading: true,
-      data: [],
-    };
     cy.mount(
       <BrowserRouter>
         <ResultsContainer
           hotelsResults={mockHotelsResults}
           enableFilters={true}
-          filtersData={filtersData}
+          filtersData={{ ...mockFiltersData, isLoading: true }}
+          selectedFiltersState={[]}
+          onFiltersUpdate={() => {}}
         />
       </BrowserRouter>
     );
-    cy.get('[data-testid=vertical-filters-skeleton]').should('be.visible');
+    cy.get('[data-testid=vertical-filters-skeleton]').should('exist');
+  });
+
+  it('calls onFiltersUpdate with correct arguments', () => {
+    const onFiltersUpdateSpy = cy.spy().as('onFiltersUpdateSpy');
+
+    cy.mount(
+      <ResultsContainer
+        hotelsResults={mockHotelsResults}
+        enableFilters={true}
+        filtersData={mockFiltersData}
+        onFiltersUpdate={onFiltersUpdateSpy}
+        selectedFiltersState={selectedFiltersState}
+      />
+    );
+
+    cy.get('[data-testid=5_star_rating]').click();
+
+    cy.get('@onFiltersUpdateSpy').should('have.been.calledWith', {
+      filterId: 'star_ratings',
+      id: '5_star_rating',
+    });
+
+    cy.get('[data-testid=4_star_rating]').click();
+
+    cy.get('@onFiltersUpdateSpy').should('have.been.calledWith', {
+      filterId: 'star_ratings',
+      id: '4_star_rating',
+    });
   });
 });

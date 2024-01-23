@@ -7,6 +7,7 @@ const SbCheckbox = (props) => {
   return (
     <div className="flex items-center pl-2 py-1">
       <input
+        data-testid={id}
         id={id}
         type="checkbox"
         checked={isSelected}

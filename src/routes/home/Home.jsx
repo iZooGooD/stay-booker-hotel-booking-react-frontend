@@ -26,6 +26,29 @@ const Home = () => {
     data: [],
     errors: [],
   });
+  const [selectedFiltersState, setSelectedFiltersState] = useState({});
+
+  const onFiltersUpdate = (updatedFilter) => {
+    setSelectedFiltersState(
+      selectedFiltersState.map((filterGroup) => {
+        if (filterGroup.filterId === updatedFilter.filterId) {
+          return {
+            ...filterGroup,
+            filters: filterGroup.filters.map((filter) => {
+              if (filter.id === updatedFilter.id) {
+                return {
+                  ...filter,
+                  isSelected: !filter.isSelected,
+                };
+              }
+              return filter;
+            }),
+          };
+        }
+        return filterGroup;
+      })
+    );
+  };
 
   const onDatePickerIconClick = () => {
     setisDatePickerVisible(!isDatePickerVisible);
@@ -83,6 +106,18 @@ const Home = () => {
     getInitialData();
   }, []);
 
+  useEffect(() => {
+    setSelectedFiltersState(
+      filtersData.data.map((filterGroup) => ({
+        ...filterGroup,
+        filters: filterGroup.filters.map((filter) => ({
+          ...filter,
+          isSelected: false,
+        })),
+      }))
+    );
+  }, [filtersData]);
+
   return (
     <>
       <GlobalNavbar />
@@ -105,6 +140,8 @@ const Home = () => {
             hotelsResults={hotelsResults}
             enableFilters={true}
             filtersData={filtersData}
+            onFiltersUpdate={onFiltersUpdate}
+            selectedFiltersState={selectedFiltersState}
           />
         </div>
       </div>

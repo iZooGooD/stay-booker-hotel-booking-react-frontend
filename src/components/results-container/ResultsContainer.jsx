@@ -1,45 +1,15 @@
-import { useState, useEffect } from 'react';
 import HotelViewCard from '../hotel-view-card/HotelViewCard';
 import VerticalFilters from '../vertical-filters/VerticalFilters';
 import HotelViewCardSkeleton from '../hotel-view-card-skeleton/HotelViewCardSkeleton';
 import VerticalFiltersSkeleton from '../vertical-filters-skeleton/vertical-filters-skeleton';
 const ResultsContainer = (props) => {
-  const { hotelsResults, enableFilters, filtersData } = props;
-  const [selectedFiltersState, setSelectedFiltersState] = useState({});
-
-  const onFiltersUpdate = (updatedFilter) => {
-    setSelectedFiltersState(
-      selectedFiltersState.map((filterGroup) => {
-        if (filterGroup.filterId === updatedFilter.filterId) {
-          return {
-            ...filterGroup,
-            filters: filterGroup.filters.map((filter) => {
-              if (filter.id === updatedFilter.id) {
-                return {
-                  ...filter,
-                  isSelected: !filter.isSelected,
-                };
-              }
-              return filter;
-            }),
-          };
-        }
-        return filterGroup;
-      })
-    );
-  };
-
-  useEffect(() => {
-    setSelectedFiltersState(
-      filtersData.data.map((filterGroup) => ({
-        ...filterGroup,
-        filters: filterGroup.filters.map((filter) => ({
-          ...filter,
-          isSelected: false,
-        })),
-      }))
-    );
-  }, [filtersData]);
+  const {
+    hotelsResults,
+    enableFilters,
+    filtersData,
+    selectedFiltersState,
+    onFiltersUpdate,
+  } = props;
 
   return (
     <div className="flex gap-x-4 items-start">
