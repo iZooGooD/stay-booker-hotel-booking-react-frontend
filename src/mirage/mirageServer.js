@@ -179,9 +179,22 @@ export function makeServer({ environment = 'development' } = {}) {
         const filters = request.queryParams.filters;
         const parsedFilters = JSON.parse(filters);
         const city = parsedFilters.city;
-        const filteredResults = hotelsData.filter(
-          (hotel) => hotel.city === city
-        );
+        const star_ratings = parsedFilters.star_ratings;
+
+        const filteredResults = hotelsData.filter((hotel) => {
+          const hotelRating = parseFloat(hotel.ratings);
+          if (hotel.city === city) {
+            if (star_ratings) {
+              const selectedRating = parseFloat(star_ratings);
+              const range = 0.5;
+              return Math.abs(hotelRating - selectedRating) <= range;
+            } else {
+              return true;
+            }
+          }
+          return false;
+        });
+
         return new Response(
           200,
           {},
@@ -222,14 +235,17 @@ export function makeServer({ environment = 'development' } = {}) {
                     {
                       id: '5_star_rating',
                       title: '5 Star',
+                      value: '5',
                     },
                     {
                       id: '4_star_rating',
                       title: '4 Star',
+                      value: '4',
                     },
                     {
                       id: '3_star_rating',
                       title: '3 Star',
+                      value: '3',
                     },
                   ],
                 },

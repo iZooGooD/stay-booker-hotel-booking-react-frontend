@@ -3,6 +3,7 @@ import GlobalNavbar from '../../components/gloabal-navbar/GlobalNavbar';
 import GlobalSearchBox from '../../components/global-search-box/GlobalSearchbox';
 import ResultsContainer from '../../components/results-container/ResultsContainer';
 import { networkAdapter } from '../../services/NetworkAdapter';
+import isEmpty from '../../utils/helpers';
 
 // Maximum number of guests allowed in the input
 const MAX_GUESTS_INPUT_VALUE = 10;
@@ -91,7 +92,7 @@ const HotelsSearch = () => {
         data: [],
         errors: [],
       });
-      fetchHotels(updatedLocation);
+      fetchHotels({ city: updatedLocation });
     }
   };
 
@@ -106,13 +107,7 @@ const HotelsSearch = () => {
     }
   };
 
-  /**
-   * Fetches hotels based on the provided city and star ratings.
-   * @param {string} city - The city for which to fetch hotels.
-   * @param {string} star_ratings - The star ratings filter.
-   */
-  const fetchHotels = async (city, star_ratings = 'any') => {
-    const filters = { city, star_ratings };
+  const fetchHotels = async (filters) => {
     const hotelsResultsResponse = await networkAdapter.get('/api/hotels', {
       filters: JSON.stringify(filters),
     });
@@ -176,6 +171,26 @@ const HotelsSearch = () => {
       }))
     );
   }, [filtersData]);
+
+  useEffect(() => {
+    const filters = {};
+    if (selectedFiltersState.length > 0) {
+      selectedFiltersState.forEach((category) => {
+        const selectedValues = category.filters
+          .filter((filter) => filter.isSelected)
+          .map((filter) => filter.value);
+
+        // Only add the category to transformedData if it has selected filters
+        if (selectedValues.length > 0) {
+          filters[category.filterId] = selectedValues;
+        }
+      });
+      filters.city = locationInputValue.toLowerCase();
+      if (!isEmpty(filters)) {
+        fetchHotels(filters);
+      }
+    }
+  }, [selectedFiltersState]);
 
   return (
     <div className="hotels">
