@@ -3,12 +3,11 @@
  *
  * @param date - The Date object to format.
  * @returns A string representing the formatted date.
- * @throws {Error} If the input is not a valid Date object or is undefined.
  */
 function formatDate(date) {
   // Check if the date is undefined or not a valid Date object
   if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-    throw new Error('Invalid input: Expected a valid Date object');
+    return;
   }
   let day = date.getDate().toString();
   let month = (date.getMonth() + 1).toString();

@@ -4,6 +4,7 @@ import GlobalSearchBox from '../../components/global-search-box/GlobalSearchbox'
 import ResultsContainer from '../../components/results-container/ResultsContainer';
 import { networkAdapter } from '../../services/NetworkAdapter';
 import isEmpty from '../../utils/helpers';
+import { formatDate } from '../../utils/date-helpers';
 
 // Maximum number of guests allowed in the input
 const MAX_GUESTS_INPUT_VALUE = 10;
@@ -24,6 +25,8 @@ const HotelsSearch = () => {
 
   // State for storing available cities
   const [availableCities, setAvailableCities] = useState([]);
+
+  const [dateSelection, setDateSelection] = useState({});
 
   // State for managing filters data
   const [filtersData, setFiltersData] = useState({
@@ -68,6 +71,20 @@ const HotelsSearch = () => {
     );
   };
 
+  const onSearchButtonAction = () => {
+    const activeFilters = getActiveFilters();
+    const numGuest = Number(numGuestsInputValue);
+    const checkInDate = formatDate(dateSelection.startDate) ?? '';
+    const checkOutDate = formatDate(dateSelection.endDate) ?? '';
+    fetchHotels({
+      city: locationInputValue,
+      ...activeFilters,
+      guests: numGuest,
+      checkInDate,
+      checkOutDate,
+    });
+  };
+
   const getActiveFilters = () => {
     const filters = {};
     selectedFiltersState.forEach((category) => {
@@ -92,7 +109,7 @@ const HotelsSearch = () => {
 
   // Logs the selected date (can be replaced with a handler function)
   const onDateSelect = (selection) => {
-    console.log(selection);
+    setDateSelection(selection);
   };
 
   /**
@@ -101,21 +118,16 @@ const HotelsSearch = () => {
    * @param {string} value - The new location value.
    */
   const onLocationChangeInput = (value) => {
-    const updatedLocation = value.toLowerCase();
-    setLocationInputValue(value);
-    if (availableCities.includes(updatedLocation)) {
-      fetchHotels({ city: updatedLocation, ...getActiveFilters() });
-    }
+    setLocationInputValue(value.toLowerCase());
   };
 
   /**
    * Handles changes in the number of guests input.
-   * @param {Object} e - The event object.
+   * @param {String} numGuests - Number of guests.
    */
-  const onNumGuestsInputChange = (e) => {
-    const userInputValue = e.target.value;
-    if (userInputValue < MAX_GUESTS_INPUT_VALUE && userInputValue > 0) {
-      setNumGuestsInputValue(e.target.value);
+  const onNumGuestsInputChange = (numGuests) => {
+    if (numGuests < MAX_GUESTS_INPUT_VALUE && numGuests > 0) {
+      setNumGuestsInputValue(numGuests);
     }
   };
 
@@ -212,6 +224,7 @@ const HotelsSearch = () => {
           onNumGuestsInputChange={onNumGuestsInputChange}
           onDateSelect={onDateSelect}
           onDatePickerIconClick={onDatePickerIconClick}
+          onSearchButtonAction={onSearchButtonAction}
         />
       </div>
       <div className="my-4"></div>
