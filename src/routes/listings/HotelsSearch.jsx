@@ -18,7 +18,7 @@ const HotelsSearch = () => {
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
 
   // State for managing location input value
-  const [locationInputValue, setLocationInputValue] = useState('Pune');
+  const [locationInputValue, setLocationInputValue] = useState('pune');
 
   // State for managing number of guests input value
   const [numGuestsInputValue, setNumGuestsInputValue] = useState('');
