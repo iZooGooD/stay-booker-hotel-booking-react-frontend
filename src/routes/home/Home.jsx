@@ -9,7 +9,7 @@ const MAX_GUESTS_INPUT_VALUE = 10;
 
 const Home = () => {
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
-  const [locationInputValue, setLocationInputValue] = useState('Pune');
+  const [locationInputValue, setLocationInputValue] = useState('pune');
   const [numGuestsInputValue, setNumGuestsInputValue] = useState('');
   const [popularDestinationsData, setPopularDestinationsData] = useState({
     isLoading: true,
@@ -62,12 +62,13 @@ const Home = () => {
     setLocationInputValue(newValue);
   };
 
-  const onNumGuestsInputChange = (e) => {
-    const userInputValue = e.target.value;
-    if (userInputValue < MAX_GUESTS_INPUT_VALUE && userInputValue > 0) {
-      setNumGuestsInputValue(e.target.value);
+  const onNumGuestsInputChange = (numGuests) => {
+    if (numGuests < MAX_GUESTS_INPUT_VALUE && numGuests > 0) {
+      setNumGuestsInputValue(numGuests);
     }
   };
+
+  const onSearchButtonAction = () => {};
 
   useEffect(() => {
     const getInitialData = async () => {
@@ -128,6 +129,7 @@ const Home = () => {
         onLocationChangeInput={onLocationChangeInput}
         onNumGuestsInputChange={onNumGuestsInputChange}
         onDateSelect={onDateSelect}
+        onSearchButtonAction={onSearchButtonAction}
         onDatePickerIconClick={onDatePickerIconClick}
       />
       <div className="container mx-auto">

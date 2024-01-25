@@ -9,6 +9,7 @@ const HeroCover = (props) => {
     onNumGuestsInputChange,
     onDateSelect,
     onDatePickerIconClick,
+    onSearchButtonAction,
   } = props;
   return (
     <div className="bg-brand min-h-[400px] md:min-h-72 lg:min-h-60 text-slate-100 relative">
@@ -31,6 +32,7 @@ const HeroCover = (props) => {
           onNumGuestsInputChange={onNumGuestsInputChange}
           onDateSelect={onDateSelect}
           onDatePickerIconClick={onDatePickerIconClick}
+          onSearchButtonAction={onSearchButtonAction}
         />
       </div>
     </div>
