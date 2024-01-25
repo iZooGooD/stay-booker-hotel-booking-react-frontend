@@ -4,10 +4,8 @@ import GlobalSearchBox from '../../components/global-search-box/GlobalSearchbox'
 import ResultsContainer from '../../components/results-container/ResultsContainer';
 import { networkAdapter } from '../../services/NetworkAdapter';
 import isEmpty from '../../utils/helpers';
+import { MAX_GUESTS_INPUT_VALUE } from '../../utils/constants';
 import { formatDate } from '../../utils/date-helpers';
-
-// Maximum number of guests allowed in the input
-const MAX_GUESTS_INPUT_VALUE = 10;
 
 /**
  * Component for searching hotels.

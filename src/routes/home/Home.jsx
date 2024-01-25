@@ -3,9 +3,8 @@ import HeroCover from './components/hero-cover/HeroCover';
 import PopularLocations from './components/popular-locations/popular-locations';
 import { networkAdapter } from '../../services/NetworkAdapter';
 import { useState, useEffect } from 'react';
+import { MAX_GUESTS_INPUT_VALUE } from '../../utils/constants';
 import ResultsContainer from '../../components/results-container/ResultsContainer';
-
-const MAX_GUESTS_INPUT_VALUE = 10;
 
 const Home = () => {
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
