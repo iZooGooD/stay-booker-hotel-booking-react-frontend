@@ -8,7 +8,9 @@ import {
   faCreditCard,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../contexts/AuthContext';
+import { networkAdapter } from '../../services/NetworkAdapter';
 import { useContext } from 'react';
+import PaymentMethodsPanel from './components/PaymentsMethodsPanel';
 
 /**
  * User profile page
@@ -23,6 +25,13 @@ const UserProfile = () => {
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [nationality, setNationality] = useState('');
+  const [paymentMethods, setPaymentMethods] = useState(mockPaymentMethods);
+
+  const [userBookingsData, setUserBookingsData] = useState({
+    isLoading: true,
+    data: [],
+    errors: [],
+  });
 
   useEffect(() => {
     if (userDetails) {
@@ -34,6 +43,21 @@ const UserProfile = () => {
       setIsPhoneVerified(userDetails.isPhoneVerified || '');
     }
   }, [userDetails]);
+
+  useEffect(() => {
+    const getInitialData = async () => {
+      const userBookingsDataResponse =
+        await networkAdapter.get('/api/bookings');
+      if (userBookingsDataResponse) {
+        setUserBookingsData({
+          isLoading: false,
+          data: userBookingsDataResponse.data.elements,
+          errors: userBookingsDataResponse.errors,
+        });
+      }
+    };
+    getInitialData();
+  }, []);
 
   const handleEditClick = () => {
     setIsEditMode(!isEditMode);
@@ -148,12 +172,13 @@ const UserProfile = () => {
             </div>
           </TabPanel>
           <TabPanel label="Bookings" icon={faHotel}>
-            {/* Dashboard content goes here */}
-            Bookings
+            <BookingPanel bookings={userBookingsData.data} />
           </TabPanel>
           <TabPanel label="Payment details" icon={faCreditCard}>
-            {/* Settings content goes here */}
-            Payment details
+            <PaymentMethodsPanel
+              paymentMethods={paymentMethods}
+              setPaymentMethods={setPaymentMethods}
+            />
           </TabPanel>
         </Tabs>
       </div>
@@ -188,5 +213,108 @@ const TextField = ({ label, value, onChange, type = 'text' }) => (
     </dd>
   </div>
 );
+
+const BookingPanel = ({ bookings }) => {
+  return (
+    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+      <ul className="divide-y divide-gray-200">
+        {bookings.map((booking, index) => (
+          <li key={index} className="bg-white hover:bg-gray-50">
+            <a href="#" className="block hover:bg-gray-50">
+              <div className="px-4 py-4 sm:px-6">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-bold text-brand truncate">
+                    {booking.hotelName}
+                  </p>
+                  <div className="ml-2 flex-shrink-0 flex">
+                    <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      Booking ID: {booking.bookingId}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-2 sm:flex sm:justify-between">
+                  <div className="sm:flex gap-x-2">
+                    <p className="flex items-center text-sm text-gray-500">
+                      <svg
+                        className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M8 7V3m8 4V3m-4 4V3m0 4v8m-4-4h8"
+                        />
+                      </svg>
+                      Booking Date: {booking.bookingDate}
+                    </p>
+                    <p className="flex items-center text-sm text-gray-500">
+                      <svg
+                        className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M7 10l5 5 5-5m-5 5V3"
+                        />
+                      </svg>
+                      Check-in: {booking.checkInDate}
+                    </p>
+                    <p className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6">
+                      <svg
+                        className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M7 10l5 5 5-5m-5 5V3"
+                        />
+                      </svg>
+                      Check-out: {booking.checkOutDate}
+                    </p>
+                  </div>
+                  <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                    <p className="flex items-center">
+                      <span className="font-medium">Total Fare: </span>{' '}
+                      <span className="ml-2">{booking.totalFare}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+const mockPaymentMethods = [
+  {
+    cardType: 'Visa',
+    cardNumber: '**** **** **** 1234',
+    expiryDate: '08/26',
+  },
+  {
+    cardType: 'MasterCard',
+    cardNumber: '**** **** **** 5678',
+    expiryDate: '07/24',
+  },
+  {
+    cardType: 'American Express',
+    cardNumber: '**** **** **** 9012',
+    expiryDate: '05/25',
+  },
+];
 
 export default UserProfile;

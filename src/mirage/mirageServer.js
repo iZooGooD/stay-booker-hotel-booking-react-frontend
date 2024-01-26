@@ -45,6 +45,44 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
+      this.get('/bookings', () => {
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              elements: [
+                {
+                  bookingId: 'BKG123',
+                  bookingDate: '2024-01-10',
+                  hotelName: 'Seaside Resort',
+                  checkInDate: '2024-01-20',
+                  checkOutDate: '2024-01-25',
+                  totalFare: '₹14,500',
+                },
+                {
+                  bookingId: 'BKG124',
+                  bookingDate: '2024-01-03',
+                  hotelName: 'Mountain Retreat',
+                  checkInDate: '2024-02-15',
+                  checkOutDate: '2024-02-20',
+                  totalFare: '₹5,890',
+                },
+                {
+                  bookingId: 'BKG125',
+                  bookingDate: '2024-01-11',
+                  hotelName: 'City Central Hotel',
+                  checkInDate: '2024-03-01',
+                  checkOutDate: '2024-03-05',
+                  totalFare: '₹21,700',
+                },
+              ],
+            },
+          }
+        );
+      });
+
       this.get('/popularDestinations', () => {
         return new Response(
           200,
