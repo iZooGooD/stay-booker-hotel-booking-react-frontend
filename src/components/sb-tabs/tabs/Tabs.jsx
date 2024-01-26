@@ -22,8 +22,8 @@ const Tabs = ({ children }) => {
                 onClick={() => onClickTabItem(label)}
                 className={`inline-flex p-4 ${
                   activeTab === label
-                    ? 'text-brand border-b-2 text-xl font-bold'
-                    : 'text-slate-600 text-xl font-bold'
+                    ? 'text-brand border-b-2 text-lg font-bold'
+                    : 'text-slate-600 text-lg font-bold'
                 }`}
               >
                 {label}
