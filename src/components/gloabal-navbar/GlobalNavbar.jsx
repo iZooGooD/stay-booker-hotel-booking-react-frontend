@@ -58,7 +58,7 @@ const GlobalNavbar = () => {
         <li className="p-4">
           {isAuthenticated ? (
             <Link
-              to="/"
+              to="/user-profile"
               className="uppercase font-medium text-slate-100 hover-underline-animation"
             >
               My account
