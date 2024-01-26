@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 
 const Tabs = ({ children }) => {
@@ -8,22 +9,25 @@ const Tabs = ({ children }) => {
   };
 
   return (
-    <div className="container mx-auto">
-      <ul className="flex border-b">
+    <div className="flex mt-4 items-start">
+      <ul className="flex flex-col border w-[220px]">
         {children.map((child) => {
-          const { label } = child.props;
-
+          const { label, icon } = child.props;
           return (
             <li
-              className={`mr-2 ${activeTab === label ? 'border-blue-500' : ''}`}
+              className={`flex items-center px-2 border-b ${
+                activeTab === label ? 'border-blue-500' : ''
+              }`}
               key={label}
             >
+              <FontAwesomeIcon
+                icon={icon}
+                color={`${activeTab === label ? '#074498' : '#475569'}`}
+              />
               <button
                 onClick={() => onClickTabItem(label)}
-                className={`inline-flex p-4 ${
-                  activeTab === label
-                    ? 'text-brand border-b-2 text-lg font-bold'
-                    : 'text-slate-600 text-lg font-bold'
+                className={`text-left w-full p-4 ${
+                  activeTab === label ? 'text-brand' : 'text-slate-600'
                 }`}
               >
                 {label}
@@ -32,7 +36,7 @@ const Tabs = ({ children }) => {
           );
         })}
       </ul>
-      <div className="p-4">
+      <div className="px-4 w-full">
         {children.map((child) => {
           if (child.props.label !== activeTab) return undefined;
           return child.props.children;
