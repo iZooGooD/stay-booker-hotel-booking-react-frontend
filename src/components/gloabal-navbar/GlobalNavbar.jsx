@@ -1,29 +1,19 @@
 import logo from '../../assests/logos/stay_booker_logo.png';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { networkAdapter } from '../../services/NetworkAdapter';
 import HamburgerMenu from '../hamburger-menu/HamburgerMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext } from 'react';
 
 const GlobalNavbar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const { isAuthenticated } = useContext(AuthContext);
 
   const onHamburgerMenuToggle = () => {
     setIsVisible(!isVisible);
   };
-
-  useEffect(() => {
-    const checkAuthStatus = async () => {
-      const response = await networkAdapter.get('api/authUser');
-      if (response) {
-        setIsAuthenticated(response.data.isAuthenticated);
-      }
-    };
-
-    checkAuthStatus();
-  }, []);
 
   return (
     <div className="relative flex flex-wrap justify-between items-center px-4 md:px-12 global-navbar__container bg-brand brand-divider-bottom">
@@ -41,7 +31,7 @@ const GlobalNavbar = () => {
         </li>
         <li className="p-4">
           <Link
-            to="hotels"
+            to="/hotels"
             className="uppercase font-medium text-slate-100 hover-underline-animation"
           >
             Hotels

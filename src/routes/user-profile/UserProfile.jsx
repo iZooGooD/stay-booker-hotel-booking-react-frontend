@@ -7,17 +7,33 @@ import {
   faHotel,
   faCreditCard,
 } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext } from 'react';
 
 /**
  * User profile page
  */
 const UserProfile = () => {
+  const { userDetails } = useContext(AuthContext);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [fullName, setFullName] = useState('Lakshman Choudhary');
-  const [email, setEmail] = useState('lakshmanchoudhary020@gmail.com');
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [nationality, setNationality] = useState('India');
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
+  const [nationality, setNationality] = useState('');
+
+  useEffect(() => {
+    if (userDetails) {
+      setFullName(userDetails.fullName || '');
+      setEmail(userDetails.email || '');
+      setPhoneNumber(userDetails.phone || '');
+      setNationality(userDetails.country || '');
+      setIsEmailVerified(userDetails.isEmailVerified || '');
+      setIsPhoneVerified(userDetails.isPhoneVerified || '');
+    }
+  }, [userDetails]);
 
   const handleEditClick = () => {
     setIsEditMode(!isEditMode);
@@ -88,11 +104,12 @@ const UserProfile = () => {
                       <DisplayField
                         label="Email address"
                         value={email}
-                        verified
+                        verified={isEmailVerified}
                       />
                       <DisplayField
                         label="Phone number"
                         value={phoneNumber || 'Add your phone number'}
+                        verified={isPhoneVerified}
                       />
                       <DisplayField
                         label="Date of birth"
@@ -132,11 +149,11 @@ const UserProfile = () => {
           </TabPanel>
           <TabPanel label="Bookings" icon={faHotel}>
             {/* Dashboard content goes here */}
-            Dashboard Content
+            Bookings
           </TabPanel>
           <TabPanel label="Payment details" icon={faCreditCard}>
             {/* Settings content goes here */}
-            Settings Content
+            Payment details
           </TabPanel>
         </Tabs>
       </div>

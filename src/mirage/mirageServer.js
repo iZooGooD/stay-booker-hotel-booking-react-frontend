@@ -29,7 +29,17 @@ export function makeServer({ environment = 'development' } = {}) {
             errors: [],
             data: {
               isAuthenticated: true,
-              userId: '23122',
+              userDetails: {
+                id: '23122',
+                firstName: 'Lakshman',
+                lastName: 'Chaudhary',
+                fullName: 'Lakshman Chaudhary',
+                email: 'lakshmanchoudhary020@gmail.com',
+                phone: '9111112322',
+                country: 'India',
+                isPhoneVerified: true,
+                isEmailVerified: true,
+              },
             },
           }
         );
