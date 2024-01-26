@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import HotelsSearch from './routes/listings/HotelsSearch';
+import UserProfile from './routes/user-profile/UserProfile';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import Home from './routes/home/Home';
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/aboutus',
     element: <HotelsSearch />,
+  },
+  {
+    path: '/user-profile',
+    element: <UserProfile />,
   },
 ]);
 
