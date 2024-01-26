@@ -7,18 +7,128 @@ import {
   faHotel,
   faCreditCard,
 } from '@fortawesome/free-solid-svg-icons';
+
 /**
  * User profile page
  */
 const UserProfile = () => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [fullName, setFullName] = useState('Lakshman Choudhary');
+  const [email, setEmail] = useState('lakshmanchoudhary020@gmail.com');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [nationality, setNationality] = useState('India');
+
+  const handleEditClick = () => {
+    setIsEditMode(!isEditMode);
+  };
+
+  const handleCancelClick = () => {
+    setIsEditMode(!isEditMode);
+  };
+
+  const handleSaveClick = () => {
+    // Perform save logic here
+    setIsEditMode(false);
+  };
+
   return (
-    <div>
+    <>
       <GlobalNavbar />
-      <div className="container mx-auto">
+      <div className="container mx-auto p-4">
         <Tabs>
-          <TabPanel label="Personal details" icon={faAddressCard}>
-            {/* Profile content goes here */}
-            Profile Content
+          <TabPanel label="Personal Details" icon={faAddressCard}>
+            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+              <div className="px-4 py-5 sm:px-6">
+                <h3 className="text-xl leading-6 font-medium text-gray-900">
+                  Personal details
+                </h3>
+                <p className="mt-1 max-w-2xl text-gray-500">
+                  Keep your details current to ensure seamless communication and
+                  services
+                </p>
+              </div>
+              <div className="border-t border-gray-200">
+                <dl>
+                  {isEditMode ? (
+                    // Editable fields
+                    <>
+                      <TextField
+                        label="Name"
+                        value={fullName}
+                        onChange={setFullName}
+                      />
+                      <TextField
+                        label="Email address"
+                        value={email}
+                        onChange={setEmail}
+                      />
+                      <TextField
+                        label="Phone number"
+                        type="tel"
+                        value={phoneNumber}
+                        onChange={setPhoneNumber}
+                      />
+                      <TextField
+                        label="Date of birth"
+                        type="date"
+                        value={dateOfBirth}
+                        onChange={setDateOfBirth}
+                      />
+                      <TextField
+                        label="Nationality"
+                        value={nationality}
+                        onChange={setNationality}
+                      />
+                    </>
+                  ) : (
+                    // Display fields
+                    <>
+                      <DisplayField label="Name" value={fullName} />
+                      <DisplayField
+                        label="Email address"
+                        value={email}
+                        verified
+                      />
+                      <DisplayField
+                        label="Phone number"
+                        value={phoneNumber || 'Add your phone number'}
+                      />
+                      <DisplayField
+                        label="Date of birth"
+                        value={dateOfBirth || 'Enter your date of birth'}
+                      />
+                      <DisplayField label="Nationality" value={nationality} />
+                    </>
+                  )}
+                </dl>
+              </div>
+              <div className="flex justify-between px-4 py-3 bg-gray-50 text-right sm:px-6">
+                {isEditMode ? (
+                  <>
+                    <button
+                      onClick={handleCancelClick}
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand-secondary hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handleSaveClick}
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                      Save
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={handleEditClick}
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  >
+                    Edit
+                  </button>
+                )}
+              </div>
+            </div>
           </TabPanel>
           <TabPanel label="Bookings" icon={faHotel}>
             {/* Dashboard content goes here */}
@@ -30,8 +140,36 @@ const UserProfile = () => {
           </TabPanel>
         </Tabs>
       </div>
-    </div>
+    </>
   );
 };
+
+const DisplayField = ({ label, value, verified }) => (
+  <div
+    className={`bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${
+      verified ? 'bg-gray-50' : ''
+    }`}
+  >
+    <dt className="font-medium text-gray-500">{label}</dt>
+    <dd className="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+      {value}{' '}
+      {verified && <span className="text-green-500 font-medium">Verified</span>}
+    </dd>
+  </div>
+);
+
+const TextField = ({ label, value, onChange, type = 'text' }) => (
+  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+    <dt className="font-medium text-gray-500">{label}</dt>
+    <dd className="mt-1 sm:mt-0 sm:col-span-2">
+      <input
+        type={type}
+        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-sm md:text-base border-gray-300 rounded-md"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </dd>
+  </div>
+);
 
 export default UserProfile;
