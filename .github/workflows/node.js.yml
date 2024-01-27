@@ -51,26 +51,16 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
-  
+
     steps:
       - uses: actions/checkout@v3
-  
+
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
           cache: 'npm'
-  
+
       - run: npm ci
-  
-      # Start the server in the background
-      - name: Start application
-        run: npm start &
-        env:
-          CI: true
-  
-      # Wait for the server to be ready
-      - name: Wait for server to start
-        run: npx wait-on http://localhost:3000
-  
-      - run: npm test
+
+      - run: npx cypress run --component
