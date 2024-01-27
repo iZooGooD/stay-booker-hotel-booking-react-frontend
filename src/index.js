@@ -10,9 +10,11 @@ import { AuthProvider } from './contexts/AuthContext';
 import { makeServer } from './mirage/mirageServer';
 import HotelDetails from './routes/hotel-details/HotelDetails';
 
-if (process.env.NODE_ENV === 'development') {
-  makeServer();
-}
+// if (process.env.NODE_ENV === 'development') {
+//   makeServer();
+// }
+
+makeServer();
 
 const router = createBrowserRouter([
   {
