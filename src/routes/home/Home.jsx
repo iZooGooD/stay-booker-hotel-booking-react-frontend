@@ -160,6 +160,7 @@ const Home = () => {
         numGuestsInputValue={numGuestsInputValue}
         locationTypeheadResults={availableCities}
         isDatePickerVisible={isDatePickerVisible}
+        setisDatePickerVisible={setisDatePickerVisible}
         onLocationChangeInput={onLocationChangeInput}
         onNumGuestsInputChange={onNumGuestsInputChange}
         dateRange={dateRange}

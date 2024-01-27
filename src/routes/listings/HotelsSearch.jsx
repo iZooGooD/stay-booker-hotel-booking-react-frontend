@@ -222,6 +222,7 @@ const HotelsSearch = () => {
         });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFiltersState]);
 
   useEffect(() => {
@@ -252,6 +253,7 @@ const HotelsSearch = () => {
           locationTypeheadResults={availableCities}
           numGuestsInputValue={numGuestsInputValue}
           isDatePickerVisible={isDatePickerVisible}
+          setisDatePickerVisible={setisDatePickerVisible}
           onLocationChangeInput={onLocationChangeInput}
           onNumGuestsInputChange={onNumGuestsInputChange}
           dateRange={dateRange}

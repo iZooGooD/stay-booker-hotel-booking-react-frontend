@@ -13,6 +13,7 @@ const GlobalSearchBox = (props) => {
     locationTypeheadResults,
     onSearchButtonAction,
     onDateChangeHandler,
+    setisDatePickerVisible,
     dateRange,
   } = props;
   return (
@@ -29,6 +30,7 @@ const GlobalSearchBox = (props) => {
         isDatePickerVisible={isDatePickerVisible}
         onDatePickerIconClick={onDatePickerIconClick}
         onDateChangeHandler={onDateChangeHandler}
+        setisDatePickerVisible={setisDatePickerVisible}
         dateRange={dateRange}
       />
       <SbInput

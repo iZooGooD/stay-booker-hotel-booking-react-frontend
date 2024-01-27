@@ -12,6 +12,7 @@ const HeroCover = (props) => {
     onDatePickerIconClick,
     onSearchButtonAction,
     locationTypeheadResults,
+    setisDatePickerVisible,
   } = props;
   return (
     <div className="bg-brand min-h-[400px] md:min-h-72 lg:min-h-60 text-slate-100 relative">
@@ -31,6 +32,7 @@ const HeroCover = (props) => {
           locationTypeheadResults={locationTypeheadResults}
           numGuestsInputValue={numGuestsInputValue}
           isDatePickerVisible={isDatePickerVisible}
+          setisDatePickerVisible={setisDatePickerVisible}
           onLocationChangeInput={onLocationChangeInput}
           onNumGuestsInputChange={onNumGuestsInputChange}
           dateRange={dateRange}

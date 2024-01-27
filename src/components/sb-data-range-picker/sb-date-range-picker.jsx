@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useRef } from 'react';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { DateRange } from 'react-date-range';
 import { formatDate } from '../../utils/date-helpers';
+import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
 
 const SbDateRangePicker = (props) => {
   const {
@@ -9,7 +11,11 @@ const SbDateRangePicker = (props) => {
     onDatePickerIconClick,
     onDateChangeHandler,
     dateRange,
+    setisDatePickerVisible,
   } = props;
+
+  const wrapperRef = useRef();
+  useOutsideClickHandler(wrapperRef, () => setisDatePickerVisible(false));
 
   // Format dates for display
   const formattedStartDate = dateRange[0].startDate
@@ -41,16 +47,18 @@ const SbDateRangePicker = (props) => {
         onFocus={onDatePickerIconClick}
         readOnly
       ></input>
-      {isDatePickerVisible && (
-        <DateRange
-          editableDateInputs={true}
-          onChange={onDateChangeHandler}
-          moveRangeOnFirstSelection={false}
-          ranges={dateRange}
-          direction="horizontal"
-          className="sb__date-range-picker"
-        />
-      )}
+      <div ref={wrapperRef} className="">
+        {isDatePickerVisible && (
+          <DateRange
+            editableDateInputs={true}
+            onChange={onDateChangeHandler}
+            moveRangeOnFirstSelection={false}
+            ranges={dateRange}
+            direction="horizontal"
+            className="sb__date-range-picker"
+          />
+        )}
+      </div>
     </div>
   );
 };
