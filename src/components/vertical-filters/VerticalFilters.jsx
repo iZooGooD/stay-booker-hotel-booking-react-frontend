@@ -1,6 +1,6 @@
 import SbCheckbox from '../sb-checkbox/sb-checkbox';
 const VerticalFilters = (props) => {
-  const { filtersData, onFiltersUpdate } = props;
+  const { filtersData, onFiltersUpdate, onClearFiltersAction } = props;
 
   return (
     <div
@@ -11,7 +11,9 @@ const VerticalFilters = (props) => {
         <h4 className="text-base font-bold text-slate-600 uppercase">
           Filters
         </h4>
-        <span className="text-sm ml-4">Clear</span>
+        <button className="text-sm ml-4" onClick={onClearFiltersAction}>
+          Clear
+        </button>
       </div>
       {filtersData.map((filter) => (
         <div className="border-b-2" key={filter.filterId}>

@@ -129,6 +129,18 @@ const HotelsSearch = () => {
     }
   };
 
+  const onClearFiltersAction = () => {
+    setSelectedFiltersState(
+      selectedFiltersState.map((filterGroup) => ({
+        ...filterGroup,
+        filters: filterGroup.filters.map((filter) => ({
+          ...filter,
+          isSelected: false,
+        })),
+      }))
+    );
+  };
+
   const fetchHotels = async (filters) => {
     setHotelsResults({
       isLoading: true,
@@ -147,20 +159,10 @@ const HotelsSearch = () => {
     }
   };
 
-  const getInitialData = async () => {
-    const hotelsResultsResponse = await networkAdapter.get('/api/nearbyHotels');
-
+  const getVerticalFiltersData = async () => {
     const filtersDataResponse = await networkAdapter.get(
       'api/hotels/verticalFilters'
     );
-
-    if (hotelsResultsResponse) {
-      setHotelsResults({
-        isLoading: false,
-        data: hotelsResultsResponse.data.elements,
-        errors: hotelsResultsResponse.errors,
-      });
-    }
     if (filtersDataResponse) {
       setFiltersData({
         isLoading: false,
@@ -183,7 +185,7 @@ const HotelsSearch = () => {
   // Fetch available cities and initial data on component mount
   useEffect(() => {
     fetchAvailableCities();
-    getInitialData();
+    getVerticalFiltersData();
   }, []);
 
   // Update selected filters state when filters data changes
@@ -205,6 +207,10 @@ const HotelsSearch = () => {
       if (activeFilters) {
         activeFilters.city = locationInputValue.toLowerCase();
         fetchHotels(activeFilters);
+      } else {
+        fetchHotels({
+          city: locationInputValue,
+        });
       }
     }
   }, [selectedFiltersState]);
@@ -231,6 +237,7 @@ const HotelsSearch = () => {
         enableFilters={true}
         filtersData={filtersData}
         onFiltersUpdate={onFiltersUpdate}
+        onClearFiltersAction={onClearFiltersAction}
         selectedFiltersState={selectedFiltersState}
       />
     </div>

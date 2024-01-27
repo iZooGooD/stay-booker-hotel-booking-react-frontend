@@ -11,6 +11,7 @@ const ResultsContainer = (props) => {
     filtersData,
     selectedFiltersState,
     onFiltersUpdate,
+    onClearFiltersAction,
   } = props;
 
   return (
@@ -19,6 +20,7 @@ const ResultsContainer = (props) => {
         <VerticalFilters
           filtersData={selectedFiltersState}
           onFiltersUpdate={onFiltersUpdate}
+          onClearFiltersAction={onClearFiltersAction}
         />
       )}
       {enableFilters && filtersData.isLoading && <VerticalFiltersSkeleton />}

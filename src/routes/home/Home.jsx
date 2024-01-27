@@ -139,7 +139,7 @@ const Home = () => {
           </h2>
           <ResultsContainer
             hotelsResults={hotelsResults}
-            enableFilters={true}
+            enableFilters={false}
             filtersData={filtersData}
             onFiltersUpdate={onFiltersUpdate}
             selectedFiltersState={selectedFiltersState}
