@@ -1,28 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { DateRange } from 'react-date-range';
-import { useState } from 'react';
 import { formatDate } from '../../utils/date-helpers';
 
 const SbDateRangePicker = (props) => {
-  const { isDatePickerVisible, onDatePickerIconClick, onDateSelect } = props;
-  const [state, setState] = useState([
-    {
-      startDate: null,
-      endDate: null,
-      key: 'selection',
-    },
-  ]);
-  const onDateRangeChange = (item) => {
-    onDateSelect(item.selection);
-    setState([item.selection]);
-  };
+  const {
+    isDatePickerVisible,
+    onDatePickerIconClick,
+    onDateChangeHandler,
+    dateRange,
+  } = props;
+
   // Format dates for display
-  const formattedStartDate = state[0].startDate
-    ? formatDate(state[0].startDate)
+  const formattedStartDate = dateRange[0].startDate
+    ? formatDate(dateRange[0].startDate)
     : 'Check-in';
-  const formattedEndDate = state[0].endDate
-    ? formatDate(state[0].endDate)
+  const formattedEndDate = dateRange[0].endDate
+    ? formatDate(dateRange[0].endDate)
     : 'Check-out';
 
   return (
@@ -50,9 +44,9 @@ const SbDateRangePicker = (props) => {
       {isDatePickerVisible && (
         <DateRange
           editableDateInputs={true}
-          onChange={onDateRangeChange}
+          onChange={onDateChangeHandler}
           moveRangeOnFirstSelection={false}
-          ranges={state}
+          ranges={dateRange}
           direction="horizontal"
           className="sb__date-range-picker"
         />

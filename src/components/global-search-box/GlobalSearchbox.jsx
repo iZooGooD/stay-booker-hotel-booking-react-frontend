@@ -9,10 +9,11 @@ const GlobalSearchBox = (props) => {
     isDatePickerVisible,
     onLocationChangeInput,
     onNumGuestsInputChange,
-    onDateSelect,
     onDatePickerIconClick,
     locationTypeheadResults,
     onSearchButtonAction,
+    onDateChangeHandler,
+    dateRange,
   } = props;
   return (
     <div className="flex flex-wrap flex-col lg:flex-row hero-content__search-box">
@@ -27,7 +28,8 @@ const GlobalSearchBox = (props) => {
       <SbDateRangePicker
         isDatePickerVisible={isDatePickerVisible}
         onDatePickerIconClick={onDatePickerIconClick}
-        onDateSelect={onDateSelect}
+        onDateChangeHandler={onDateChangeHandler}
+        dateRange={dateRange}
       />
       <SbInput
         size="sm"

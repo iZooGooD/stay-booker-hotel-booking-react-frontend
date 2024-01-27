@@ -7,9 +7,11 @@ const HeroCover = (props) => {
     isDatePickerVisible,
     onLocationChangeInput,
     onNumGuestsInputChange,
-    onDateSelect,
+    dateRange,
+    onDateChangeHandler,
     onDatePickerIconClick,
     onSearchButtonAction,
+    locationTypeheadResults,
   } = props;
   return (
     <div className="bg-brand min-h-[400px] md:min-h-72 lg:min-h-60 text-slate-100 relative">
@@ -26,11 +28,13 @@ const HeroCover = (props) => {
         </div>
         <GlobalSearchBox
           locationInputValue={locationInputValue}
+          locationTypeheadResults={locationTypeheadResults}
           numGuestsInputValue={numGuestsInputValue}
           isDatePickerVisible={isDatePickerVisible}
           onLocationChangeInput={onLocationChangeInput}
           onNumGuestsInputChange={onNumGuestsInputChange}
-          onDateSelect={onDateSelect}
+          dateRange={dateRange}
+          onDateChangeHandler={onDateChangeHandler}
           onDatePickerIconClick={onDatePickerIconClick}
           onSearchButtonAction={onSearchButtonAction}
         />

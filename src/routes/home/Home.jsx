@@ -5,8 +5,11 @@ import { networkAdapter } from '../../services/NetworkAdapter';
 import { useState, useEffect } from 'react';
 import { MAX_GUESTS_INPUT_VALUE } from '../../utils/constants';
 import ResultsContainer from '../../components/results-container/ResultsContainer';
+import { formatDate } from '../../utils/date-helpers';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
   const [locationInputValue, setLocationInputValue] = useState('pune');
   const [numGuestsInputValue, setNumGuestsInputValue] = useState('');
@@ -26,6 +29,17 @@ const Home = () => {
     errors: [],
   });
   const [selectedFiltersState, setSelectedFiltersState] = useState({});
+
+  // State for storing available cities
+  const [availableCities, setAvailableCities] = useState([]);
+
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: null,
+      endDate: null,
+      key: 'selection',
+    },
+  ]);
 
   const onFiltersUpdate = (updatedFilter) => {
     setSelectedFiltersState(
@@ -53,10 +67,6 @@ const Home = () => {
     setisDatePickerVisible(!isDatePickerVisible);
   };
 
-  const onDateSelect = (selection) => {
-    console.log(selection);
-  };
-
   const onLocationChangeInput = (newValue) => {
     setLocationInputValue(newValue);
   };
@@ -67,7 +77,24 @@ const Home = () => {
     }
   };
 
-  const onSearchButtonAction = () => {};
+  const onDateChangeHandler = (ranges) => {
+    setDateRange([ranges.selection]);
+  };
+
+  const onSearchButtonAction = () => {
+    const numGuest = Number(numGuestsInputValue);
+    const checkInDate = formatDate(dateRange[0].startDate) ?? '';
+    const checkOutDate = formatDate(dateRange[0].endDate) ?? '';
+    const city = locationInputValue;
+    navigate('/hotels', {
+      state: {
+        numGuest,
+        checkInDate,
+        checkOutDate,
+        city,
+      },
+    });
+  };
 
   useEffect(() => {
     const getInitialData = async () => {
@@ -80,6 +107,13 @@ const Home = () => {
       const filtersDataResponse = await networkAdapter.get(
         'api/hotels/verticalFilters'
       );
+
+      const availableCitiesResponse = await networkAdapter.get(
+        '/api/availableCities'
+      );
+      if (availableCitiesResponse) {
+        setAvailableCities(availableCitiesResponse.data.elements);
+      }
 
       if (popularDestinationsResponse) {
         setPopularDestinationsData({
@@ -124,12 +158,14 @@ const Home = () => {
       <HeroCover
         locationInputValue={locationInputValue}
         numGuestsInputValue={numGuestsInputValue}
+        locationTypeheadResults={availableCities}
         isDatePickerVisible={isDatePickerVisible}
         onLocationChangeInput={onLocationChangeInput}
         onNumGuestsInputChange={onNumGuestsInputChange}
-        onDateSelect={onDateSelect}
-        onSearchButtonAction={onSearchButtonAction}
+        dateRange={dateRange}
+        onDateChangeHandler={onDateChangeHandler}
         onDatePickerIconClick={onDatePickerIconClick}
+        onSearchButtonAction={onSearchButtonAction}
       />
       <div className="container mx-auto">
         <PopularLocations popularDestinationsData={popularDestinationsData} />

@@ -6,6 +6,8 @@ import { networkAdapter } from '../../services/NetworkAdapter';
 import isEmpty from '../../utils/helpers';
 import { MAX_GUESTS_INPUT_VALUE } from '../../utils/constants';
 import { formatDate } from '../../utils/date-helpers';
+import { useLocation } from 'react-router-dom';
+import { parse } from 'date-fns';
 
 /**
  * Component for searching hotels.
@@ -24,8 +26,6 @@ const HotelsSearch = () => {
   // State for storing available cities
   const [availableCities, setAvailableCities] = useState([]);
 
-  const [dateSelection, setDateSelection] = useState({});
-
   // State for managing filters data
   const [filtersData, setFiltersData] = useState({
     isLoading: true,
@@ -40,8 +40,18 @@ const HotelsSearch = () => {
     errors: [],
   });
 
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: null,
+      endDate: null,
+      key: 'selection',
+    },
+  ]);
+
   // State for managing selected filters
   const [selectedFiltersState, setSelectedFiltersState] = useState({});
+
+  const location = useLocation();
 
   /**
    * Handles updates to filters.
@@ -69,11 +79,15 @@ const HotelsSearch = () => {
     );
   };
 
+  const onDateChangeHandler = (ranges) => {
+    setDateRange([ranges.selection]);
+  };
+
   const onSearchButtonAction = () => {
     const activeFilters = getActiveFilters();
     const numGuest = Number(numGuestsInputValue);
-    const checkInDate = formatDate(dateSelection.startDate) ?? '';
-    const checkOutDate = formatDate(dateSelection.endDate) ?? '';
+    const checkInDate = formatDate(dateRange.startDate) ?? '';
+    const checkOutDate = formatDate(dateRange.endDate) ?? '';
     fetchHotels({
       city: locationInputValue,
       ...activeFilters,
@@ -103,11 +117,6 @@ const HotelsSearch = () => {
   // Toggles the visibility of the date picker
   const onDatePickerIconClick = () => {
     setisDatePickerVisible(!isDatePickerVisible);
-  };
-
-  // Logs the selected date (can be replaced with a handler function)
-  const onDateSelect = (selection) => {
-    setDateSelection(selection);
   };
 
   /**
@@ -215,6 +224,21 @@ const HotelsSearch = () => {
     }
   }, [selectedFiltersState]);
 
+  useEffect(() => {
+    if (location.state) {
+      const { city, numGuest, checkInDate, checkOutDate } = location.state;
+      setNumGuestsInputValue(numGuest.toString());
+      setLocationInputValue(city);
+      setDateRange([
+        {
+          startDate: parse(checkInDate, 'dd/MM/yyyy', new Date()),
+          endDate: parse(checkOutDate, 'dd/MM/yyyy', new Date()),
+          key: 'selection',
+        },
+      ]);
+    }
+  }, [location]);
+
   return (
     <div className="hotels">
       <GlobalNavbar />
@@ -226,7 +250,8 @@ const HotelsSearch = () => {
           isDatePickerVisible={isDatePickerVisible}
           onLocationChangeInput={onLocationChangeInput}
           onNumGuestsInputChange={onNumGuestsInputChange}
-          onDateSelect={onDateSelect}
+          dateRange={dateRange}
+          onDateChangeHandler={onDateChangeHandler}
           onDatePickerIconClick={onDatePickerIconClick}
           onSearchButtonAction={onSearchButtonAction}
         />
