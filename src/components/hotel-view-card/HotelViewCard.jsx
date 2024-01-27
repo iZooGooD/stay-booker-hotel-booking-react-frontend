@@ -1,8 +1,21 @@
 import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
 const HotelViewCard = (props) => {
-  const { image, title, subtitle, benefits, price, ratings } = props;
+  const {
+    id: hoteCode,
+    image,
+    title,
+    subtitle,
+    benefits,
+    price,
+    ratings,
+  } = props;
+  const navigate = useNavigate();
+  const onBookNowClick = () => {
+    navigate(`/hotel/${hoteCode}`);
+  };
   return (
     <div
       className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full"
@@ -36,7 +49,10 @@ const HotelViewCard = (props) => {
           </h4>
           <p className="text-slate-600 font-bold whitespace-nowrap">{price}</p>
         </div>
-        <button className=" bg-brand-secondary px-4 py-2 text-white whitespace-nowrap">
+        <button
+          className=" bg-brand-secondary px-4 py-2 text-white whitespace-nowrap"
+          onClick={onBookNowClick}
+        >
           Book now
         </button>
       </div>
