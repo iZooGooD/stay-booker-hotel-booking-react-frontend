@@ -139,11 +139,13 @@ describe('ResultsContainer', () => {
 
   it('renders hotel view cards when not loading', () => {
     cy.mount(
-      <ResultsContainer
-        hotelsResults={mockHotelsResults}
-        enableFilters={false}
-        filtersData={mockFiltersData}
-      />
+      <BrowserRouter>
+        <ResultsContainer
+          hotelsResults={mockHotelsResults}
+          enableFilters={false}
+          filtersData={mockFiltersData}
+        />
+      </BrowserRouter>
     );
 
     cy.get('[data-testid=hotel-view-card]').should('have.length', 5);
@@ -151,11 +153,13 @@ describe('ResultsContainer', () => {
 
   it('renders hotel view card skeletons when loading', () => {
     cy.mount(
-      <ResultsContainer
-        hotelsResults={{ ...mockHotelsResults, isLoading: true }}
-        enableFilters={false}
-        filtersData={mockFiltersData}
-      />
+      <BrowserRouter>
+        <ResultsContainer
+          hotelsResults={{ ...mockHotelsResults, isLoading: true }}
+          enableFilters={false}
+          filtersData={mockFiltersData}
+        />
+      </BrowserRouter>
     );
     cy.get('[data-testid=hotel-view-card-skeleton]').should('have.length', 5);
   });
@@ -194,13 +198,15 @@ describe('ResultsContainer', () => {
     const onFiltersUpdateSpy = cy.spy().as('onFiltersUpdateSpy');
 
     cy.mount(
-      <ResultsContainer
-        hotelsResults={mockHotelsResults}
-        enableFilters={true}
-        filtersData={mockFiltersData}
-        onFiltersUpdate={onFiltersUpdateSpy}
-        selectedFiltersState={selectedFiltersState}
-      />
+      <BrowserRouter>
+        <ResultsContainer
+          hotelsResults={mockHotelsResults}
+          enableFilters={true}
+          filtersData={mockFiltersData}
+          onFiltersUpdate={onFiltersUpdateSpy}
+          selectedFiltersState={selectedFiltersState}
+        />
+      </BrowserRouter>
     );
 
     cy.get('[data-testid=5_star_rating]').click();
