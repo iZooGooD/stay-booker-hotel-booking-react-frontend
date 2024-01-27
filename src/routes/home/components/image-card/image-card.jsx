@@ -4,6 +4,7 @@ const ImageCard = (props) => {
     <div
       className="p-4 border hover:bg-slate-100 cursor-pointer"
       onClick={() => onPopularDestincationCardClick(name)}
+      data-testid="image-card"
     >
       <img src={imageUrl} className="rounded w-[120px] h-[75px]" alt="mumbai" />
       <h4 className="text-center">{name}</h4>
