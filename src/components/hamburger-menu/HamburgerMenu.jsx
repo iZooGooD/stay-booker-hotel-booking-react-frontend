@@ -27,8 +27,8 @@ const HamburgerMenu = (props) => {
           </Link>
         </li>
         <li className="p-4 hover:bg-sky-700">
-          <Link to="listings" className="uppercase font-medium text-slate-100">
-            Booking
+          <Link to="/hotels" className="uppercase font-medium text-slate-100">
+            Hotels
           </Link>
         </li>
         <li className="p-4 hover:bg-sky-700">
@@ -41,7 +41,10 @@ const HamburgerMenu = (props) => {
           data-testid="hamburger-menu__account-status"
         >
           {isAuthenticated ? (
-            <Link to="/" className="uppercase font-medium text-slate-100">
+            <Link
+              to="/user-profile"
+              className="uppercase font-medium text-slate-100"
+            >
               My account
             </Link>
           ) : (
