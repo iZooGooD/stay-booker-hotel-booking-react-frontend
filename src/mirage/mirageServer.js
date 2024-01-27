@@ -223,6 +223,33 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
+      this.get('/hotel/:hotelId', (schema, request) => {
+        let hotelId = request.params.hotelId;
+        const description = [
+          'A serene stay awaits at our plush hotel, offering a blend of luxury and comfort with top-notch amenities.',
+          'Experience the pinnacle of elegance in our beautifully designed rooms with stunning cityscape views.',
+          'Indulge in gastronomic delights at our in-house restaurants, featuring local and international cuisines.',
+          'Unwind in our state-of-the-art spa and wellness center, a perfect retreat for the senses.',
+          'Located in the heart of the city, our hotel is the ideal base for both leisure and business travelers.',
+        ];
+
+        const result = hotelsData.find((hotel) => {
+          return Number(hotel.hotelCode) === Number(hotelId);
+        });
+
+        result.description = description;
+        result.discount = '10%';
+
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: result,
+          }
+        );
+      });
+
       this.get('/hotels', (schema, request) => {
         const filters = request.queryParams.filters;
         const parsedFilters = JSON.parse(filters);

@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import Home from './routes/home/Home';
 import { AuthProvider } from './contexts/AuthContext';
 import { makeServer } from './mirage/mirageServer';
+import HotelDetails from './routes/hotel-details/HotelDetails';
 
 if (process.env.NODE_ENV === 'development') {
   makeServer();
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/user-profile',
     element: <UserProfile />,
+  },
+  {
+    path: '/hotel/:hotelId',
+    element: <HotelDetails />,
   },
 ]);
 
