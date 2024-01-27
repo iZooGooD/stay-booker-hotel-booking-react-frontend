@@ -1,7 +1,19 @@
 import ImageCard from '../image-card/image-card';
 import ImageCardSkeleton from '../image-card-skeleton/image-card-skeleton';
+import { useNavigate } from 'react-router-dom';
+
 const PopularLocations = (props) => {
   const { popularDestinationsData } = props;
+  const navigate = useNavigate();
+
+  const onPopularDestincationCardClick = (city) => {
+    navigate('/hotels', {
+      state: {
+        city: city.toString().toLowerCase(),
+      },
+    });
+  };
+
   return (
     <div className="my-4">
       <h2 className="text-3xl font-medium text-slate-700 text-center">
@@ -17,6 +29,7 @@ const PopularLocations = (props) => {
                 key={city.code}
                 name={city.name}
                 imageUrl={city.imageUrl}
+                onPopularDestincationCardClick={onPopularDestincationCardClick}
               />
             ))}
       </div>

@@ -227,15 +227,19 @@ const HotelsSearch = () => {
   useEffect(() => {
     if (location.state) {
       const { city, numGuest, checkInDate, checkOutDate } = location.state;
-      setNumGuestsInputValue(numGuest.toString());
+      if (numGuest) {
+        setNumGuestsInputValue(numGuest.toString());
+      }
       setLocationInputValue(city);
-      setDateRange([
-        {
-          startDate: parse(checkInDate, 'dd/MM/yyyy', new Date()),
-          endDate: parse(checkOutDate, 'dd/MM/yyyy', new Date()),
-          key: 'selection',
-        },
-      ]);
+      if (checkInDate && checkOutDate) {
+        setDateRange([
+          {
+            startDate: parse(checkInDate, 'dd/MM/yyyy', new Date()),
+            endDate: parse(checkOutDate, 'dd/MM/yyyy', new Date()),
+            key: 'selection',
+          },
+        ]);
+      }
     }
   }, [location]);
 
