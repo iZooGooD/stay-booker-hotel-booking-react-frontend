@@ -11,6 +11,8 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { networkAdapter } from '../../services/NetworkAdapter';
 import { useContext } from 'react';
 import PaymentMethodsPanel from './components/PaymentsMethodsPanel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * User profile page
@@ -26,6 +28,7 @@ const UserProfile = () => {
   const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [nationality, setNationality] = useState('');
   const [paymentMethods, setPaymentMethods] = useState(mockPaymentMethods);
+  const [isTabsVisible, setIsTabsVisible] = useState(false);
 
   const [userBookingsData, setUserBookingsData] = useState({
     isLoading: true,
@@ -72,11 +75,23 @@ const UserProfile = () => {
     setIsEditMode(false);
   };
 
+  const onTabsMenuButtonAction = () => {
+    setIsTabsVisible(!isTabsVisible);
+  };
+
   return (
     <>
       <GlobalNavbar />
       <div className="container mx-auto p-4">
-        <Tabs>
+        <div className="mx-4">
+          <button
+            onClick={onTabsMenuButtonAction}
+            className="block md:hidden items-center px-4 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <FontAwesomeIcon icon={faBars} size="lg" />
+          </button>
+        </div>
+        <Tabs isTabsVisible={isTabsVisible}>
           <TabPanel label="Personal Details" icon={faAddressCard}>
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
               <div className="px-4 py-5 sm:px-6">
