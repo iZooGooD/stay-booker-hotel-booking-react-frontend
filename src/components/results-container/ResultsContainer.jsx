@@ -29,15 +29,18 @@ const ResultsContainer = (props) => {
 
   return (
     <div className="relative">
-      <div className="vertical-filters__toggle-menu block mx-2 my-2 md:hidden">
-        <button
-          data-testid="vertical-filters__toggle-menu"
-          onClick={toggleVerticalFiltersAction}
-          className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          <FontAwesomeIcon icon={faFilter} size="sm" className="mr-1" /> Filters
-        </button>
-      </div>
+      {enableFilters && (
+        <div className="vertical-filters__toggle-menu block mx-2 my-2 md:hidden">
+          <button
+            data-testid="vertical-filters__toggle-menu"
+            onClick={toggleVerticalFiltersAction}
+            className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <FontAwesomeIcon icon={faFilter} size="sm" className="mr-1" />{' '}
+            Filters
+          </button>
+        </div>
+      )}
       <div className="flex gap-x-0 md:gap-x-4 items-start">
         {enableFilters && selectedFiltersState.length > 0 && (
           <div ref={wrapperRef}>
