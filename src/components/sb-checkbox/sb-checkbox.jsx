@@ -5,7 +5,7 @@ const SbCheckbox = (props) => {
   };
 
   return (
-    <div className="flex items-center pl-2 py-1">
+    <div className="flex items-center pl-2 py-1" onClick={onChange}>
       <input
         data-testid={id}
         id={id}
