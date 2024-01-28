@@ -37,7 +37,7 @@ const ResultsContainer = (props) => {
   return (
     <div className="relative">
       {enableFilters && (
-        <div className="vertical-filters__toggle-menu block mx-2 my-2 md:hidden">
+        <div className="vertical-filters__toggle-menu block mx-4 my-2 md:hidden">
           <button
             ref={buttonRef}
             data-testid="vertical-filters__toggle-menu"
@@ -49,7 +49,7 @@ const ResultsContainer = (props) => {
           </button>
         </div>
       )}
-      <div className="flex gap-x-0 md:gap-x-4 items-start">
+      <div className="flex gap-x-0 md:gap-x-4 items-start mx-2">
         {enableFilters && selectedFiltersState.length > 0 && (
           <div ref={wrapperRef}>
             <VerticalFilters
