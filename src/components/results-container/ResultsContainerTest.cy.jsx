@@ -209,6 +209,8 @@ describe('ResultsContainer', () => {
       </BrowserRouter>
     );
 
+    cy.get('[data-testid=vertical-filters__toggle-menu]').click();
+
     cy.get('[data-testid=5_star_rating]').click();
 
     cy.get('@onFiltersUpdateSpy').should('have.been.calledWith', {
