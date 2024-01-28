@@ -1,10 +1,17 @@
 import SbCheckbox from '../sb-checkbox/sb-checkbox';
 const VerticalFilters = (props) => {
-  const { filtersData, onFiltersUpdate, onClearFiltersAction } = props;
+  const {
+    filtersData,
+    onFiltersUpdate,
+    onClearFiltersAction,
+    isVerticalFiltersOpen,
+  } = props;
 
   return (
     <div
-      className="hotels-filters__container border w-[240px]"
+      className={`hotels-filters__container shadow-lg border w-[240px] ${
+        isVerticalFiltersOpen ? '' : 'hidden'
+      } absolute top-10 left-2 bg-white md:block md:static md:shadow-none `}
       data-testid="vertical-filters"
     >
       <div className="hotels-filters__header flex justify-between items-center py-2 border-b-2  px-4">
