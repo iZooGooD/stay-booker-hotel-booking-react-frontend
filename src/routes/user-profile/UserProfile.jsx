@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import GlobalNavbar from '../../components/gloabal-navbar/GlobalNavbar';
 import Tabs from '../../components/sb-tabs/tabs/Tabs';
 import TabPanel from '../../components/sb-tabs/tab-panel/TabPanel';
@@ -13,6 +13,7 @@ import { useContext } from 'react';
 import PaymentMethodsPanel from './components/PaymentsMethodsPanel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
 
 /**
  * User profile page
@@ -34,6 +35,15 @@ const UserProfile = () => {
     isLoading: true,
     data: [],
     errors: [],
+  });
+
+  const wrapperRef = useRef();
+  const buttonRef = useRef();
+
+  useOutsideClickHandler(wrapperRef, (event) => {
+    if (!buttonRef.current.contains(event.target)) {
+      setIsTabsVisible(false);
+    }
   });
 
   useEffect(() => {
@@ -85,13 +95,14 @@ const UserProfile = () => {
       <div className="container mx-auto p-4">
         <div className="mx-4">
           <button
+            ref={buttonRef}
             onClick={onTabsMenuButtonAction}
             className="block md:hidden items-center px-4 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             <FontAwesomeIcon icon={faBars} size="lg" />
           </button>
         </div>
-        <Tabs isTabsVisible={isTabsVisible}>
+        <Tabs isTabsVisible={isTabsVisible} wrapperRef={wrapperRef}>
           <TabPanel label="Personal Details" icon={faAddressCard}>
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
               <div className="px-4 py-5 sm:px-6">

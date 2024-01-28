@@ -21,10 +21,17 @@ const ResultsContainer = (props) => {
   const [isVerticalFiltersOpen, setIsVerticalFiltersOpen] = useState(false);
 
   const wrapperRef = useRef();
-  useOutsideClickHandler(wrapperRef, () => setIsVerticalFiltersOpen(false));
+  const buttonRef = useRef();
+
+  useOutsideClickHandler(wrapperRef, (event) => {
+    if (!buttonRef.current.contains(event.target)) {
+      setIsVerticalFiltersOpen(false);
+    }
+  });
 
   const toggleVerticalFiltersAction = () => {
-    setIsVerticalFiltersOpen(!isVerticalFiltersOpen);
+    // Toggle based on the current state
+    setIsVerticalFiltersOpen((prevState) => !prevState);
   };
 
   return (
@@ -32,6 +39,7 @@ const ResultsContainer = (props) => {
       {enableFilters && (
         <div className="vertical-filters__toggle-menu block mx-2 my-2 md:hidden">
           <button
+            ref={buttonRef}
             data-testid="vertical-filters__toggle-menu"
             onClick={toggleVerticalFiltersAction}
             className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
