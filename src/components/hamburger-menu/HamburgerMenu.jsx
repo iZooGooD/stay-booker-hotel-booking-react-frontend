@@ -48,7 +48,7 @@ const HamburgerMenu = (props) => {
               My account
             </Link>
           ) : (
-            <Link to="/" className="uppercase font-medium text-slate-100">
+            <Link to="/login" className="uppercase font-medium text-slate-100">
               Login/Register
             </Link>
           )}
