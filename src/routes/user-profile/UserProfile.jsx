@@ -13,6 +13,7 @@ import { useContext } from 'react';
 import PaymentMethodsPanel from './components/PaymentsMethodsPanel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
 
 /**
@@ -99,7 +100,10 @@ const UserProfile = () => {
             onClick={onTabsMenuButtonAction}
             className="block md:hidden items-center px-4 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            <FontAwesomeIcon icon={faBars} size="lg" />
+            <FontAwesomeIcon
+              icon={isTabsVisible ? faXmark : faBars}
+              size="lg"
+            />
           </button>
         </div>
         <Tabs isTabsVisible={isTabsVisible} wrapperRef={wrapperRef}>
