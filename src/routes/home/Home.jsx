@@ -18,11 +18,6 @@ const Home = () => {
     data: [],
     errors: [],
   });
-  const [filtersData, setFiltersData] = useState({
-    isLoading: true,
-    data: [],
-    errors: [],
-  });
   const [hotelsResults, setHotelsResults] = useState({
     isLoading: true,
     data: [],
@@ -72,7 +67,10 @@ const Home = () => {
   };
 
   const onNumGuestsInputChange = (numGuests) => {
-    if (numGuests < MAX_GUESTS_INPUT_VALUE && numGuests > 0) {
+    if (
+      (numGuests < MAX_GUESTS_INPUT_VALUE && numGuests > 0) ||
+      numGuests === ''
+    ) {
       setNumGuestsInputValue(numGuests);
     }
   };
@@ -104,10 +102,6 @@ const Home = () => {
       const hotelsResultsResponse =
         await networkAdapter.get('/api/nearbyHotels');
 
-      const filtersDataResponse = await networkAdapter.get(
-        'api/hotels/verticalFilters'
-      );
-
       const availableCitiesResponse = await networkAdapter.get(
         '/api/availableCities'
       );
@@ -129,28 +123,9 @@ const Home = () => {
           errors: hotelsResultsResponse.errors,
         });
       }
-      if (filtersDataResponse) {
-        setFiltersData({
-          isLoading: false,
-          data: filtersDataResponse.data.elements,
-          errors: filtersDataResponse.errors,
-        });
-      }
     };
     getInitialData();
   }, []);
-
-  useEffect(() => {
-    setSelectedFiltersState(
-      filtersData.data.map((filterGroup) => ({
-        ...filterGroup,
-        filters: filterGroup.filters.map((filter) => ({
-          ...filter,
-          isSelected: false,
-        })),
-      }))
-    );
-  }, [filtersData]);
 
   return (
     <>
@@ -177,7 +152,6 @@ const Home = () => {
           <ResultsContainer
             hotelsResults={hotelsResults}
             enableFilters={false}
-            filtersData={filtersData}
             onFiltersUpdate={onFiltersUpdate}
             selectedFiltersState={selectedFiltersState}
           />

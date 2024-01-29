@@ -66,7 +66,7 @@ const ResultsContainer = (props) => {
             Array.from({ length: 5 }, (_, index) => (
               <HotelViewCardSkeleton key={index} />
             ))
-          ) : hotelsResults.data.length > 0 ? ( // Check if the data array has items
+          ) : hotelsResults.data.length > 0 ? (
             hotelsResults.data.map((hotel) => (
               <HotelViewCard
                 key={hotel.hotelCode}
