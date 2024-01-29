@@ -4,6 +4,7 @@ import { networkAdapter } from '../../services/NetworkAdapter';
 import GlobalNavbar from '../../components/gloabal-navbar/GlobalNavbar';
 import HotelDetailsViewCard from './components/hotel-details-view-card/HotelDetailsViewCard';
 import HotelDetailsViewCardSkeleton from './components/hotel-details-view-card-skeleton/HotelDetailsViewCardSkeleton';
+import GlobalFooter from '../../components/global-footer/GlobalFooter';
 
 const HotelDetails = () => {
   const { hotelId } = useParams();
@@ -33,6 +34,7 @@ const HotelDetails = () => {
       ) : (
         <HotelDetailsViewCard hotelDetails={hotelDetails.data} />
       )}
+      <GlobalFooter />
     </>
   );
 };

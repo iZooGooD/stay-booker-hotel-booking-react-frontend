@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { MAX_GUESTS_INPUT_VALUE } from '../../utils/constants';
 import ResultsContainer from '../../components/results-container/ResultsContainer';
 import { formatDate } from '../../utils/date-helpers';
+import GlobalFooter from '../../components/global-footer/GlobalFooter';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -157,6 +158,7 @@ const Home = () => {
           />
         </div>
       </div>
+      <GlobalFooter />
     </>
   );
 };

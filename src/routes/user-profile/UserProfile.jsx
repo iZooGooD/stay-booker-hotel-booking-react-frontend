@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
+import GlobalFooter from '../../components/global-footer/GlobalFooter';
 
 /**
  * User profile page
@@ -93,7 +94,7 @@ const UserProfile = () => {
   return (
     <>
       <GlobalNavbar />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 my-10 min-h-[530px]">
         <div className="mx-4">
           <button
             ref={buttonRef}
@@ -212,6 +213,7 @@ const UserProfile = () => {
           </TabPanel>
         </Tabs>
       </div>
+      <GlobalFooter />
     </>
   );
 };
