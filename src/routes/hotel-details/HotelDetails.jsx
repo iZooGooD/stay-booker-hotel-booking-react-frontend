@@ -16,7 +16,6 @@ const HotelDetails = () => {
   useEffect(() => {
     const fetchHotelDetails = async () => {
       const response = await networkAdapter.get(`/api/hotel/${hotelId}`);
-      console.log('response', response);
       setHotelDetails({
         isLoading: false,
         data: response.data,

@@ -16,6 +16,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
 import GlobalFooter from '../../components/global-footer/GlobalFooter';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * User profile page
@@ -42,6 +43,8 @@ const UserProfile = () => {
   const wrapperRef = useRef();
   const buttonRef = useRef();
 
+  const navigate = useNavigate();
+
   useOutsideClickHandler(wrapperRef, (event) => {
     if (!buttonRef.current.contains(event.target)) {
       setIsTabsVisible(false);
@@ -56,8 +59,10 @@ const UserProfile = () => {
       setNationality(userDetails.country || '');
       setIsEmailVerified(userDetails.isEmailVerified || '');
       setIsPhoneVerified(userDetails.isPhoneVerified || '');
+    } else {
+      navigate('/login');
     }
-  }, [userDetails]);
+  }, [navigate, userDetails]);
 
   useEffect(() => {
     const getInitialData = async () => {

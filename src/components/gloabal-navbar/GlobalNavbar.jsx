@@ -57,7 +57,7 @@ const GlobalNavbar = () => {
             </Link>
           ) : (
             <Link
-              to="/"
+              to="/login"
               className="uppercase font-medium text-slate-100 hover-underline-animation"
             >
               Login/Register

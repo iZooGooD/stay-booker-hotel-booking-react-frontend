@@ -11,38 +11,113 @@ export function makeServer({ environment = 'development' } = {}) {
     },
 
     seeds(server) {
-      // Seed your server with initial data if necessary
+      server.create('user', {
+        id: '1',
+        email: 'user1@example.com',
+        password: 'password1',
+        firstName: 'John',
+        lastName: 'Doe',
+        fullName: 'John Doe',
+        phone: '1234567890',
+        country: 'USA',
+        isPhoneVerified: true,
+        isEmailVerified: true,
+      });
+      server.create('user', {
+        id: '2',
+        email: 'user2@example.com',
+        password: 'password2',
+        firstName: 'Jane',
+        lastName: 'Doe',
+        fullName: 'Jane Doe',
+        phone: '0987654321',
+        country: 'UK',
+        isPhoneVerified: false,
+        isEmailVerified: true,
+      });
     },
 
     routes() {
       this.namespace = 'api';
+
+      // Add a logged-in user state to the server
+      let loggedInUser = null;
 
       this.get('/user', () => {
         return new Response(200, {}, { name: 'John' });
       });
 
       this.get('/authUser', () => {
-        return new Response(
-          200,
-          {},
-          {
-            errors: [],
-            data: {
-              isAuthenticated: true,
-              userDetails: {
-                id: '23122',
-                firstName: 'Lakshman',
-                lastName: 'Chaudhary',
-                fullName: 'Lakshman Chaudhary',
-                email: 'lakshmanchoudhary020@gmail.com',
-                phone: '9111112322',
-                country: 'India',
-                isPhoneVerified: true,
-                isEmailVerified: true,
+        if (loggedInUser) {
+          return new Response(
+            200,
+            {},
+            {
+              errors: [],
+              data: {
+                isAuthenticated: true,
+                userDetails: {
+                  id: loggedInUser.id,
+                  firstName: loggedInUser.firstName,
+                  lastName: loggedInUser.lastName,
+                  fullName: loggedInUser.fullName,
+                  email: loggedInUser.email,
+                  phone: loggedInUser.phone,
+                  country: loggedInUser.country,
+                  isPhoneVerified: loggedInUser.isPhoneVerified,
+                  isEmailVerified: loggedInUser.isEmailVerified,
+                },
               },
-            },
-          }
-        );
+            }
+          );
+        } else {
+          return new Response(
+            200,
+            {},
+            {
+              errors: [],
+              data: {
+                isAuthenticated: false,
+                userDetails: {},
+              },
+            }
+          );
+        }
+      });
+
+      this.post('/login', (schema, request) => {
+        const attrs = JSON.parse(request.requestBody);
+        const user = schema.users.findBy({ email: attrs.email });
+
+        if (user && user.password === attrs.password) {
+          loggedInUser = user;
+          return new Response(200, {}, { user });
+        } else {
+          return new Response(401, {}, { error: 'Invalid email or password' });
+        }
+      });
+
+      this.post('/register', (schema, request) => {
+        const attrs = JSON.parse(request.requestBody);
+        const existingUser = schema.users.findBy({ email: attrs.email });
+
+        if (existingUser) {
+          return new Response(
+            409,
+            {},
+            { error: 'User already exists with that email' }
+          );
+        } else {
+          // Create a new user
+          const newUser = schema.users.create({
+            firstName: attrs.firstName,
+            lastName: attrs.lastName,
+            email: attrs.email,
+            phone: attrs.phone,
+            password: attrs.password,
+          });
+          return new Response(200, {}, { user: newUser.attrs });
+        }
       });
 
       this.get('/bookings', () => {
