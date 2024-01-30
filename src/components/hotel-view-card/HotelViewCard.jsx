@@ -2,6 +2,20 @@ import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * HotelViewCard Component
+ * Renders a card view for a hotel, displaying its image, title, subtitle, benefits, price, and ratings.
+ * Provides a 'Book now' button to navigate to the hotel's detailed view.
+ *
+ * @param {Object} props - Props for the component.
+ * @param {string} props.id - The unique code of the hotel.
+ * @param {Object} props.image - The image object for the hotel, containing the URL and alt text.
+ * @param {string} props.title - The title of the hotel.
+ * @param {string} props.subtitle - The subtitle or a short description of the hotel.
+ * @param {Array} props.benefits - A list of benefits or features offered by the hotel.
+ * @param {string} props.price - The price information for the hotel.
+ * @param {number} props.ratings - The ratings of the hotel.
+ */
 const HotelViewCard = (props) => {
   const {
     id: hoteCode,
@@ -21,7 +35,7 @@ const HotelViewCard = (props) => {
       className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full"
       data-testid="hotel-view-card"
     >
-      <div className="">
+      <div>
         <img
           src={image.imageUrl}
           alt={image.accessibleText}
