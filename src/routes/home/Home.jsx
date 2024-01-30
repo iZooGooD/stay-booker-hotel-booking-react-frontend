@@ -9,8 +9,14 @@ import { formatDate } from '../../utils/date-helpers';
 import GlobalFooter from '../../components/global-footer/GlobalFooter';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Home component that renders the main page of the application.
+ * It includes a navigation bar, hero cover, popular locations, results container, and footer.
+ */
 const Home = () => {
   const navigate = useNavigate();
+
+  // State variables
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
   const [locationInputValue, setLocationInputValue] = useState('pune');
   const [numGuestsInputValue, setNumGuestsInputValue] = useState('');
@@ -24,7 +30,6 @@ const Home = () => {
     data: [],
     errors: [],
   });
-  const [selectedFiltersState, setSelectedFiltersState] = useState({});
 
   // State for storing available cities
   const [availableCities, setAvailableCities] = useState([]);
@@ -36,28 +41,6 @@ const Home = () => {
       key: 'selection',
     },
   ]);
-
-  const onFiltersUpdate = (updatedFilter) => {
-    setSelectedFiltersState(
-      selectedFiltersState.map((filterGroup) => {
-        if (filterGroup.filterId === updatedFilter.filterId) {
-          return {
-            ...filterGroup,
-            filters: filterGroup.filters.map((filter) => {
-              if (filter.id === updatedFilter.id) {
-                return {
-                  ...filter,
-                  isSelected: !filter.isSelected,
-                };
-              }
-              return filter;
-            }),
-          };
-        }
-        return filterGroup;
-      })
-    );
-  };
 
   const onDatePickerIconClick = () => {
     setisDatePickerVisible(!isDatePickerVisible);
@@ -80,6 +63,11 @@ const Home = () => {
     setDateRange([ranges.selection]);
   };
 
+  /**
+   * Handles the click event of the search button.
+   * It gathers the number of guests, check-in and check-out dates, and selected city
+   * from the component's state, and then navigates to the '/hotels' route with this data.
+   */
   const onSearchButtonAction = () => {
     const numGuest = Number(numGuestsInputValue);
     const checkInDate = formatDate(dateRange[0].startDate) ?? '';
@@ -96,6 +84,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    // Function to fetch initial data
     const getInitialData = async () => {
       const popularDestinationsResponse = await networkAdapter.get(
         '/api/popularDestinations'
@@ -153,8 +142,6 @@ const Home = () => {
           <ResultsContainer
             hotelsResults={hotelsResults}
             enableFilters={false}
-            onFiltersUpdate={onFiltersUpdate}
-            selectedFiltersState={selectedFiltersState}
           />
         </div>
       </div>
