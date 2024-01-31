@@ -7,6 +7,6 @@ fi
 
 # Run lint-staged and check if it fails
 if ! npx lint-staged; then
-  echo "Prettier check failed, please fix the errors or use npm run lint to resolve the errors"
+  echo "Prettier check failed, please fix the errors manually or use: npm run lint-fix"
   exit 1
 fi
