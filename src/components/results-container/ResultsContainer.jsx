@@ -8,6 +8,19 @@ import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * ResultsContainer Component
+ * Renders a container that displays hotel results, including hotel cards and filters.
+ * It supports toggling of vertical filters and displays skeletons or empty states based on loading or data availability.
+ *
+ * @param {Object} props - Props for the component.
+ * @param {Object} props.hotelsResults - Object containing hotel results data and loading state.
+ * @param {boolean} props.enableFilters - Flag to enable or disable the filter feature.
+ * @param {Array} props.filtersData - Array of filter data objects for the vertical filters.
+ * @param {Array} props.selectedFiltersState - Array of selected filter states.
+ * @param {Function} props.onFiltersUpdate - Callback function to handle filter updates.
+ * @param {Function} props.onClearFiltersAction - Callback function to handle the action of clearing filters.
+ */
 const ResultsContainer = (props) => {
   const {
     hotelsResults,
