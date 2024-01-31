@@ -43,7 +43,7 @@ const HamburgerMenu = (props) => {
           </Link>
         </li>
         <li className="p-4 hover:bg-sky-700">
-          <Link to="/" className="uppercase font-medium text-slate-100">
+          <Link to="/about-us" className="uppercase font-medium text-slate-100">
             About us
           </Link>
         </li>
