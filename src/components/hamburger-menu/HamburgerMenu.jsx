@@ -2,6 +2,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
+/**
+ * HamburgerMenu Component
+ * Renders a hamburger menu with navigation links. It can be toggled visible or hidden.
+ * The menu contains links to Home, Hotels, About Us, and depending on the authentication status,
+ * a link to either the user profile or the login/register page.
+ *
+ * @param {Object} props - Props for the component.
+ * @param {boolean} props.isVisible - Controls the visibility of the hamburger menu.
+ * @param {Function} props.onHamburgerMenuToggle - Callback function to toggle the visibility of the menu.
+ * @param {boolean} props.isAuthenticated - Indicates whether the user is authenticated.
+ */
 const HamburgerMenu = (props) => {
   const { isVisible, onHamburgerMenuToggle, isAuthenticated } = props;
   return (
