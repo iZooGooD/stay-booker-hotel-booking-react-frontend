@@ -63,4 +63,4 @@ jobs:
 
       - run: npm ci
 
-      - run: npx cypress run --component
+      - run: npx cypress run --e2e && npx cypress run --component
