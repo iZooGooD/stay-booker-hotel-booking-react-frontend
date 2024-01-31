@@ -82,26 +82,35 @@ The project is equipped with a GitHub Actions workflow to automate the testing, 
 
 3. **Run Tests**: Executes the test suites to ensure all tests pass. This step is crucial for identifying issues early and maintaining the reliability of the application.
 
-#### Workflow Details
-
-- **Trigger**: The workflow is triggered on push and pull requests to the `master` branch.
-- **Environment**: Runs on the latest Ubuntu environment.
-- **Node.js Version**: Uses Node.js version 18.x.
-- **Caching**: Caches node modules for faster build and test execution.
-- **Steps**:
-  - Checks out the code.
-  - Caches dependencies based on the `package-lock.json` file.
-  - Installs dependencies using `npm ci` for a clean, reproducible build.
-  - In the Code Quality job, runs Prettier to check code formatting.
-  - In the Test job, runs the test suite using `npm test`.
-
 ### Continuous Integration and Code Quality
 
 This automated workflow ensures that each change to the codebase is built, tested, and checked for code quality, thereby maintaining the overall health and reliability of the application. It encourages a culture of continuous integration and frequent, reliable delivery of high-quality software.
 
+It would be most appropriate to include the linting instructions in the "Contributing" section of your documentation. This approach helps to ensure that contributors are aware of the coding standards and practices expected for your project right from the start. By integrating linting guidelines with contribution instructions, you emphasize the importance of code quality as an integral part of the contribution process.
+
+Here's how you can seamlessly incorporate it into the "Contributing" section:
+
+---
+
 ## Contributing
 
 We welcome contributions to Stay Booker Pro! If you have suggestions or would like to contribute code, please feel free to create issues or submit pull requests.
+
+### Code Quality and Linting
+
+As part of our commitment to maintain high code quality, we use ESLint for linting. Before submitting a Pull Request or committing any changes, please ensure you run the following command:
+
+```bash
+npm run lint-fix
+```
+
+This will automatically fix many common linting errors. If there are errors that can't be auto-fixed, ESLint will report them, and you should manually address these issues. Maintaining a consistent coding standard is crucial for the project.
+
+If you need to bypass the linting check in a special case, you can use the `-n` parameter with `git commit`. However, we strongly advise against skipping lint checks as it can compromise code quality:
+
+```bash
+git commit -m "Your commit message" -n
+```
 
 ## Future Scope
 
