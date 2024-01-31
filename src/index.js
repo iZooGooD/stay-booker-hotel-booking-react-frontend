@@ -11,6 +11,7 @@ import { makeServer } from './mirage/mirageServer';
 import HotelDetails from './routes/hotel-details/HotelDetails';
 import Login from './routes/login/Login';
 import Register from './routes/register/Register';
+import AboutUs from './routes/about-us/AboutUs';
 
 // if (process.env.NODE_ENV === 'development') {
 //   makeServer();
@@ -28,8 +29,8 @@ const router = createBrowserRouter([
     element: <HotelsSearch />,
   },
   {
-    path: '/aboutus',
-    element: <HotelsSearch />,
+    path: '/about-us',
+    element: <AboutUs />,
   },
   {
     path: '/user-profile',

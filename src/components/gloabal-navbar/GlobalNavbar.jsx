@@ -41,7 +41,7 @@ const GlobalNavbar = () => {
         </li>
         <li className="p-4">
           <Link
-            to="/"
+            to="/about-us"
             className="uppercase font-medium text-slate-100 hover-underline-animation"
           >
             About us
