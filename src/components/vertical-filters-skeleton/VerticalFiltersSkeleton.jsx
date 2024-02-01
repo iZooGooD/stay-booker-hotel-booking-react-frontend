@@ -1,7 +1,7 @@
 const VerticalFiltersSkeleton = () => {
   return (
     <div
-      className="border w-[240px] hidden md:none"
+      className="border w-[240px] hidden md:block"
       data-testid="vertical-filters-skeleton"
     >
       <div className="flex justify-between items-center py-2 border-b-2  px-4">
