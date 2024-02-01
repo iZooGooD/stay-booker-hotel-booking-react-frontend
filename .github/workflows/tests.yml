@@ -3,14 +3,14 @@ name: Tests
 on: push
 
 jobs:
-  cypress-run:
+  cypress-e2e-and-component:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: E2E tests
+      - name: Run E2E tests
         uses: cypress-io/github-action@v6
         with:
           build: npm run build
@@ -19,5 +19,6 @@ jobs:
       - name: Run Component Testing
         uses: cypress-io/github-action@v6
         with:
+          # we have already installed everything
           install: false
           component: true
