@@ -138,17 +138,23 @@ const HotelsSearch = () => {
   };
 
   const onClearFiltersAction = () => {
-    setSelectedFiltersState(
-      selectedFiltersState.map((filterGroup) => ({
-        ...filterGroup,
-        filters: filterGroup.filters.map((filter) => ({
-          ...filter,
-          isSelected: false,
-        })),
-      }))
+    const hasActiveFilters = selectedFiltersState.some((filterGroup) =>
+      filterGroup.filters.some((filter) => filter.isSelected)
     );
-  };
 
+    if (hasActiveFilters) {
+      setSelectedFiltersState(
+        selectedFiltersState.map((filterGroup) => ({
+          ...filterGroup,
+          filters: filterGroup.filters.map((filter) => ({
+            ...filter,
+            isSelected: false,
+          })),
+        }))
+      );
+    }
+  };
+    
   const fetchHotels = async (filters) => {
     setHotelsResults({
       isLoading: true,
