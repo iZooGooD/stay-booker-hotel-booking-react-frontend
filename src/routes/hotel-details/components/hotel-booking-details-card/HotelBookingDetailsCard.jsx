@@ -1,3 +1,15 @@
+/**
+ * HotelBookingDetailsCard Component
+ * Displays a card containing detailed information about a hotel booking.
+ * The details include total price, cancellation policy, dates and check-in time,
+ * reservation details, room type, rate, average nightly rate, extra charges, and taxes.
+ *
+ * This component is designed to provide users with all the necessary information
+ * regarding their hotel booking in a clear and concise manner.
+ *
+ * Note: Currently, the booking details are statically defined within the component
+ * and do not dynamically change based on user input or external data sources.
+ */
 const HotelBookingDetailsCard = () => {
   const bookingDetails = {
     total: '6,819.22 INR',

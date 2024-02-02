@@ -7,6 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * Login Component
+ * Renders a login form allowing users to sign in to their account.
+ * It handles user input for email and password, submits login credentials to the server,
+ * and navigates the user to their profile upon successful authentication.
+ * Displays an error message for invalid login attempts.
+ */
 const Login = () => {
   const navigate = useNavigate();
   const context = useContext(AuthContext);
@@ -17,10 +24,21 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
 
+  /**
+   * Handles input changes for the login form fields.
+   * Updates the loginData state with the field values.
+   * @param {Object} e - The event object from the input field.
+   */
   const handleInputChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Handles the submission of the login form.
+   * Attempts to authenticate the user with the provided credentials.
+   * Navigates to the user profile on successful login or sets an error message on failure.
+   * @param {Object} e - The event object from the form submission.
+   */
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const response = await networkAdapter.post('/api/login', loginData);
@@ -32,6 +50,9 @@ const Login = () => {
     }
   };
 
+  /**
+   * Clears the current error message displayed to the user.
+   */
   const dismissError = () => {
     setErrorMessage('');
   };
