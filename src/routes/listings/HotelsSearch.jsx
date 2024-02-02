@@ -154,7 +154,7 @@ const HotelsSearch = () => {
       );
     }
   };
-    
+
   const fetchHotels = async (filters) => {
     setHotelsResults({
       isLoading: true,
