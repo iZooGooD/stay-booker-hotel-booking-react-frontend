@@ -1,5 +1,3 @@
-# Pull Request Template
-
 ## Type of Change
 <!-- Replace the space with an 'x' in the appropriate box and delete other options. -->
 <!-- example: [x] Feat: added new route for /login page -->
