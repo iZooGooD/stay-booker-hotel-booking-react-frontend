@@ -98,7 +98,6 @@ const UserProfile = () => {
 
   return (
     <>
-      <GlobalNavbar />
       <div className="container mx-auto p-4 my-10 min-h-[530px]">
         <div className="mx-4">
           <button
@@ -218,7 +217,6 @@ const UserProfile = () => {
           </TabPanel>
         </Tabs>
       </div>
-      <GlobalFooter />
     </>
   );
 };
