@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import GlobalNavbar from '../../components/gloabal-navbar/GlobalNavbar';
 import Tabs from '../../components/sb-tabs/tabs/Tabs';
 import TabPanel from '../../components/sb-tabs/tab-panel/TabPanel';
 import {
@@ -15,7 +14,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
-import GlobalFooter from '../../components/global-footer/GlobalFooter';
 import { useNavigate } from 'react-router-dom';
 
 /**
