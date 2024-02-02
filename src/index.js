@@ -12,6 +12,7 @@ import HotelDetails from './routes/hotel-details/HotelDetails';
 import Login from './routes/login/Login';
 import Register from './routes/register/Register';
 import AboutUs from './routes/about-us/AboutUs';
+import BaseLayout from './routes/layouts/base-layout/BaseLayout';
 
 // if (process.env.NODE_ENV === 'development') {
 //   makeServer();
@@ -22,31 +23,37 @@ makeServer();
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/hotels',
-    element: <HotelsSearch />,
-  },
-  {
-    path: '/about-us',
-    element: <AboutUs />,
-  },
-  {
-    path: '/user-profile',
-    element: <UserProfile />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/register',
-    element: <Register />,
-  },
-  {
-    path: '/hotel/:hotelId',
-    element: <HotelDetails />,
+    element: <BaseLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/hotels',
+        element: <HotelsSearch />,
+      },
+      {
+        path: '/about-us',
+        element: <AboutUs />,
+      },
+      {
+        path: '/user-profile',
+        element: <UserProfile />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/register',
+        element: <Register />,
+      },
+      {
+        path: '/hotel/:hotelId',
+        element: <HotelDetails />,
+      },
+    ],
   },
 ]);
 

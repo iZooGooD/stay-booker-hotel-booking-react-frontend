@@ -1,5 +1,3 @@
-import GlobalNavbar from '../../components/gloabal-navbar/GlobalNavbar';
-import GlobalFooter from '../../components/global-footer/GlobalFooter';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { networkAdapter } from '../../services/NetworkAdapter';
@@ -34,7 +32,6 @@ const Register = () => {
 
   return (
     <>
-      <GlobalNavbar />
       <div className="register__form">
         <div className="container mx-auto p-4 flex justify-center min-h-[600px] items-center">
           <form onSubmit={handleSubmit} className="w-full max-w-lg">
@@ -130,7 +127,6 @@ const Register = () => {
           </form>
         </div>
       </div>
-      <GlobalFooter />
     </>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import GlobalNavbar from '../../components/gloabal-navbar/GlobalNavbar';
 import GlobalSearchBox from '../../components/global-search-box/GlobalSearchbox';
 import ResultsContainer from '../../components/results-container/ResultsContainer';
 import { networkAdapter } from '../../services/NetworkAdapter';
@@ -246,7 +245,6 @@ const HotelsSearch = () => {
 
   return (
     <div className="hotels">
-      <GlobalNavbar />
       <div className="bg-brand px-2 lg:h-[120px] h-[220px] flex items-center justify-center">
         <GlobalSearchBox
           locationInputValue={locationInputValue}

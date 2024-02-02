@@ -1,10 +1,6 @@
-import GlobalNavbar from '../../components/gloabal-navbar/GlobalNavbar';
-import GlobalFooter from '../../components/global-footer/GlobalFooter';
-
 const AboutUs = () => {
   return (
     <>
-      <GlobalNavbar />
       <div className="text-center mt-10">
         <h1 className="text-3xl font-extrabold text-brand">About Us</h1>
         <p>
@@ -61,7 +57,6 @@ const AboutUs = () => {
         </p>
         <br />
       </div>
-      <GlobalFooter />
     </>
   );
 };
