@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
-import DropdownButton from '../dropdown-button/DropdownButton';
+import NavbarItems from '../navbar-items/NavbarItems';
 
 /**
  * HamburgerMenu Component
@@ -15,13 +14,8 @@ import DropdownButton from '../dropdown-button/DropdownButton';
  * @param {boolean} props.isAuthenticated - Indicates whether the user is authenticated.
  */
 const HamburgerMenu = (props) => {
-  const navigate = useNavigate();
-  const dropdownOptions = [
-    { name: 'Profile', onClick: () => navigate('/user-profile') },
-    { name: 'Logout' },
-  ];
-
   const { isVisible, onHamburgerMenuToggle, isAuthenticated } = props;
+
   return (
     <div
       data-testid="hamburger-menu"
@@ -39,33 +33,7 @@ const HamburgerMenu = (props) => {
         />
       </div>
       <ul className="list-none">
-        <li className="p-4 hover:bg-sky-700">
-          <Link to="/" className="uppercase font-medium text-slate-100">
-            Home
-          </Link>
-        </li>
-        <li className="p-4 hover:bg-sky-700">
-          <Link to="/hotels" className="uppercase font-medium text-slate-100">
-            Hotels
-          </Link>
-        </li>
-        <li className="p-4 hover:bg-sky-700">
-          <Link to="/about-us" className="uppercase font-medium text-slate-100">
-            About us
-          </Link>
-        </li>
-        <li className={`${!isAuthenticated && 'p-4'}`}>
-          {isAuthenticated ? (
-            <DropdownButton triggerType="click" options={dropdownOptions} />
-          ) : (
-            <Link
-              to="/login"
-              className="uppercase font-medium text-slate-100 hover-underline-animation"
-            >
-              Login/Register
-            </Link>
-          )}
-        </li>
+        <NavbarItems isAuthenticated={isAuthenticated} />
       </ul>
     </div>
   );
