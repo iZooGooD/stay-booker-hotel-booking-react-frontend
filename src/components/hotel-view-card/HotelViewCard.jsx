@@ -61,7 +61,9 @@ const HotelViewCard = (props) => {
           <h4 className="font-medium text-sm text-white bg-brand p-2">
             {ratings} <FontAwesomeIcon icon={faStar} />
           </h4>
-          <p className="text-slate-600 font-bold whitespace-nowrap">{price}</p>
+          <p className="text-slate-600 font-bold whitespace-nowrap">
+            ₹ {price}
+          </p>
         </div>
         <button
           className=" bg-brand-secondary px-4 py-2 text-white whitespace-nowrap"
