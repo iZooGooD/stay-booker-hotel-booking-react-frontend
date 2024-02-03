@@ -5,15 +5,23 @@ import HamburgerMenu from '../hamburger-menu/HamburgerMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../contexts/AuthContext';
+import DropdownButton from '../dropdown-button/DropdownButton';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GlobalNavbar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { isAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onHamburgerMenuToggle = () => {
     setIsVisible(!isVisible);
   };
+
+  const dropdownOptions = [
+    { name: 'Profile', onClick: () => navigate('/user-profile') },
+    { name: 'Logout' },
+  ];
 
   return (
     <div className="relative flex flex-wrap justify-between items-center px-4 md:px-12 global-navbar__container bg-brand brand-divider-bottom">
@@ -47,14 +55,9 @@ const GlobalNavbar = () => {
             About us
           </Link>
         </li>
-        <li className="p-4">
+        <li className={`${!isAuthenticated && 'p-4'}`}>
           {isAuthenticated ? (
-            <Link
-              to="/user-profile"
-              className="uppercase font-medium text-slate-100 hover-underline-animation"
-            >
-              My account
-            </Link>
+            <DropdownButton triggerType="click" options={dropdownOptions} />
           ) : (
             <Link
               to="/login"
