@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import GlobalSearchBox from '../../components/global-search-box/GlobalSearchbox';
-import ResultsContainer from '../../components/results-container/ResultsContainer';
-import { networkAdapter } from '../../services/NetworkAdapter';
-import isEmpty from '../../utils/helpers';
+import GlobalSearchBox from 'components/global-search-box/GlobalSearchbox';
+import ResultsContainer from 'components/results-container/ResultsContainer';
+import { networkAdapter } from 'services/NetworkAdapter';
+import isEmpty from 'utils/helpers';
 import { MAX_GUESTS_INPUT_VALUE } from '../../utils/constants';
-import { formatDate } from '../../utils/date-helpers';
+import { formatDate } from 'utils/date-helpers';
 import { useLocation } from 'react-router-dom';
 import { parse } from 'date-fns';
 

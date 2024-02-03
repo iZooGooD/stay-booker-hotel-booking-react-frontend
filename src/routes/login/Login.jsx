@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { networkAdapter } from '../../services/NetworkAdapter';
+import { networkAdapter } from 'services/NetworkAdapter';
 import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from 'contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

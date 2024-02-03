@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import DropdownButton from '../dropdown-button/DropdownButton';
+import DropdownButton from 'components/dropdown-button/DropdownButton';
 
 const NavbarItems = ({ isAuthenticated }) => {
   const navigate = useNavigate();

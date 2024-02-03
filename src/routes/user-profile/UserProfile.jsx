@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Tabs from '../../components/sb-tabs/tabs/Tabs';
-import TabPanel from '../../components/sb-tabs/tab-panel/TabPanel';
+import Tabs from 'components/sb-tabs/tabs/Tabs';
+import TabPanel from 'components/sb-tabs/tab-panel/TabPanel';
 import {
   faAddressCard,
   faHotel,
   faCreditCard,
 } from '@fortawesome/free-solid-svg-icons';
-import { AuthContext } from '../../contexts/AuthContext';
-import { networkAdapter } from '../../services/NetworkAdapter';
+import { AuthContext } from 'contexts/AuthContext';
+import { networkAdapter } from 'services/NetworkAdapter';
 import { useContext } from 'react';
 import PaymentMethodsPanel from './components/PaymentsMethodsPanel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
+import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 import { useNavigate } from 'react-router-dom';
 
 /**

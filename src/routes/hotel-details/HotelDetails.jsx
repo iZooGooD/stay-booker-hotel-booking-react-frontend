@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { networkAdapter } from '../../services/NetworkAdapter';
+import { networkAdapter } from 'services/NetworkAdapter';
 import HotelDetailsViewCard from './components/hotel-details-view-card/HotelDetailsViewCard';
 import HotelDetailsViewCardSkeleton from './components/hotel-details-view-card-skeleton/HotelDetailsViewCardSkeleton';
 

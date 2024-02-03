@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import NavbarItems from '../navbar-items/NavbarItems';
+import NavbarItems from 'components/navbar-items/NavbarItems';
 
 /**
  * HamburgerMenu Component

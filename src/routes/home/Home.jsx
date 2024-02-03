@@ -1,10 +1,10 @@
 import HeroCover from './components/hero-cover/HeroCover';
 import PopularLocations from './components/popular-locations/popular-locations';
-import { networkAdapter } from '../../services/NetworkAdapter';
+import { networkAdapter } from 'services/NetworkAdapter';
 import { useState, useEffect } from 'react';
-import { MAX_GUESTS_INPUT_VALUE } from '../../utils/constants';
-import ResultsContainer from '../../components/results-container/ResultsContainer';
-import { formatDate } from '../../utils/date-helpers';
+import { MAX_GUESTS_INPUT_VALUE } from 'utils/constants';
+import ResultsContainer from 'components/results-container/ResultsContainer';
+import { formatDate } from 'utils/date-helpers';
 import { useNavigate } from 'react-router-dom';
 
 /**

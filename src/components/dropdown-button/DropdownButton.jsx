@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
+import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 
 const DropdownButton = (props) => {
   const triggerType = props.triggerType || 'click';

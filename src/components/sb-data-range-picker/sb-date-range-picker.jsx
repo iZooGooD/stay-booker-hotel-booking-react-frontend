@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef } from 'react';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { DateRange } from 'react-date-range';
-import { formatDate } from '../../utils/date-helpers';
-import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
+import { formatDate } from 'utils/date-helpers';
+import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 
 const SbDateRangePicker = (props) => {
   const {
