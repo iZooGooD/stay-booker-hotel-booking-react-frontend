@@ -1,4 +1,4 @@
-import GlobalSearchBox from '../../../../components/global-search-box/GlobalSearchbox';
+import GlobalSearchBox from 'components/global-search-box/GlobalSearchbox';
 
 const HeroCover = (props) => {
   const {

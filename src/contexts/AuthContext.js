@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { networkAdapter } from '../services/NetworkAdapter';
+import { networkAdapter } from 'services/NetworkAdapter';
 
 export const AuthContext = createContext();
 

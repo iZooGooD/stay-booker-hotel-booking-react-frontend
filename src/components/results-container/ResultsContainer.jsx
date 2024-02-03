@@ -4,7 +4,7 @@ import HotelViewCardSkeleton from 'components/hotel-view-card-skeleton/HotelView
 import VerticalFiltersSkeleton from 'components/vertical-filters-skeleton/VerticalFiltersSkeleton';
 import EmptyHotelsState from 'components/empty-hotels-state/EmptyHotelsState';
 import { useRef, useState } from 'react';
-import useOutsideClickHandler from '../../hooks/useOutsideClickHandler';
+import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 

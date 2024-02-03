@@ -1,4 +1,4 @@
-import SbCheckbox from '../sb-checkbox/sb-checkbox';
+import SbCheckbox from 'components/sb-checkbox/sb-checkbox';
 
 /**
  * VerticalFilters Component
