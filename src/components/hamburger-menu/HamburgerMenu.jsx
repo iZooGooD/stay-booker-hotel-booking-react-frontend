@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import DropdownButton from '../dropdown-button/DropdownButton';
 
 /**
  * HamburgerMenu Component
@@ -14,6 +15,12 @@ import { Link } from 'react-router-dom';
  * @param {boolean} props.isAuthenticated - Indicates whether the user is authenticated.
  */
 const HamburgerMenu = (props) => {
+  const navigate = useNavigate();
+  const dropdownOptions = [
+    { name: 'Profile', onClick: () => navigate('/user-profile') },
+    { name: 'Logout' },
+  ];
+
   const { isVisible, onHamburgerMenuToggle, isAuthenticated } = props;
   return (
     <div
@@ -47,19 +54,14 @@ const HamburgerMenu = (props) => {
             About us
           </Link>
         </li>
-        <li
-          className="p-4 hover:bg-sky-700"
-          data-testid="hamburger-menu__account-status"
-        >
+        <li className={`${!isAuthenticated && 'p-4'}`}>
           {isAuthenticated ? (
-            <Link
-              to="/user-profile"
-              className="uppercase font-medium text-slate-100"
-            >
-              My account
-            </Link>
+            <DropdownButton triggerType="click" options={dropdownOptions} />
           ) : (
-            <Link to="/login" className="uppercase font-medium text-slate-100">
+            <Link
+              to="/login"
+              className="uppercase font-medium text-slate-100 hover-underline-animation"
+            >
               Login/Register
             </Link>
           )}
