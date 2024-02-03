@@ -6,6 +6,7 @@ import { AuthContext } from 'contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import validations from 'utils/validations';
 
 /**
  * Login Component
@@ -22,7 +23,7 @@ const Login = () => {
     password: '',
   });
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
 
   /**
    * Handles input changes for the login form fields.
@@ -41,10 +42,15 @@ const Login = () => {
    */
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    const response = await networkAdapter.post('/api/login', loginData);
-    if (response && response.user) {
-      context.triggerAuthCheck();
-      navigate('/user-profile');
+
+    if (validations.validate('email', loginData.email)) {
+      const response = await networkAdapter.post('/api/login', loginData);
+      if (response && response.user) {
+        context.triggerAuthCheck();
+        navigate('/user-profile');
+      } else {
+        setErrorMessage('Invalid email or password.');
+      }
     } else {
       setErrorMessage('Invalid email or password.');
     }
