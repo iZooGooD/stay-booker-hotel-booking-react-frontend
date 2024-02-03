@@ -1,4 +1,3 @@
-// TabPanel.jsx
 import React from 'react';
 
 const TabPanel = ({ children }) => {

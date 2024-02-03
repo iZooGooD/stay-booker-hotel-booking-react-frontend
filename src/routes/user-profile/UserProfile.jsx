@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Tabs from 'components/sb-tabs/tabs/Tabs';
-import TabPanel from 'components/sb-tabs/tab-panel/TabPanel';
+import Tabs from 'components/ux/tabs/Tabs';
+import TabPanel from 'components/ux/tab-panel/TabPanel';
 import {
   faAddressCard,
   faHotel,

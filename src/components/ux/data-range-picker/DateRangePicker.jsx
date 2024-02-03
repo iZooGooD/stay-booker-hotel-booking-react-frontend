@@ -5,7 +5,7 @@ import { DateRange } from 'react-date-range';
 import { formatDate } from 'utils/date-helpers';
 import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 
-const SbDateRangePicker = (props) => {
+const DateRangePicker = (props) => {
   const {
     isDatePickerVisible,
     onDatePickerIconClick,
@@ -63,4 +63,4 @@ const SbDateRangePicker = (props) => {
   );
 };
 
-export default SbDateRangePicker;
+export default DateRangePicker;

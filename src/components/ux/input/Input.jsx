@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
-const SbInput = (props) => {
+const Input = (props) => {
   const {
     classes,
     value,
@@ -73,4 +73,4 @@ const SbInput = (props) => {
   );
 };
 
-export default SbInput;
+export default Input;

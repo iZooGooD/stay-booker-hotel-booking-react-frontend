@@ -1,4 +1,4 @@
-import SbCheckbox from 'components/sb-checkbox/sb-checkbox';
+import Checkbox from 'components/ux/checkbox/Checkbox';
 
 /**
  * VerticalFilters Component
@@ -42,7 +42,7 @@ const VerticalFilters = (props) => {
             {filter.title}
           </h4>
           {filter.filters.map((subfilter) => (
-            <SbCheckbox
+            <Checkbox
               key={subfilter.id}
               id={subfilter.id}
               label={subfilter.title}

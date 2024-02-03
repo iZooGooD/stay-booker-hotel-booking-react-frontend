@@ -1,4 +1,4 @@
-const SbCheckbox = (props) => {
+const Checkbox = (props) => {
   const { id, filterId, label, subtitle, onFiltersUpdate, isSelected } = props;
   const onChange = () => {
     onFiltersUpdate({ filterId, id });
@@ -24,4 +24,4 @@ const SbCheckbox = (props) => {
   );
 };
 
-export default SbCheckbox;
+export default Checkbox;

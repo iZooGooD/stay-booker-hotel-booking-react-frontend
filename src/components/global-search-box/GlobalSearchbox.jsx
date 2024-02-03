@@ -1,6 +1,6 @@
 import { faLocationDot, faPerson } from '@fortawesome/free-solid-svg-icons';
-import SbDateRangePicker from 'components/sb-data-range-picker/sb-date-range-picker';
-import SbInput from 'components/sb-input/SbInput';
+import DateRangePicker from 'components/ux/data-range-picker/DateRangePicker';
+import Input from 'components/ux/input/Input';
 
 /**
  * GlobalSearchBox Component
@@ -36,7 +36,7 @@ const GlobalSearchBox = (props) => {
   } = props;
   return (
     <div className="flex flex-wrap flex-col lg:flex-row hero-content__search-box">
-      <SbInput
+      <Input
         size="sm"
         value={locationInputValue}
         typeheadResults={locationTypeheadResults}
@@ -44,14 +44,14 @@ const GlobalSearchBox = (props) => {
         icon={faLocationDot}
         onChangeInput={onLocationChangeInput}
       />
-      <SbDateRangePicker
+      <DateRangePicker
         isDatePickerVisible={isDatePickerVisible}
         onDatePickerIconClick={onDatePickerIconClick}
         onDateChangeHandler={onDateChangeHandler}
         setisDatePickerVisible={setisDatePickerVisible}
         dateRange={dateRange}
       />
-      <SbInput
+      <Input
         size="sm"
         value={numGuestsInputValue}
         onChangeInput={onNumGuestsInputChange}
