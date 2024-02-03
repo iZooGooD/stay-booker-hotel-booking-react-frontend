@@ -1,6 +1,6 @@
 import { faLocationDot, faPerson } from '@fortawesome/free-solid-svg-icons';
 import SbDateRangePicker from '../sb-data-range-picker/sb-date-range-picker';
-import SbInput from '../sb-input/sb-input';
+import SbInput from 'components/sb-input/sb-input';
 
 /**
  * GlobalSearchBox Component
