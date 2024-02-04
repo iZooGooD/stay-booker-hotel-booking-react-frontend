@@ -1,3 +1,15 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const FooterLink = ({ to, label }) => (
+  <Link
+    to={to}
+    className="block text-slate-700 hover:text-brand transition-colors duration-300"
+  >
+    {label}
+  </Link>
+);
+
 const GlobalFooter = () => {
   return (
     <footer className="bg-slate-50 text-slate-700 mt-6">
@@ -5,13 +17,13 @@ const GlobalFooter = () => {
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h4 className="font-bold text-lg mb-2">Company Info</h4>
-            <p>About Us</p>
-            <p>Contact</p>
-            <p>Privacy Policy</p>
+            <FooterLink to="/about-us" label="About Us" />
+            <FooterLink to="/" label="Contact" />
+            <FooterLink to="/" label="Privacy Policy" />
           </div>
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h4 className="font-bold text-lg mb-2">Support</h4>
-            <p>FAQs</p>
+            <FooterLink to="/" label="FAQs" />
           </div>
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h4 className="font-bold text-lg mb-2">Newsletter</h4>
