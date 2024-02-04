@@ -1,6 +1,6 @@
 import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 /**
  * HotelViewCard Component
@@ -35,7 +35,7 @@ const HotelViewCard = (props) => {
       className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full"
       data-testid="hotel-view-card"
     >
-      <div>
+      <div onClick={onBookNowClick} className="cursor-pointer">
         <img
           src={image.imageUrl}
           alt={image.accessibleText}
@@ -44,7 +44,12 @@ const HotelViewCard = (props) => {
       </div>
       <div className="flex flex-col justify-between ml-0 md:ml-2 flex-1">
         <div>
-          <h4 className="text-2xl font-bold text-slate-600">{title}</h4>
+          <Link
+            to={`/hotel/${hoteCode}`}
+            className="block text-slate-700 hover:text-brand transition-colors duration-300"
+          >
+            <h4 className="text-2xl font-bold text-slate-600">{title}</h4>
+          </Link>
           <p className="text-slate-600 text-sm">{subtitle}</p>
         </div>
         <ul>
