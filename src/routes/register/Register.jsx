@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { networkAdapter } from 'services/NetworkAdapter';
 import { useNavigate } from 'react-router-dom';
+import Toast from 'components/toast/toast';
 
 /**
  * Register Component
@@ -140,9 +141,7 @@ const Register = () => {
               </Link>
             </div>
             {showSuccess && (
-              <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 my-2">
-                <p>{successMessage}</p>
-              </div>
+              <Toast type="success" message={successMessage} dismissError />
             )}
           </form>
         </div>
