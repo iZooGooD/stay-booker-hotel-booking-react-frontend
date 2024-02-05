@@ -30,17 +30,23 @@ const HotelViewCard = (props) => {
   const onBookNowClick = () => {
     navigate(`/hotel/${hoteCode}`);
   };
+
   return (
     <div
       className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full"
       data-testid="hotel-view-card"
     >
-      <div onClick={onBookNowClick} className="cursor-pointer">
-        <img
-          src={image.imageUrl}
-          alt={image.accessibleText}
-          className="md:w-[220px] md:h-[140px]"
-        />
+      <div className="cursor-pointer">
+        <Link
+          to={`/hotel/${hoteCode}`}
+          className="block text-slate-700 hover:text-brand transition-colors duration-300"
+        >
+          <img
+            src={image.imageUrl}
+            alt={image.accessibleText}
+            className="md:w-[220px] md:h-[140px]"
+          />
+        </Link>
       </div>
       <div className="flex flex-col justify-between ml-0 md:ml-2 flex-1">
         <div>
