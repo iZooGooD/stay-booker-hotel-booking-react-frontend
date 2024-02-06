@@ -1,19 +1,24 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import DropdownButton from 'components/dropdown-button/DropdownButton';
 
 const NavbarItems = ({ isAuthenticated }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dropdownOptions = [
     { name: 'Profile', onClick: () => navigate('/user-profile') },
     { name: 'Logout' },
   ];
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <>
       <li className="p-4 hover:bg-blue-900 md:hover:bg-brand">
         <Link
           to="/"
-          className="uppercase font-medium text-slate-100 hover-underline-animation"
+          className={`uppercase font-medium text-slate-100 hover-underline-animation`}
         >
           Home
         </Link>
@@ -21,7 +26,9 @@ const NavbarItems = ({ isAuthenticated }) => {
       <li className="p-4 hover:bg-blue-900 md:hover:bg-brand">
         <Link
           to="/hotels"
-          className="uppercase font-medium text-slate-100 hover-underline-animation"
+          className={`uppercase font-medium text-slate-100 hover-underline-animation ${
+            isActive('/hotels') && 'active-link'
+          }`}
         >
           Hotels
         </Link>
@@ -29,7 +36,9 @@ const NavbarItems = ({ isAuthenticated }) => {
       <li className="p-4 hover:bg-blue-900 md:hover:bg-brand">
         <Link
           to="/about-us"
-          className="uppercase font-medium text-slate-100 hover-underline-animation"
+          className={`uppercase font-medium text-slate-100 hover-underline-animation ${
+            isActive('/about-us') && 'active-link'
+          }`}
         >
           About us
         </Link>
@@ -40,7 +49,9 @@ const NavbarItems = ({ isAuthenticated }) => {
         ) : (
           <Link
             to="/login"
-            className="uppercase font-medium text-slate-100 hover-underline-animation"
+            className={`uppercase font-medium text-slate-100 hover-underline-animation ${
+              isActive('/login') && 'active-link'
+            }`}
           >
             Login/Register
           </Link>
@@ -49,4 +60,5 @@ const NavbarItems = ({ isAuthenticated }) => {
     </>
   );
 };
+
 export default NavbarItems;
