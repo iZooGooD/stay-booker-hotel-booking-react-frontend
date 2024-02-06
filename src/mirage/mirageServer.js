@@ -97,6 +97,10 @@ export function makeServer({ environment = 'development' } = {}) {
         }
       });
 
+      this.post('/logout', (schema, request) => {
+        loggedInUser = null;
+      });
+
       this.post('/register', (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
         const existingUser = schema.users.findBy({ email: attrs.email });
