@@ -97,7 +97,7 @@ export function makeServer({ environment = 'development' } = {}) {
         }
       });
 
-      this.post('/logout', (schema, request) => {
+      this.post('/logout', (_schema, _request) => {
         loggedInUser = null;
       });
 
@@ -302,7 +302,7 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
-      this.get('/hotel/:hotelId', (schema, request) => {
+      this.get('/hotel/:hotelId', (_schema, request) => {
         let hotelId = request.params.hotelId;
         const description = [
           'A serene stay awaits at our plush hotel, offering a blend of luxury and comfort with top-notch amenities.',
@@ -329,7 +329,7 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
-      this.get('/hotels', (schema, request) => {
+      this.get('/hotels', (_schema, request) => {
         const filters = request.queryParams.filters;
         const parsedFilters = JSON.parse(filters);
         const city = parsedFilters.city;
