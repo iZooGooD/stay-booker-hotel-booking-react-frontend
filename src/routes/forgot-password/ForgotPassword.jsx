@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { networkAdapter } from 'services/NetworkAdapter';
 import validations from 'utils/validations';
 import Toast from 'components/toast/toast';
+
 const ForgotPassword = () => {
   const [success, setsuccess] = useState(false);
   const [loginData, setLoginData] = useState({
@@ -73,7 +74,7 @@ const ForgotPassword = () => {
           ) : (
             <form onSubmit={handleforgotsubmit}>
               <div className="text-center mb-10">
-                <h2 className="text-3xl font-extrabold text-brand">
+                <h2 className="text-3xl font-extrabold text-brand my-2">
                   Reset your password
                 </h2>
                 <div className="mb-6">
@@ -94,26 +95,27 @@ const ForgotPassword = () => {
                     dismissError={dismissError}
                   />
                 )}
-
-                <div className="flex-wrap items-center justify-between">
+                <div className="flex-wrap items-center justify-between w-[500px]">
                   <button
                     type="submit"
                     className="w-full bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   >
                     Reset your password
                   </button>
-                  <Link
-                    to="/login"
-                    className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                  >
-                    Remember your password? Log in
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                  >
-                    New here? Create an account
-                  </Link>
+                  <div className="w-[500px] absolute mt-5">
+                    <Link
+                      to="/login"
+                      className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 text-left absolute left-0"
+                    >
+                      Remember your password? Log in
+                    </Link>
+                    <Link
+                      to="/register"
+                      className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 text-right absolute right-0"
+                    >
+                      New here? Create an account
+                    </Link>
+                  </div>
                 </div>
               </div>
             </form>
