@@ -13,6 +13,7 @@ import Login from './routes/login/Login';
 import Register from './routes/register/Register';
 import AboutUs from './routes/about-us/AboutUs';
 import BaseLayout from './routes/layouts/base-layout/BaseLayout';
+import Forgot from './routes/forgot-password/ForgotPassword';
 
 // if (process.env.NODE_ENV === 'development') {
 //   makeServer();
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: '/hotel/:hotelId',
         element: <HotelDetails />,
+      },
+      {
+        path: '/forgot-password',
+        element: <Forgot />,
       },
     ],
   },

@@ -117,6 +117,12 @@ const Login = () => {
                 Log In
               </button>
               <Link
+                to="/forgot-password"
+                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+              >
+                Forgot your password?
+              </Link>
+              <Link
                 to="/register"
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
               >
