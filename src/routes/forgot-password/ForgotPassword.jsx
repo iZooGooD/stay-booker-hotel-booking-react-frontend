@@ -9,6 +9,7 @@ const ForgotPassword = () => {
   const [loginData, setLoginData] = useState({
     email: '',
   });
+  const [errorMessage, setErrorMessage] = useState(false);
   /**
    * Handles input changes for the login form fields.
    * Updates the loginData state with the field values.
@@ -17,7 +18,6 @@ const ForgotPassword = () => {
   const handleInputChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
-  const [errorMessage, setErrorMessage] = useState(false);
   const dismissError = () => {
     setErrorMessage('');
   };
