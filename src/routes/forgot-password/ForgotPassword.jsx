@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { networkAdapter } from 'services/NetworkAdapter';
 import validations from 'utils/validations';
 import Toast from 'components/toast/toast';
-const Forgot = () => {
+const ForgotPassword = () => {
   const [success, setsuccess] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
