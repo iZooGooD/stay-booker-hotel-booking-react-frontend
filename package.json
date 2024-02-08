@@ -23,6 +23,8 @@
     "build": "react-scripts build",
     "test": "npx cypress run --e2e && npx cypress run --component",
     "eject": "react-scripts eject",
+    "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
+    "lint:check": "eslint .",
     "lint-fix": "lint-staged",
     "prepare": "husky install",
     "cypress:open": "cypress open",

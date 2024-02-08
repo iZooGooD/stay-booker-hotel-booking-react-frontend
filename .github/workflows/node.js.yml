@@ -46,4 +46,7 @@ jobs:
           node-version: 18.x
           cache: 'npm'
       - run: npm ci
-      - run: npx prettier --check "src/**/*.{js,jsx,ts,tsx,json,css,md}"
+      - name: Check code formatting with Prettier
+        run: npm run format:check
+      - name: Check code quality with ESLint
+        run: npm run lint:check
