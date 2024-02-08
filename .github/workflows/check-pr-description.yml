@@ -1,0 +1,40 @@
+name: Check PR Description
+
+on:
+    pull_request:
+        types: [opened, edited]
+
+jobs:
+    check-description:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Check PR Description for Required Sections
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  PR_DESCRIPTION=$(jq -r .pull_request.body "$GITHUB_EVENT_PATH")
+
+                  echo "Checking PR Description..."
+                  echo "$PR_DESCRIPTION"
+
+                  MISSING_SECTIONS=""
+
+                  if ! echo "$PR_DESCRIPTION" | grep -q "## Description"; then
+                    MISSING_SECTIONS="Description\n"
+                  fi
+                  if ! echo "$PR_DESCRIPTION" | grep -q "## Screenshots"; then
+                    MISSING_SECTIONS="${MISSING_SECTIONS}Screenshots\n"
+                  fi
+                  if ! echo "$PR_DESCRIPTION" | grep -q "## Tests"; then
+                    MISSING_SECTIONS="${MISSING_SECTIONS}Tests\n"
+                  fi
+
+                  if [ -n "$MISSING_SECTIONS" ]; then
+                    echo "🚨 The PR is missing the following sections: $MISSING_SECTIONS"
+                    exit 1
+                  else
+                    echo "✅ All required sections are present."
+                  fi
