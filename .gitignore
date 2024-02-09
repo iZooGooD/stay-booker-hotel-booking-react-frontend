@@ -17,6 +17,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+/.vscode
 
 # scaffold test
 /cypress/e2e/1-getting-started
