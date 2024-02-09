@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
 
   code-quality:
-    name: Code Quality - Prettier
+    name: Code Quality Checks
     runs-on: ubuntu-latest
 
     steps:
