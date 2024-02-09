@@ -110,24 +110,24 @@ const Login = () => {
               <small className="text-slate-600">Password: password1</small>
             </div>
             <div className="flex items-center justify-between">
-              <button
-                type="submit"
-                className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Log In
-              </button>
-              <Link
-                to="/forgot-password"
-                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              >
-                Forgot your password?
-              </Link>
               <Link
                 to="/register"
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
               >
                 New here? Create an account
               </Link>
+              <Link
+                to="/forgot-password"
+                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+              >
+                Forgot your password?
+              </Link>
+              <button
+                type="submit"
+                className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Log In
+              </button>
             </div>
           </form>
         </div>
