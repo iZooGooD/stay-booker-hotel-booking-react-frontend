@@ -99,6 +99,16 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.post('/logout', (_schema, _request) => {
         loggedInUser = null;
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              status: 'User logged out',
+            },
+          }
+        );
       });
 
       this.post('/register', (schema, request) => {
@@ -337,7 +347,8 @@ export function makeServer({ environment = 'development' } = {}) {
 
         const filteredResults = hotelsData.filter((hotel) => {
           const hotelRating = parseFloat(hotel.ratings);
-          if (hotel.city === city) {
+          const isCityMatch = city === '' || hotel.city === city;
+          if (isCityMatch) {
             if (star_ratings && star_ratings.length > 0) {
               return star_ratings.some((selectedRating) => {
                 const selected = parseFloat(selectedRating);
@@ -345,6 +356,7 @@ export function makeServer({ environment = 'development' } = {}) {
                 return Math.abs(hotelRating - selected) <= range;
               });
             } else {
+              // If no star ratings are provided, return all hotels for the city (or all cities if city is empty)
               return true;
             }
           }
