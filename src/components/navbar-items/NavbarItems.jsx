@@ -11,8 +11,8 @@ const NavbarItems = ({ isAuthenticated }) => {
 
   const handleLogout = async () => {
     const response = await networkAdapter.post('/api/logout');
-    const ExpectedResult = 'User logged out';
-    if (response && response.data.status === ExpectedResult) {
+    const expectedResult = 'User logged out';
+    if (response && response.data.status === expectedResult) {
       context.triggerAuthCheck();
       navigate('/login');
     }
