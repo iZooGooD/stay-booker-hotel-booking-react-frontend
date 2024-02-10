@@ -30,6 +30,7 @@ const ResultsContainer = (props) => {
     onFiltersUpdate,
     onClearFiltersAction,
   } = props;
+  const dataLimit = process.env.REACT_APP_MAX_HOTELS_RESULTS;
 
   const [isVerticalFiltersOpen, setIsVerticalFiltersOpen] = useState(false);
 
@@ -80,18 +81,20 @@ const ResultsContainer = (props) => {
               <HotelViewCardSkeleton key={index} />
             ))
           ) : hotelsResults.data.length > 0 ? (
-            hotelsResults.data.map((hotel) => (
-              <HotelViewCard
-                key={hotel.hotelCode}
-                id={hotel.hotelCode}
-                title={hotel.title}
-                image={hotel.image}
-                subtitle={hotel.subtitle}
-                benefits={hotel.benefits}
-                ratings={hotel.ratings}
-                price={hotel.price}
-              />
-            ))
+            hotelsResults.data
+              .slice(0, dataLimit)
+              .map((hotel) => (
+                <HotelViewCard
+                  key={hotel.hotelCode}
+                  id={hotel.hotelCode}
+                  title={hotel.title}
+                  image={hotel.image}
+                  subtitle={hotel.subtitle}
+                  benefits={hotel.benefits}
+                  ratings={hotel.ratings}
+                  price={hotel.price}
+                />
+              ))
           ) : (
             <EmptyHotelsState />
           )}
