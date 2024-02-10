@@ -5,7 +5,7 @@ import { networkAdapter } from 'services/NetworkAdapter';
 import isEmpty from 'utils/helpers';
 import { MAX_GUESTS_INPUT_VALUE } from 'utils/constants';
 import { formatDate } from 'utils/date-helpers';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { parse } from 'date-fns';
 
 /**
@@ -50,6 +50,8 @@ const HotelsSearch = () => {
   // State for managing selected filters
   const [selectedFiltersState, setSelectedFiltersState] = useState({});
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const location = useLocation();
 
   /**
@@ -87,6 +89,9 @@ const HotelsSearch = () => {
     const numGuest = Number(numGuestsInputValue);
     const checkInDate = formatDate(dateRange.startDate) ?? '';
     const checkOutDate = formatDate(dateRange.endDate) ?? '';
+    setSearchParams({
+      city: locationInputValue,
+    });
     fetchHotels({
       city: locationInputValue,
       ...activeFilters,
@@ -201,6 +206,13 @@ const HotelsSearch = () => {
     fetchAvailableCities();
     getVerticalFiltersData();
   }, []);
+
+  // And update location input value if city is present in the URL
+  useEffect(() => {
+    if (searchParams.get('city')) {
+      setLocationInputValue(searchParams.get('city'));
+    }
+  }, [searchParams]);
 
   // Update selected filters state when filters data changes
   useEffect(() => {
