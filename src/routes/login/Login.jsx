@@ -51,7 +51,7 @@ const Login = () => {
         setErrorMessage(response.errors[0]);
       }
     } else {
-      setErrorMessage('No response from server');
+      setErrorMessage('Please enter valid email and password');
     }
   };
 
