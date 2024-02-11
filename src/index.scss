@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import 'react-date-range/dist/styles.css'; // main style file
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
 @import 'react-date-range/dist/theme/default.css'; // theme css file
 
 @import './styles/constants';
