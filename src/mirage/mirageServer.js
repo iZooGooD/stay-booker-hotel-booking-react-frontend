@@ -91,9 +91,26 @@ export function makeServer({ environment = 'development' } = {}) {
 
         if (user && user.password === attrs.password) {
           loggedInUser = user;
-          return new Response(200, {}, { user });
+          return new Response(
+            200,
+            {},
+            {
+              data: {
+                token:
+                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9obiBKb2huIiwiaWQiOjEsImlhdCI6MTcwNzU0NTQ5MSwiZXhwIjoxNzA3NTQ5MDkxfQ.dxweIMZGiCuiViov1EfLtu3UwanUMp7TjL85hMDW4rc',
+              },
+              errors: [],
+            }
+          );
         } else {
-          return new Response(401, {}, { error: 'Invalid email or password' });
+          return new Response(
+            404,
+            {},
+            {
+              errors: ['User not found or invalid credentials'],
+              data: {},
+            }
+          );
         }
       });
 

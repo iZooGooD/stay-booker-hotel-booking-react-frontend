@@ -44,14 +44,14 @@ const Login = () => {
 
     if (validations.validate('email', loginData.email)) {
       const response = await networkAdapter.post('/api/login', loginData);
-      if (response && response.user) {
+      if (response && response.data.token) {
         context.triggerAuthCheck();
         navigate('/user-profile');
-      } else {
-        setErrorMessage('Invalid email or password.');
+      } else if (response && response.errors.length > 0) {
+        setErrorMessage(response.errors[0]);
       }
     } else {
-      setErrorMessage('Invalid email or password.');
+      setErrorMessage('No response from server');
     }
   };
 

@@ -8,9 +8,6 @@ class NetworkAdapter {
       });
 
       const response = await fetch(url.toString());
-      if (!response.ok) {
-        throw new Error(`Network response was not ok (${response.status})`);
-      }
       return await response.json();
     } catch (error) {
       console.error(error);
@@ -32,9 +29,6 @@ class NetworkAdapter {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) {
-        throw new Error(`Network response was not ok (${response.status})`);
-      }
       return await response.json();
     } catch (error) {
       console.error(error);
