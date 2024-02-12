@@ -7,7 +7,7 @@ class NetworkAdapter {
         url.searchParams.append(key, value);
       });
 
-      const response = await fetch(url.toString());
+      const response = await fetch(url.toString(), { credentials: 'include' });
       return await response.json();
     } catch (error) {
       console.error(error);
@@ -27,6 +27,7 @@ class NetworkAdapter {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+        credentials: 'include',
       });
 
       return await response.json();
