@@ -43,6 +43,8 @@ export function makeServer({ environment = 'development' } = {}) {
       // Add a logged-in user state to the server
       let loggedInUser = null;
 
+      this.passthrough('http://localhost:4000/*');
+
       this.get('/user', () => {
         return new Response(200, {}, { name: 'John' });
       });
