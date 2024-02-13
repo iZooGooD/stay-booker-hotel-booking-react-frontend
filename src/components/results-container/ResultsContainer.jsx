@@ -7,6 +7,7 @@ import { useRef, useState } from 'react';
 import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { MAX_RESULTS_PER_PAGE } from 'utils/constants';
 
 /**
  * ResultsContainer Component
@@ -30,7 +31,6 @@ const ResultsContainer = (props) => {
     onFiltersUpdate,
     onClearFiltersAction,
   } = props;
-  const dataLimit = process.env.REACT_APP_MAX_HOTELS_RESULTS;
 
   const [isVerticalFiltersOpen, setIsVerticalFiltersOpen] = useState(false);
 
@@ -82,7 +82,7 @@ const ResultsContainer = (props) => {
             ))
           ) : hotelsResults.data.length > 0 ? (
             hotelsResults.data
-              .slice(0, dataLimit)
+              .slice(0, MAX_RESULTS_PER_PAGE)
               .map((hotel) => (
                 <HotelViewCard
                   key={hotel.hotelCode}
