@@ -5,6 +5,11 @@ import { DateRange } from 'react-date-range';
 import { formatDate } from 'utils/date-helpers';
 import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 
+const inputSyleMap = {
+  SECONDARY: 'stay-booker__input--secondary',
+  DARK: 'stay-booker__input--dark',
+};
+
 const DateRangePicker = (props) => {
   const {
     isDatePickerVisible,
@@ -12,6 +17,7 @@ const DateRangePicker = (props) => {
     onDateChangeHandler,
     dateRange,
     setisDatePickerVisible,
+    inputStyle,
   } = props;
 
   const wrapperRef = useRef();
@@ -28,7 +34,11 @@ const DateRangePicker = (props) => {
   return (
     <div className="relative flex">
       <input
-        className="stay-booker__input px-8 py-2 w-[50%]"
+        className={`${
+          inputStyle
+            ? inputSyleMap[inputStyle]
+            : 'stay-booker__input--secondary'
+        } px-8 py-2 w-[50%]`}
         type="text"
         value={formattedStartDate}
         onFocus={onDatePickerIconClick}
@@ -41,7 +51,11 @@ const DateRangePicker = (props) => {
         onClick={onDatePickerIconClick}
       />
       <input
-        className="stay-booker__input px-8 py-2 w-[50%]"
+        className={`${
+          inputStyle
+            ? inputSyleMap[inputStyle]
+            : 'stay-booker__input--secondary'
+        }  px-8 py-2 w-[50%]`}
         type="text"
         value={formattedEndDate}
         onFocus={onDatePickerIconClick}
@@ -55,7 +69,7 @@ const DateRangePicker = (props) => {
             moveRangeOnFirstSelection={false}
             ranges={dateRange}
             direction="horizontal"
-            className="sb__date-range-picker"
+            className={`sb__date-range-picker`}
           />
         )}
       </div>

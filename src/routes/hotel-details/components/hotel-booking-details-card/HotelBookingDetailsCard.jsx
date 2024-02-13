@@ -1,3 +1,7 @@
+import React, { useState } from 'react';
+import Select from 'react-select';
+import DateRangePicker from 'components/ux/data-range-picker/DateRangePicker';
+
 /**
  * HotelBookingDetailsCard Component
  * Displays a card containing detailed information about a hotel booking.
@@ -11,13 +15,32 @@
  * and do not dynamically change based on user input or external data sources.
  */
 const HotelBookingDetailsCard = () => {
-  const bookingDetails = {
+  const [selectedRoom, setSelectedRoom] = useState({
+    value: '1 King Bed Standard Non Smoking',
+    label: '1 King Bed Standard Non Smoking',
+  });
+  const [selectedGuests, setSelectedGuests] = useState({
+    value: 2,
+    label: '2 guests',
+  });
+  const [selectedRooms, setSelectedRooms] = useState({
+    value: 1,
+    label: '1 room',
+  });
+  const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: null,
+      endDate: null,
+      key: 'selection',
+    },
+  ]);
+
+  const [bookingDetails] = useState({
     total: '6,819.22 INR',
     cancellationPolicy: 'Free cancellation 1 day prior to stay',
     dates: 'Jan 29-30, 2024',
     checkInTime: '3 pm',
-    reservation: '1 room, 2 adults',
-    roomType: '1 King Bed Standard Non Smoking',
     rateType: 'Best Flexible Rate',
     nightStay: '1 night stay',
     averageNightlyRate: '6,819.22 INR',
@@ -25,6 +48,45 @@ const HotelBookingDetailsCard = () => {
     taxes: '1,040.22 INR',
     taxDetails:
       'Gst - 12% On Inr 0-2500, 12% On Inr 2500 - 7500, 18% On Inr 7500',
+  });
+
+  const guestOptions = [
+    { value: 1, label: '1 guest' },
+    { value: 2, label: '2 guests' },
+    { value: 3, label: '3 guests' },
+    { value: 4, label: '4 guests' },
+  ];
+
+  const roomNumberOptions = [
+    { value: 1, label: '1 room' },
+    { value: 2, label: '2 rooms' },
+  ];
+
+  const roomOptions = [
+    {
+      value: '1 King Bed Standard Non Smoking',
+      label: '1 King Bed Standard Non Smoking',
+    },
+  ];
+
+  const handleRoomTypeChange = (selectedOption) => {
+    setSelectedRoom(selectedOption);
+  };
+
+  const handleGuestsNumberChange = (selectedOption) => {
+    setSelectedGuests(selectedOption);
+  };
+
+  const handleRoomsNumberChange = (selectedOption) => {
+    setSelectedRooms(selectedOption);
+  };
+
+  const onDatePickerIconClick = () => {
+    setisDatePickerVisible(!isDatePickerVisible);
+  };
+
+  const onDateChangeHandler = (ranges) => {
+    setDateRange([ranges.selection]);
   };
 
   return (
@@ -47,22 +109,37 @@ const HotelBookingDetailsCard = () => {
         <div className="mb-4">
           <div className="font-semibold text-gray-800">Dates & Time</div>
           <div className="text-gray-600">
-            {bookingDetails.dates} | Check-in at {bookingDetails.checkInTime}
+            <DateRangePicker
+              isDatePickerVisible={isDatePickerVisible}
+              onDatePickerIconClick={onDatePickerIconClick}
+              onDateChangeHandler={onDateChangeHandler}
+              setisDatePickerVisible={setisDatePickerVisible}
+              dateRange={dateRange}
+              inputStyle={'DARK'}
+            />
           </div>
         </div>
         <div className="mb-4">
           <div className="font-semibold text-gray-800">Reservation</div>
-          <div className="text-gray-600">{bookingDetails.reservation}</div>
+          <Select
+            value={selectedRooms}
+            onChange={handleRoomsNumberChange}
+            options={roomNumberOptions}
+            className="mb-2"
+          />
+          <Select
+            value={selectedGuests}
+            onChange={handleGuestsNumberChange}
+            options={guestOptions}
+          />
         </div>
         <div className="mb-4">
           <div className="font-semibold text-gray-800">Room Type</div>
-          <div className="text-gray-600">{bookingDetails.roomType}</div>
-        </div>
-        <div className="mb-4">
-          <div className="font-semibold text-gray-800">Rate</div>
-          <div className="text-gray-600">
-            {bookingDetails.rateType} - {bookingDetails.nightStay}
-          </div>
+          <Select
+            value={selectedRoom}
+            onChange={handleRoomTypeChange}
+            options={roomOptions}
+          />
         </div>
         <div className="mb-4">
           <div className="font-semibold text-gray-800">Avg. Nightly Rate</div>

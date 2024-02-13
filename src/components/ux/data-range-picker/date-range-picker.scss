@@ -1,5 +1,9 @@
-.stay-booker__input {
+.stay-booker__input--secondary {
     border: 2px solid $secondary-color;
+}
+
+.stay-booker__input--dark {
+    border: 1px solid rgb(204, 204, 204) !important;
 }
 
 .stay-booker__input {
