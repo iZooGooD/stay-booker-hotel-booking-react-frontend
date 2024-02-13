@@ -38,7 +38,7 @@ const DateRangePicker = (props) => {
           inputStyle
             ? inputSyleMap[inputStyle]
             : 'stay-booker__input--secondary'
-        } px-8 py-2 w-[50%]`}
+        } stay-booker__input px-8 py-2 w-[50%]`}
         type="text"
         value={formattedStartDate}
         onFocus={onDatePickerIconClick}
@@ -54,8 +54,8 @@ const DateRangePicker = (props) => {
         className={`${
           inputStyle
             ? inputSyleMap[inputStyle]
-            : 'stay-booker__input--secondary'
-        }  px-8 py-2 w-[50%]`}
+            : '  stay-booker__input--secondary'
+        } stay-booker__input px-8 py-2 w-[50%]`}
         type="text"
         value={formattedEndDate}
         onFocus={onDatePickerIconClick}
