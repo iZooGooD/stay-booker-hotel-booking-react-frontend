@@ -1,7 +1,7 @@
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function Toast({ type, message, dismissError }) {
+const Toast = ({ type, message, dismissError }) => {
   const typeToClassMap = {
     error: 'bg-red-100 border-l-4 border-red-500 text-red-700',
     success: 'bg-green-100 border-l-4 border-green-500 text-green-700 my-2',
@@ -17,4 +17,6 @@ export default function Toast({ type, message, dismissError }) {
       />
     </div>
   );
-}
+};
+
+export default Toast;
