@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from 'contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import validations from 'utils/validations';
-import Toast from 'components/toast/Toast';
+import Toast from 'components/ux/toast/Toast';
 
 /**
  * Login Component
