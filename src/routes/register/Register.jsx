@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { networkAdapter } from 'services/NetworkAdapter';
 import { useNavigate } from 'react-router-dom';
 import Toast from 'components/ux/toast/Toast';
+import { REGISTRATION_MESSAGES } from 'utils/constants';
 
 /**
  * Register Component
@@ -45,7 +46,7 @@ const Register = () => {
     e.preventDefault();
     const response = await networkAdapter.post('/api/register', formData);
     if (response && !response.errors) {
-      setSuccessMessage('User created successfully. Redirecting to login...');
+      setSuccessMessage(REGISTRATION_MESSAGES.SUCCESS);
       setShowSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
     }
