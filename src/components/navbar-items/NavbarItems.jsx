@@ -4,11 +4,20 @@ import { networkAdapter } from 'services/NetworkAdapter';
 import { useContext } from 'react';
 import { AuthContext } from 'contexts/AuthContext';
 
+/**
+ * A component that renders the navigation items for the navbar for both mobile/desktop view.
+ *
+ * @param {Object} props - The component's props.
+ * @param {boolean} props.isAuthenticated - A flag indicating whether the user is authenticated.
+ */
 const NavbarItems = ({ isAuthenticated }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const context = useContext(AuthContext);
 
+  /**
+   * Handles the logout action by calling the logout API and updating the authentication state.
+   */
   const handleLogout = async () => {
     const response = await networkAdapter.post('/api/logout');
     const expectedResult = 'User logged out';
@@ -23,6 +32,12 @@ const NavbarItems = ({ isAuthenticated }) => {
     { name: 'Logout', onClick: handleLogout },
   ];
 
+  /**
+   * Determines if a given path is the current active path.
+   *
+   * @param {string} path - The path to check.
+   * @returns {boolean} - True if the path is active, false otherwise.
+   */
   const isActive = (path) => {
     return location.pathname === path;
   };
