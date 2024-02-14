@@ -14,3 +14,10 @@ export const MAX_RESULTS_PER_PAGE = 10;
 export const REGISTRATION_MESSAGES = {
   SUCCESS: 'User created successfully. Redirecting to login...',
 };
+
+/**
+ * Messages related to user login.
+ */
+export const LOGIN_MESSAGES = {
+  FAILED: 'Please enter valid email and password',
+};

@@ -6,6 +6,7 @@ import { AuthContext } from 'contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import validations from 'utils/validations';
 import Toast from 'components/ux/toast/Toast';
+import { LOGIN_MESSAGES } from 'utils/constants';
 
 /**
  * Login Component
@@ -51,7 +52,7 @@ const Login = () => {
         setErrorMessage(response.errors[0]);
       }
     } else {
-      setErrorMessage('Please enter valid email and password');
+      setErrorMessage(LOGIN_MESSAGES.FAILED);
     }
   };
 
