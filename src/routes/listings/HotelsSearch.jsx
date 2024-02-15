@@ -91,7 +91,7 @@ const HotelsSearch = () => {
     const checkOutDate = formatDate(dateRange.endDate) ?? '';
     setSearchParams({
       city: locationInputValue,
-      numGuests: numGuestsInputValue
+      numGuests: numGuestsInputValue,
     });
     fetchHotels({
       city: locationInputValue,
