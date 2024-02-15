@@ -91,6 +91,7 @@ const HotelsSearch = () => {
     const checkOutDate = formatDate(dateRange.endDate) ?? '';
     setSearchParams({
       city: locationInputValue,
+      numGuests: numGuestsInputValue
     });
     fetchHotels({
       city: locationInputValue,
@@ -208,9 +209,14 @@ const HotelsSearch = () => {
   }, []);
 
   // And update location input value if city is present in the URL
+  // Also update number of guests input value if numGuests is present in the URL
   useEffect(() => {
     if (searchParams.get('city')) {
       setLocationInputValue(searchParams.get('city'));
+    }
+
+    if (searchParams.get('numGuests')) {
+      setNumGuestsInputValue(searchParams.get('numGuests'));
     }
   }, [searchParams]);
 
