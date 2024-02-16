@@ -37,7 +37,7 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
           </div>
         </div>
       </div>
-      <HotelBookingDetailsCard />
+      <HotelBookingDetailsCard hotelCode={hotelDetails.hotelCode} />
     </div>
   );
 };
