@@ -110,22 +110,24 @@ const Login = () => {
               <small className="text-slate-600">Email: user1@example.com</small>
               <small className="text-slate-600">Password: password1</small>
             </div>
-            <div className="flex items-center justify-between">
-              <Link
-                to="/register"
-                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              >
-                New here? Create an account
-              </Link>
-              <Link
-                to="/forgot-password"
-                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              >
-                Forgot your password?
-              </Link>
+            <div className="flex flex-col items-center justify-between sm:flex-row gap-4 sm:gap-11">
+              <div className="flex items-center w-full justify-between">
+                <Link
+                  to="/register"
+                  className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                >
+                  New here? Create an account
+                </Link>
+                <Link
+                  to="/forgot-password"
+                  className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                >
+                  Forgot your password?
+                </Link>
+              </div>
               <button
                 type="submit"
-                className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline order-first sm:order-last w-full sm:w-auto flex-shrink-0"
               >
                 Log In
               </button>
