@@ -1,33 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+import { differenceInCalendarDays } from 'date-fns';
 import DateRangePicker from 'components/ux/data-range-picker/DateRangePicker';
+import { networkAdapter } from 'services/NetworkAdapter';
 
-/**
- * HotelBookingDetailsCard Component
- * Displays a card containing detailed information about a hotel booking.
- * The details include total price, cancellation policy, dates and check-in time,
- * reservation details, room type, rate, average nightly rate, extra charges, and taxes.
- *
- * This component is designed to provide users with all the necessary information
- * regarding their hotel booking in a clear and concise manner.
- *
- * Note: Currently, the booking details are statically defined within the component
- * and do not dynamically change based on user input or external data sources.
- */
-const HotelBookingDetailsCard = () => {
-  const [selectedRoom, setSelectedRoom] = useState({
-    value: '1 King Bed Standard Non Smoking',
-    label: '1 King Bed Standard Non Smoking',
-  });
-  const [selectedGuests, setSelectedGuests] = useState({
-    value: 2,
-    label: '2 guests',
-  });
-  const [selectedRooms, setSelectedRooms] = useState({
-    value: 1,
-    label: '1 room',
-  });
+const HotelBookingDetailsCard = ({ hotelCode }) => {
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
+
   const [dateRange, setDateRange] = useState([
     {
       startDate: null,
@@ -36,31 +15,41 @@ const HotelBookingDetailsCard = () => {
     },
   ]);
 
-  const [bookingDetails] = useState({
-    total: '6,819.22 INR',
-    cancellationPolicy: 'Free cancellation 1 day prior to stay',
-    dates: 'Jan 29-30, 2024',
-    checkInTime: '3 pm',
-    rateType: 'Best Flexible Rate',
-    nightStay: '1 night stay',
-    averageNightlyRate: '6,819.22 INR',
-    extraPersonCharge: '500.00 INR',
-    taxes: '1,040.22 INR',
-    taxDetails:
-      'Gst - 12% On Inr 0-2500, 12% On Inr 2500 - 7500, 18% On Inr 7500',
+  const [selectedRoom, setSelectedRoom] = useState({
+    value: '1 King Bed Standard Non Smoking',
+    label: '1 King Bed Standard Non Smoking',
   });
 
-  const guestOptions = [
-    { value: 1, label: '1 guest' },
-    { value: 2, label: '2 guests' },
-    { value: 3, label: '3 guests' },
-    { value: 4, label: '4 guests' },
-  ];
+  const [selectedGuests, setSelectedGuests] = useState({
+    value: 2,
+    label: '2 guests',
+  });
 
-  const roomNumberOptions = [
-    { value: 1, label: '1 room' },
-    { value: 2, label: '2 rooms' },
-  ];
+  const [selectedRooms, setSelectedRooms] = useState({
+    value: 1,
+    label: '1 room',
+  });
+
+  const [total, setTotal] = useState(0);
+  const [taxes, setTaxes] = useState(0);
+
+  const [bookingPeriodDays, setBookingPeriodDays] = useState(1);
+
+  const [bookingDetails, setBookingDetails] = useState({});
+
+  const guestOptions = Array.from(
+    Array(bookingDetails.maxGuestsAllowed),
+    (v, i) => {
+      return { value: i + 1, label: `${i + 1} guest` };
+    }
+  );
+
+  const roomNumberOptions = Array.from(
+    Array(bookingDetails.maxRoomsAllowedPerGuest),
+    (v, i) => {
+      return { value: i + 1, label: `${i + 1} room` };
+    }
+  );
 
   const roomOptions = [
     {
@@ -71,6 +60,7 @@ const HotelBookingDetailsCard = () => {
 
   const handleRoomTypeChange = (selectedOption) => {
     setSelectedRoom(selectedOption);
+    calculatePrices();
   };
 
   const handleGuestsNumberChange = (selectedOption) => {
@@ -79,6 +69,7 @@ const HotelBookingDetailsCard = () => {
 
   const handleRoomsNumberChange = (selectedOption) => {
     setSelectedRooms(selectedOption);
+    calculatePrices();
   };
 
   const onDatePickerIconClick = () => {
@@ -86,8 +77,54 @@ const HotelBookingDetailsCard = () => {
   };
 
   const onDateChangeHandler = (ranges) => {
+    const { startDate, endDate } = ranges.selection;
     setDateRange([ranges.selection]);
+    if (startDate && endDate) {
+      const days = differenceInCalendarDays(endDate, startDate) + 1;
+      setBookingPeriodDays(days);
+    } else {
+      setBookingPeriodDays(1);
+    }
+    calculatePrices();
   };
+
+  const calculatePrices = () => {
+    const pricePerNight =
+      Number(bookingDetails.currentNightRate) * selectedRooms.value;
+    let gstRate;
+    if (pricePerNight <= 2500) {
+      gstRate = 0.12;
+    } else if (pricePerNight > 2500 && pricePerNight <= 7500) {
+      gstRate = 0.12;
+    } else {
+      gstRate = 0.18;
+    }
+    const totalGst = pricePerNight * bookingPeriodDays * gstRate;
+    const totalPrice = pricePerNight * bookingPeriodDays + totalGst;
+    setTotal(`${totalPrice} INR`);
+    setTaxes(`${totalGst} INR`);
+  };
+
+  useEffect(() => {
+    calculatePrices();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bookingPeriodDays, selectedRooms, selectedRoom, bookingDetails]);
+
+  useEffect(() => {
+    const getBookingDetails = async () => {
+      const response = await networkAdapter.get(
+        `api/hotel/${hotelCode}/booking/enquiry`
+      );
+      if (response && response.data) {
+        setBookingDetails({
+          ...bookingDetails,
+          ...response.data,
+        });
+      }
+    };
+    getBookingDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="mx-2 bg-white shadow-xl rounded-xl overflow-hidden  mt-2 md:mt-0 w-full md:w-auto">
@@ -99,9 +136,7 @@ const HotelBookingDetailsCard = () => {
           <div className="text-lg font-semibold text-gray-800 mb-1">
             Total Price
           </div>
-          <div className="text-xl font-bold text-indigo-600">
-            {bookingDetails.total}
-          </div>
+          <div className="text-xl font-bold text-indigo-600">{total}</div>
           <div className="text-sm text-green-600">
             {bookingDetails.cancellationPolicy}
           </div>
@@ -142,20 +177,14 @@ const HotelBookingDetailsCard = () => {
           />
         </div>
         <div className="mb-4">
-          <div className="font-semibold text-gray-800">Avg. Nightly Rate</div>
+          <div className="font-semibold text-gray-800">Per day rate</div>
           <div className="text-gray-600">
-            {bookingDetails.averageNightlyRate}
-          </div>
-        </div>
-        <div className="mb-4">
-          <div className="font-semibold text-gray-800">Extra Charges</div>
-          <div className="text-gray-600">
-            Extra person charge: {bookingDetails.extraPersonCharge}
+            {bookingDetails.currentNightRate} INR
           </div>
         </div>
         <div className="mb-4">
           <div className="font-semibold text-gray-800">Taxes</div>
-          <div className="text-gray-600">{bookingDetails.taxes}</div>
+          <div className="text-gray-600">{taxes}</div>
           <div className="text-xs text-gray-500">
             {bookingDetails.taxDetails}
           </div>
