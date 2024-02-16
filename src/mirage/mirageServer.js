@@ -191,6 +191,27 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
+      this.get('/hotel/:hotelId/booking/enquiry', (_schema, request) => {
+        // let hotelId = request.params.hotelId;
+        // const result = hotelsData.find((hotel) => {
+        //   return Number(hotel.hotelCode) === Number(hotelId);
+        // });
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              cancellationPolicy: 'Free cancellation 1 day prior to stay',
+              checkInTime: '3 pm',
+              currentNightRate: '9542',
+              maxGuestsAllowed: 5,
+              maxRoomsAllowedPerGuest: 3,
+            },
+          }
+        );
+      });
+
       this.get('/popularDestinations', () => {
         return new Response(
           200,
