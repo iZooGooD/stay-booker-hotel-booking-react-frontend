@@ -56,7 +56,10 @@ const Register = () => {
     <>
       <div className="register__form">
         <div className="container mx-auto p-4 flex justify-center min-h-[600px] items-center">
-          <form onSubmit={handleSubmit} className="w-full max-w-lg">
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-lg p-4 md:p-10 shadow-md"
+          >
             <div className="text-center mb-10">
               <h2 className="text-3xl font-extrabold text-brand">
                 Join Us Now
@@ -127,20 +130,20 @@ const Register = () => {
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               />
             </div>
-            <div className="flex items-center justify-between">
-              <Link
-                to="/login"
-                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              >
-                Already registered? Login
-              </Link>
+            <div className="flex items-center my-3 w-full">
               <button
                 type="submit"
-                className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
               >
                 Register
               </button>
             </div>
+            <Link
+              to="/login"
+              className="inline-block align-baseline text-lg text-gray-500 hover:text-blue-800 text-center w-full"
+            >
+              Back to login
+            </Link>
             {showSuccess && (
               <Toast type="success" message={successMessage} dismissError />
             )}
