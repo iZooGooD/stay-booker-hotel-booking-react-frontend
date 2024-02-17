@@ -62,7 +62,7 @@ const Register = () => {
           >
             <div className="text-center mb-10">
               <h2 className="text-3xl font-extrabold text-brand">
-                Join Us Now
+                Join the Adventure!
               </h2>
               <p className="text-gray-500">
                 Create your account and start your journey with us

@@ -108,11 +108,6 @@ const Login = () => {
                 dismissError={dismissError}
               />
             )}
-            <div className="bg-slate-50 my-4 p-3 flex flex-col">
-              <small className="text-slate-600">test user details</small>
-              <small className="text-slate-600">Email: user1@example.com</small>
-              <small className="text-slate-600">Password: password1</small>
-            </div>
             <div className="items-center">
               <div>
                 <button
@@ -149,6 +144,11 @@ const Login = () => {
             </div>
           </form>
         </div>
+      </div>
+      <div className="bg-slate-50 flex flex-col mx-auto w-full max-w-lg px-4">
+        <small className="text-slate-600">test user details</small>
+        <small className="text-slate-600">Email: user1@example.com</small>
+        <small className="text-slate-600">Password: password1</small>
       </div>
     </>
   );
