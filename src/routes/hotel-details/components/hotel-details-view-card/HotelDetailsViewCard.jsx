@@ -2,7 +2,7 @@ import HotelBookingDetailsCard from '../hotel-booking-details-card/HotelBookingD
 
 const HotelDetailsViewCard = ({ hotelDetails }) => {
   return (
-    <div className="flex items-start justify-center flex-wrap container mx-auto p-4">
+    <div className="flex items-start justify-center flex-wrap md:flex-nowrap container mx-auto p-4">
       <div className=" bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="relative">
           <img
