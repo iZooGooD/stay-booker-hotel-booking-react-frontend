@@ -43,7 +43,7 @@ const ForgotPassword = () => {
   };
   return (
     <>
-      <div className="login__form">
+      <div>
         <div className="container mx-auto p-4 flex justify-center min-h-[600px] items-center">
           {success ? (
             <div className="bg-white p-6  md:mx-auto">
@@ -72,9 +72,12 @@ const ForgotPassword = () => {
               </div>
             </div>
           ) : (
-            <form onSubmit={handleforgotsubmit}>
+            <form
+              onSubmit={handleforgotsubmit}
+              className="w-full max-w-lg p-10 shadow-md"
+            >
               <div className="text-center mb-10">
-                <h2 className="text-3xl font-extrabold text-brand my-2">
+                <h2 className="text-3xl font-extrabold text-brand my-4">
                   Reset your password
                 </h2>
                 <div className="mb-6">
@@ -87,6 +90,10 @@ const ForgotPassword = () => {
                     autoComplete="username"
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   />
+                  <p className="text-gray-700">
+                    We’ll send a verification code to this email if it matches
+                    an existing account.
+                  </p>
                 </div>
                 {errorMessage && (
                   <Toast
@@ -95,25 +102,19 @@ const ForgotPassword = () => {
                     dismissError={dismissError}
                   />
                 )}
-                <div className="flex-wrap items-center justify-between w-[500px]">
+                <div className="flex-wrap items-center justify-between">
                   <button
                     type="submit"
                     className="w-full bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   >
                     Reset your password
                   </button>
-                  <div className="w-[500px] absolute mt-5">
+                  <div className="mt-5">
                     <Link
                       to="/login"
-                      className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 text-left absolute left-0"
+                      className="inline-block align-baseline text-lg text-gray-500 hover:text-blue-800 text-right"
                     >
-                      Remember your password? Log in
-                    </Link>
-                    <Link
-                      to="/register"
-                      className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 text-right absolute right-0"
-                    >
-                      New here? Create an account
+                      Back to login
                     </Link>
                   </div>
                 </div>
