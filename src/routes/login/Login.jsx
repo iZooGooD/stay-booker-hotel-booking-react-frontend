@@ -67,7 +67,10 @@ const Login = () => {
     <>
       <div className="login__form">
         <div className="container mx-auto p-4 flex justify-center min-h-[600px] items-center">
-          <form onSubmit={handleLoginSubmit} className="w-full max-w-lg">
+          <form
+            onSubmit={handleLoginSubmit}
+            className="w-full max-w-lg p-4 md:p-10 shadow-md"
+          >
             <div className="text-center mb-10">
               <h2 className="text-3xl font-extrabold text-brand">
                 Welcome Back
@@ -110,27 +113,39 @@ const Login = () => {
               <small className="text-slate-600">Email: user1@example.com</small>
               <small className="text-slate-600">Password: password1</small>
             </div>
-            <div className="flex flex-col items-center justify-between sm:flex-row gap-4 sm:gap-11">
-              <div className="flex items-center w-full justify-between">
-                <Link
-                  to="/register"
-                  className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+            <div className="items-center">
+              <div>
+                <button
+                  type="submit"
+                  className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                 >
-                  New here? Create an account
-                </Link>
+                  Log In
+                </button>
+              </div>
+              <div className="flex flex-wrap justify-center my-3 w-full">
                 <Link
                   to="/forgot-password"
-                  className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                  className="inline-block align-baseline text-md text-gray-500 hover:text-blue-800 text-right"
                 >
                   Forgot your password?
                 </Link>
               </div>
-              <button
-                type="submit"
-                className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline order-first sm:order-last w-full sm:w-auto flex-shrink-0"
-              >
-                Log In
-              </button>
+              <div className="relative">
+                <div className="absolute left-0 right-0 flex justify-center items-center">
+                  <div className="border-t w-full absolute"></div>
+                  <span className="bg-white px-3 text-gray-500 z-10">
+                    New to Stay Booker?
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-wrap justify-center my-3 w-full mt-12">
+                <Link
+                  to="/register"
+                  className="inline-block align-baseline font-medium text-md text-brand hover:text-blue-800 text-right"
+                >
+                  New here? Create an account
+                </Link>
+              </div>
             </div>
           </form>
         </div>

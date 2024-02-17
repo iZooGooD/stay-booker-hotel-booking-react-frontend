@@ -74,7 +74,7 @@ const ForgotPassword = () => {
           ) : (
             <form
               onSubmit={handleforgotsubmit}
-              className="w-full max-w-lg p-10 shadow-md"
+              className="w-full max-w-lg p-4 md:p-10 shadow-md"
             >
               <div className="text-center mb-10">
                 <h2 className="text-3xl font-extrabold text-brand my-4">
