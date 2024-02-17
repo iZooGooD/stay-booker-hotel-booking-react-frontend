@@ -384,11 +384,18 @@ export function makeServer({ environment = 'development' } = {}) {
         const parsedFilters = JSON.parse(filters);
         const city = parsedFilters.city;
         const star_ratings = parsedFilters.star_ratings;
+        const priceFilter = parsedFilters.priceFilter;
 
         const filteredResults = hotelsData.filter((hotel) => {
           const hotelRating = parseFloat(hotel.ratings);
+          const hotelPrice = parseFloat(hotel.price.replace(',', ''));
           const isCityMatch = city === '' || hotel.city === city;
-          if (isCityMatch) {
+          const isPriceMatch =
+            !priceFilter ||
+            (hotelPrice >= parseFloat(priceFilter.start) &&
+              hotelPrice <= parseFloat(priceFilter.end));
+
+          if (isCityMatch && isPriceMatch) {
             if (star_ratings && star_ratings.length > 0) {
               return star_ratings.some((selectedRating) => {
                 const selected = parseFloat(selectedRating);

@@ -15,7 +15,7 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
   // State for date picker visibility
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
 
-  // State for date range selection
+  // State for date range
   const [dateRange, setDateRange] = useState([
     {
       startDate: null,

@@ -82,7 +82,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // Function to fetch initial data
+    /**
+     * Fetches initial data for the Home route.
+     * @returns {Promise<void>} A promise that resolves when the data is fetched.
+     */
     const getInitialData = async () => {
       const popularDestinationsResponse = await networkAdapter.get(
         '/api/popularDestinations'

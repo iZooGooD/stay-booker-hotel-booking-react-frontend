@@ -23,7 +23,7 @@ export const LOGIN_MESSAGES = {
 };
 
 /**
- * Tax details for all hotels
+ * Represents the default tax details for hotel booking.
  */
 export const DEFAULT_TAX_DETAILS =
   'GST: 12% on INR 0 - 2,500, 12% on INR 2,500-7,500, 18% on INR 7,500 and above';
