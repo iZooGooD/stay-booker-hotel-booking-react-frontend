@@ -384,7 +384,31 @@ export function makeServer({ environment = 'development' } = {}) {
         const result = hotelsData.find((hotel) => {
           return Number(hotel.hotelCode) === Number(hotelId);
         });
-        return result.reviews;
+        const totalRatings = result.reviews.data.reduce(
+          (acc, review) => acc + review.rating,
+          0
+        );
+        const initialCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+        const starCounts = result.reviews.data.reduce((acc, review) => {
+          const ratingKey = Math.floor(review.rating).toString();
+          if (acc.hasOwnProperty(ratingKey)) {
+            acc[ratingKey]++;
+          }
+          return acc;
+        }, initialCounts);
+
+        const metadata = {
+          totalReviews: result.reviews.data.length,
+          averageRating: (totalRatings / result.reviews.data.length).toFixed(1),
+          starCounts,
+        };
+        return {
+          errors: [],
+          data: {
+            elements: result.reviews.data,
+          },
+          metadata,
+        };
       });
 
       this.get('/hotels', (_schema, request) => {

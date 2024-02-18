@@ -14,10 +14,12 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
       const response = await networkAdapter.get(
         `/api/hotel/${hotelDetails.hotelCode}/reviews`
       );
-      setReviewData({
-        isLoading: false,
-        data: response.data,
-      });
+      if (response && response.data)
+        setReviewData({
+          isLoading: false,
+          data: response.data.elements,
+          metadata: response.metadata,
+        });
     };
     fetchHotelReviews();
   }, [hotelDetails.hotelCode]);
@@ -61,7 +63,9 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
             </div>
           </div>
         </div>
-        {reviewData.data && <UserReviews reviewData={reviewData} />}
+        {reviewData.data && reviewData.metadata && (
+          <UserReviews reviewData={reviewData} />
+        )}
       </div>
       <HotelBookingDetailsCard hotelCode={hotelDetails.hotelCode} />
     </div>

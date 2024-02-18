@@ -11,20 +11,6 @@ import RatingsOverview from './components/RatingsOverview';
  */
 const UserReviews = ({ reviewData }) => {
   const [userRating, setUserRating] = useState(0);
-  const totalRatings = reviewData.data.reduce(
-    (acc, review) => acc + review.rating,
-    0
-  );
-  const ratingsCount = reviewData.data.length;
-  const averageRating = (totalRatings / ratingsCount).toFixed(1);
-
-  // Count how many times each rating occurs
-  const starCounts = Array.from(
-    { length: 5 },
-    (_, i) =>
-      reviewData.data.filter((review) => Math.floor(review.rating) === 5 - i)
-        .length
-  );
 
   /**
    * Handles the selected user rating.
@@ -41,9 +27,9 @@ const UserReviews = ({ reviewData }) => {
         <RatingsOverview
           userRating={userRating}
           handleRating={handleRating}
-          averageRating={averageRating}
-          ratingsCount={ratingsCount}
-          starCounts={starCounts}
+          averageRating={reviewData.metadata.averageRating}
+          ratingsCount={reviewData.metadata.totalReviews}
+          starCounts={reviewData.metadata.starCounts}
         />
       </div>
       <div>

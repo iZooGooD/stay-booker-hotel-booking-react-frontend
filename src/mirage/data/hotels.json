@@ -15,7 +15,6 @@
     "ratings": "5",
     "city": "pune",
     "reviews": {
-      "total": 6,
       "data": [
         {
           "reviewerName": "Rahul Patel",

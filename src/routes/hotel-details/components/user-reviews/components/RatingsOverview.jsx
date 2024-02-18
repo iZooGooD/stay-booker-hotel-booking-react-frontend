@@ -31,24 +31,28 @@ const RatingsOverview = ({
           {averageRating}/5
         </div>
         <div className="text-sm">Based on {ratingsCount} reviews</div>
-        {starCounts.map((count, index) => (
-          <div className="flex items-center my-1 gap-x-4" key={index}>
-            <div className="w-8 pr-2 flex items-center">
-              {5 - index}{' '}
-              <FontAwesomeIcon
-                icon={fasStar}
-                className="text-yellow-400 ml-1"
-              />
+        {Object.keys(starCounts)
+          .sort((a, b) => b - a)
+          .map((starRating) => (
+            <div className="flex items-center my-1 gap-x-4" key={starRating}>
+              <div className="w-8 pr-2 flex items-center">
+                {starRating}{' '}
+                <FontAwesomeIcon
+                  icon={fasStar}
+                  className="text-yellow-400 ml-1"
+                />
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-300">
+                <div
+                  className="bg-yellow-400 h-2.5 rounded-full"
+                  style={{
+                    width: `${(starCounts[starRating] / ratingsCount) * 100}%`,
+                  }}
+                ></div>
+              </div>
+              <span>{starCounts[starRating]}</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-300">
-              <div
-                className="bg-yellow-400 h-2.5 rounded-full"
-                style={{ width: `${(count / ratingsCount) * 100}%` }}
-              ></div>
-            </div>
-            <span>{count}</span>
-          </div>
-        ))}
+          ))}
       </div>
 
       <div className="w-2/5 pl-4 border-l flex flex-col items-center justify-center">
