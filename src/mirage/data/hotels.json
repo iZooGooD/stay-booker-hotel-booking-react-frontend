@@ -13,7 +13,41 @@
     ],
     "price": "18,900",
     "ratings": "5",
-    "city": "pune"
+    "city": "pune",
+    "reviews": {
+      "data": [
+        {
+          "reviewerName": "Rahul Patel",
+          "rating": 5,
+          "review": "The hotel is very good and the staff is very friendly. The food is also very good.",
+          "date": "Date of stay: 2021-01-01"
+        },
+        {
+          "reviewerName": "Sara Johnson",
+          "rating": 4,
+          "review": "Great hotel with excellent service. The rooms are spacious and clean. The staff went above and beyond to ensure a comfortable stay. Highly recommended!",
+          "date": "Date of stay: 2021-02-15"
+        },
+        {
+          "reviewerName": "John Smith",
+          "rating": 3,
+          "review": "Average hotel. The staff could be more attentive.",
+          "date": "Date of stay: 2021-03-10"
+        },
+        {
+          "reviewerName": "Emily Davis",
+          "rating": 5,
+          "review": "Amazing experience! The hotel exceeded my expectations.",
+          "date": "Date of stay: 2021-04-20"
+        },
+        {
+          "reviewerName": "David Wilson",
+          "rating": 1,
+          "review": "Terrible experience. The hotel was dirty and the staff was rude.",
+          "date": "Date of stay: 2021-05-05"
+        }
+      ]
+    }
   },
   {
     "hotelCode": 71223,
