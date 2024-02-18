@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import DropdownButton from 'components/dropdown-button/DropdownButton';
+import DropdownButton from 'components/ux/dropdown-button/DropdownButton';
 import { networkAdapter } from 'services/NetworkAdapter';
 import { useContext } from 'react';
 import { AuthContext } from 'contexts/AuthContext';
