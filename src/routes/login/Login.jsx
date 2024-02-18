@@ -138,7 +138,7 @@ const Login = () => {
                   to="/register"
                   className="inline-block align-baseline font-medium text-md text-brand hover:text-blue-800 text-right"
                 >
-                  New here? Create an account
+                  Create an account
                 </Link>
               </div>
             </div>
