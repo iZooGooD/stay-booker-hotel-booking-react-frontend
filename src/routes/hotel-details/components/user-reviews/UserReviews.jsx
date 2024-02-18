@@ -1,5 +1,4 @@
 import Review from './components/Review';
-import Loader from 'components/loader/Loader';
 import React, { useState } from 'react';
 import RatingsOverview from './components/RatingsOverview';
 
@@ -49,7 +48,7 @@ const UserReviews = ({ reviewData }) => {
       </div>
       <div>
         {reviewData.isLoading ? (
-          <Loader />
+          <span>Loading...</span>
         ) : (
           <div>
             {reviewData.data.map((review, index) => (
