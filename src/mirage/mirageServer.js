@@ -379,6 +379,14 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
+      this.get('/hotel/:hotelId/reviews', (_schema, request) => {
+        let hotelId = request.params.hotelId;
+        const result = hotelsData.find((hotel) => {
+          return Number(hotel.hotelCode) === Number(hotelId);
+        });
+        return result.reviews;
+      });
+
       this.get('/hotels', (_schema, request) => {
         const filters = request.queryParams.filters;
         const parsedFilters = JSON.parse(filters);
