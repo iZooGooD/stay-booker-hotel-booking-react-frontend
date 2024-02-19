@@ -8,7 +8,7 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
     isLoading: true,
     data: [],
   });
-  const [currentReviewPage, setCurrentReviewPage] = useState(1);
+  const [currentReviewsPage, setCurrentReviewPage] = useState(1);
 
   const handlePageChange = (page) => {
     setCurrentReviewPage(page);
@@ -27,7 +27,7 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
       const response = await networkAdapter.get(
         `/api/hotel/${hotelDetails.hotelCode}/reviews`,
         {
-          currentReviewPage,
+          currentPage: currentReviewsPage,
         }
       );
       if (response && response.data)
@@ -39,7 +39,7 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
         });
     };
     fetchHotelReviews();
-  }, [hotelDetails.hotelCode, currentReviewPage]);
+  }, [hotelDetails.hotelCode, currentReviewsPage]);
 
   return (
     <div className="flex items-start justify-center flex-wrap md:flex-nowrap container mx-auto p-4">
