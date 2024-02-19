@@ -15,7 +15,6 @@ const UserReviews = ({
   handlePreviousPageChange,
   handleNextPageChange,
 }) => {
-  console.log('UserReviews -> reviewData', reviewData);
   const [userRating, setUserRating] = useState(0);
 
   /**

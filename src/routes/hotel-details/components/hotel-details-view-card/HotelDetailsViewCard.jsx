@@ -25,7 +25,10 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
   useEffect(() => {
     const fetchHotelReviews = async () => {
       const response = await networkAdapter.get(
-        `/api/hotel/${hotelDetails.hotelCode}/reviews/${currentReviewPage}`
+        `/api/hotel/${hotelDetails.hotelCode}/reviews`,
+        {
+          currentReviewPage,
+        }
       );
       if (response && response.data)
         setReviewData({

@@ -78,7 +78,7 @@
         },
         {
           "reviewerName": "Ethan Davis",
-          "rating": 5,
+          "rating": 4,
           "review": "Fantastic hotel with great amenities. The staff was attentive and helpful.",
           "date": "Date of stay: 2021-11-20"
         },
@@ -102,7 +102,7 @@
         },
         {
           "reviewerName": "Liam Davis",
-          "rating": 5,
+          "rating": 4,
           "review": "Outstanding hotel with top-notch service. The rooms were luxurious and comfortable.",
           "date": "Date of stay: 2022-03-20"
         }

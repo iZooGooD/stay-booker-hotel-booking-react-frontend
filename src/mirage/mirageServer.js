@@ -379,8 +379,8 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
-      this.get('/hotel/:hotelId/reviews/:currentPage', (_schema, request) => {
-        const currentPage = request.params.currentPage;
+      this.get('/hotel/:hotelId/reviews', (_schema, request) => {
+        const currentPage = request.queryParams.currentPage;
         let hotelId = request.params.hotelId;
         const result = hotelsData.find((hotel) => {
           return Number(hotel.hotelCode) === Number(hotelId);
