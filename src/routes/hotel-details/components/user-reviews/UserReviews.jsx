@@ -49,7 +49,7 @@ const UserReviews = ({
         ) : (
           <RatingsOverview
             averageRating={reviewData.metadata.averageRating}
-            ratingsCount={reviewData.metadata.ratingsCount}
+            ratingsCount={reviewData.metadata.totalReviews}
             starCounts={reviewData.metadata.starCounts}
           />
         )}
