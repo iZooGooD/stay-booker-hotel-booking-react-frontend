@@ -379,7 +379,8 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
-      this.get('/hotel/:hotelId/reviews', (_schema, request) => {
+      this.get('/hotel/:hotelId/reviews/:currentPage', (_schema, request) => {
+        const currentPage = request.params.currentPage;
         let hotelId = request.params.hotelId;
         const result = hotelsData.find((hotel) => {
           return Number(hotel.hotelCode) === Number(hotelId);
@@ -402,12 +403,29 @@ export function makeServer({ environment = 'development' } = {}) {
           averageRating: (totalRatings / result.reviews.data.length).toFixed(1),
           starCounts,
         };
+
+        //paging
+        const pageSize = 5;
+        const paging = {
+          currentPage: currentPage || 1,
+          totalPages:
+            Math.floor((result.reviews.data.length - 1) / pageSize) + 1,
+          pageSize,
+        };
+
+        // paginated data
+        const data = result.reviews.data.slice(
+          (paging.currentPage - 1) * pageSize,
+          paging.currentPage * pageSize
+        );
+
         return {
           errors: [],
           data: {
-            elements: result.reviews.data,
+            elements: data,
           },
           metadata,
+          paging,
         };
       });
 

@@ -8,21 +8,35 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
     isLoading: true,
     data: [],
   });
+  const [currentReviewPage, setCurrentReviewPage] = useState(1);
+
+  const handlePageChange = (page) => {
+    setCurrentReviewPage(page);
+  };
+
+  const handlePreviousPageChange = () => {
+    setCurrentReviewPage((prev) => prev - 1);
+  };
+
+  const handleNextPageChange = () => {
+    setCurrentReviewPage((prev) => prev + 1);
+  };
 
   useEffect(() => {
     const fetchHotelReviews = async () => {
       const response = await networkAdapter.get(
-        `/api/hotel/${hotelDetails.hotelCode}/reviews`
+        `/api/hotel/${hotelDetails.hotelCode}/reviews/${currentReviewPage}`
       );
       if (response && response.data)
         setReviewData({
           isLoading: false,
           data: response.data.elements,
           metadata: response.metadata,
+          pagination: response.paging,
         });
     };
     fetchHotelReviews();
-  }, [hotelDetails.hotelCode]);
+  }, [hotelDetails.hotelCode, currentReviewPage]);
 
   return (
     <div className="flex items-start justify-center flex-wrap md:flex-nowrap container mx-auto p-4">
@@ -64,7 +78,12 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
           </div>
         </div>
         {reviewData.data && reviewData.metadata && (
-          <UserReviews reviewData={reviewData} />
+          <UserReviews
+            reviewData={reviewData}
+            handlePageChange={handlePageChange}
+            handlePreviousPageChange={handlePreviousPageChange}
+            handleNextPageChange={handleNextPageChange}
+          />
         )}
       </div>
       <HotelBookingDetailsCard hotelCode={hotelDetails.hotelCode} />

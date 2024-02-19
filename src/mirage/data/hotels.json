@@ -45,6 +45,66 @@
           "rating": 1,
           "review": "Terrible experience. The hotel was dirty and the staff was rude.",
           "date": "Date of stay: 2021-05-05"
+        },
+        {
+          "reviewerName": "Jessica Thompson",
+          "rating": 4,
+          "review": "Lovely hotel with a great location. The staff was friendly and helpful.",
+          "date": "Date of stay: 2021-06-12"
+        },
+        {
+          "reviewerName": "Michael Brown",
+          "rating": 2,
+          "review": "Disappointing stay. The room was not clean and the service was slow.",
+          "date": "Date of stay: 2021-07-20"
+        },
+        {
+          "reviewerName": "Sophia Lee",
+          "rating": 5,
+          "review": "Exceptional service and beautiful rooms. The staff was incredibly friendly and attentive. The amenities provided were top-notch. Overall, a truly memorable experience!",
+          "date": "Date of stay: 2021-08-05"
+        },
+        {
+          "reviewerName": "Daniel Johnson",
+          "rating": 3,
+          "review": "Decent hotel with average facilities. The staff was polite and helpful. However, the room could have been cleaner. It was an okay stay overall.",
+          "date": "Date of stay: 2021-09-10"
+        },
+        {
+          "reviewerName": "Olivia Wilson",
+          "rating": 4,
+          "review": "Enjoyed my stay at the hotel. The room was comfortable and the staff was friendly.",
+          "date": "Date of stay: 2021-10-15"
+        },
+        {
+          "reviewerName": "Ethan Davis",
+          "rating": 5,
+          "review": "Fantastic hotel with great amenities. The staff was attentive and helpful.",
+          "date": "Date of stay: 2021-11-20"
+        },
+        {
+          "reviewerName": "Ava Smith",
+          "rating": 2,
+          "review": "Not satisfied with the hotel. The room was small and the service was poor.",
+          "date": "Date of stay: 2021-12-05"
+        },
+        {
+          "reviewerName": "Mia Johnson",
+          "rating": 4,
+          "review": "Had a pleasant stay at the hotel. The location was convenient and the staff was friendly.",
+          "date": "Date of stay: 2022-01-10"
+        },
+        {
+          "reviewerName": "Noah Wilson",
+          "rating": 3,
+          "review": "Average hotel with decent facilities. The staff was helpful.",
+          "date": "Date of stay: 2022-02-15"
+        },
+        {
+          "reviewerName": "Liam Davis",
+          "rating": 5,
+          "review": "Outstanding hotel with top-notch service. The rooms were luxurious and comfortable.",
+          "date": "Date of stay: 2022-03-20"
         }
       ]
     }
