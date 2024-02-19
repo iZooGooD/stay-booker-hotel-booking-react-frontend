@@ -34,7 +34,7 @@ const UserReviews = ({
     reviewData.pagination.currentPage <= 1 ? true : false;
 
   return (
-    <div className="flex flex-col p-4 border-t h-[1000px]">
+    <div className="flex flex-col p-4 border-t">
       <h1 className="text-xl font-bold text-gray-700">User Reviews</h1>
       <div>
         <RatingsOverview

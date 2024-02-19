@@ -86,7 +86,7 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
             </div>
           </div>
         </div>
-        {reviewData.data && reviewData.metadata && (
+        {!reviewData.isLoading && (
           <UserReviews
             reviewData={reviewData}
             handlePageChange={handlePageChange}
