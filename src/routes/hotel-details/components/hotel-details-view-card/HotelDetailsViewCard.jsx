@@ -15,11 +15,17 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
   };
 
   const handlePreviousPageChange = () => {
-    setCurrentReviewPage((prev) => prev - 1);
+    setCurrentReviewPage((prev) => {
+      if (prev <= 1) return prev;
+      return prev - 1;
+    });
   };
 
   const handleNextPageChange = () => {
-    setCurrentReviewPage((prev) => prev + 1);
+    setCurrentReviewPage((prev) => {
+      if (prev >= reviewData.pagination.totalPages) return prev;
+      return prev + 1;
+    });
   };
 
   useEffect(() => {

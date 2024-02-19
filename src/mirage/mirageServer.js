@@ -380,8 +380,9 @@ export function makeServer({ environment = 'development' } = {}) {
       });
 
       this.get('/hotel/:hotelId/reviews', (_schema, request) => {
+        // hardcoded hotelId for now so to not add mock for each hotel
         const currentPage = request.queryParams.currentPage;
-        let hotelId = request.params.hotelId;
+        let hotelId = 71222;
         const result = hotelsData.find((hotel) => {
           return Number(hotel.hotelCode) === Number(hotelId);
         });
