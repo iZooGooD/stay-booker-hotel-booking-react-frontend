@@ -39,6 +39,28 @@ class NetworkAdapter {
       };
     }
   }
+
+  async put(endpoint, data = {}) {
+    try {
+      const url = new URL(endpoint, window.location.origin);
+      const response = await fetch(url.toString(), {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        credentials: 'include',
+      });
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+      return {
+        data: {},
+        errors: [error.message],
+      };
+    }
+  }
 }
 
 export const networkAdapter = new NetworkAdapter();

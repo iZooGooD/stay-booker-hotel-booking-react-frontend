@@ -3,7 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
-const UserRatingsSelector = ({ userRating, handleRating, isEmpty }) => {
+const UserRatingsSelector = ({
+  userRating,
+  handleRating,
+  isEmpty,
+  userReview,
+  handleReviewSubmit,
+  handleUserReviewChange,
+}) => {
   return (
     <div
       className={`${
@@ -23,10 +30,15 @@ const UserRatingsSelector = ({ userRating, handleRating, isEmpty }) => {
           />
         ))}
       </div>
-      <textarea rows={3} className="w-full border my-2" />
+      <textarea
+        rows={3}
+        className="w-full border my-2"
+        value={userReview}
+        onChange={(e) => handleUserReviewChange(e.target.value)}
+      />
       <button
         className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline my-2 w-full"
-        onClick={() => {}}
+        onClick={handleReviewSubmit}
       >
         Submit
       </button>

@@ -2,6 +2,8 @@ import Review from './components/Review';
 import React, { useState } from 'react';
 import RatingsOverview from './components/RatingsOverview';
 import UserRatingsSelector from './components/UserRatingsSelector';
+import { networkAdapter } from 'services/NetworkAdapter';
+import Toast from 'components/ux/toast/Toast';
 
 /**
  * Renders the user reviews component.
@@ -18,12 +20,48 @@ const UserReviews = ({
 }) => {
   const [userRating, setUserRating] = useState(0);
 
+  const [userReview, setUserReview] = useState('');
+
+  const [shouldHideUserRatingsSelector, setShouldHideUserRatingsSelector] =
+    useState(false);
+
+  const [toastMessage, setToastMessage] = useState('');
+
   /**
    * Handles the selected user rating.
    * @param {number} rate - The rating value.
    */
   const handleRating = (rate) => {
     setUserRating(rate);
+  };
+
+  const clearToastMessage = () => {
+    setToastMessage('');
+  };
+
+  const handleReviewSubmit = async () => {
+    // TODO: Add validation for userRating and userReview
+    // TODO: Add toast for success or failure
+    const response = await networkAdapter.put('/api/hotel/addReview', {
+      rating: userRating,
+      review: userReview,
+    });
+    if (response && response.data.status) {
+      setToastMessage({
+        type: 'success',
+        message: response.data.status,
+      });
+    } else {
+      setToastMessage({
+        type: 'error',
+        message: 'Review submission failed',
+      });
+    }
+    setShouldHideUserRatingsSelector(true);
+  };
+
+  const handleUserReviewChange = (review) => {
+    setUserReview(review);
   };
 
   const isNextDisabled =
@@ -53,12 +91,24 @@ const UserReviews = ({
             starCounts={reviewData.metadata.starCounts}
           />
         )}
-        <UserRatingsSelector
-          userRating={userRating}
-          isEmpty={isEmpty}
-          handleRating={handleRating}
-        />
+        {shouldHideUserRatingsSelector ? null : (
+          <UserRatingsSelector
+            userRating={userRating}
+            isEmpty={isEmpty}
+            handleRating={handleRating}
+            userReview={userReview}
+            handleReviewSubmit={handleReviewSubmit}
+            handleUserReviewChange={handleUserReviewChange}
+          />
+        )}
       </div>
+      {toastMessage && (
+        <Toast
+          type={toastMessage.type}
+          message={toastMessage.message}
+          dismissError={clearToastMessage}
+        />
+      )}
       <div>
         {reviewData.isLoading ? (
           <span>Loading...</span>

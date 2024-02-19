@@ -430,6 +430,24 @@ export function makeServer({ environment = 'development' } = {}) {
         };
       });
 
+      this.put('/hotel/addReview', (schema, request) => {
+        // const attrs = JSON.parse(request.requestBody);
+        // const hotelId = attrs.hotelId;
+        // const review = attrs.review;
+        // const rating = attrs.rating;
+        // const user = schema.users.findBy({ email: attrs.email });
+        return new Response(
+          500,
+          {},
+          {
+            errors: [],
+            data: {
+              status: 'Review added successfully',
+            },
+          }
+        );
+      });
+
       this.get('/hotels', (_schema, request) => {
         const filters = request.queryParams.filters;
         const parsedFilters = JSON.parse(filters);
