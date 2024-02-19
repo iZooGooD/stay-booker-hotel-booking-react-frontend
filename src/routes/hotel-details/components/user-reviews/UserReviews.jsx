@@ -1,6 +1,7 @@
 import Review from './components/Review';
 import React, { useState } from 'react';
 import RatingsOverview from './components/RatingsOverview';
+import UserRatingsSelector from './components/UserRatingsSelector';
 
 /**
  * Renders the user reviews component.
@@ -33,16 +34,29 @@ const UserReviews = ({
   const isPreviousDisabled =
     reviewData.pagination.currentPage <= 1 ? true : false;
 
+  const isEmpty = reviewData.data.length === 0;
+
   return (
     <div className="flex flex-col p-4 border-t">
       <h1 className="text-xl font-bold text-gray-700">User Reviews</h1>
-      <div>
-        <RatingsOverview
+      <div className="flex py-4 bg-white shadow-sm gap-x-6">
+        {reviewData.data.length === 0 ? (
+          <div className="w-3/5">
+            <span className="text-gray-500 italic">
+              Be the first to leave a review!
+            </span>
+          </div>
+        ) : (
+          <RatingsOverview
+            averageRating={reviewData.metadata.averageRating}
+            ratingsCount={reviewData.metadata.ratingsCount}
+            starCounts={reviewData.metadata.starCounts}
+          />
+        )}
+        <UserRatingsSelector
           userRating={userRating}
+          isEmpty={isEmpty}
           handleRating={handleRating}
-          averageRating={reviewData.metadata.averageRating}
-          ratingsCount={reviewData.metadata.totalReviews}
-          starCounts={reviewData.metadata.starCounts}
         />
       </div>
       <div>

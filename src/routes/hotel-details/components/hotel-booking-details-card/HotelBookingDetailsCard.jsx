@@ -132,7 +132,7 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
   }, [hotelCode]);
 
   return (
-    <div className="mx-2 bg-white shadow-xl rounded-xl overflow-hidden mt-2 md:mt-0 w-full md:w-auto">
+    <div className="mx-2 bg-white shadow-xl rounded-xl overflow-hidden mt-2 md:mt-0 w-full md:w-[380px]">
       <div className="px-6 py-4 bg-brand text-white">
         <h2 className="text-xl font-bold">Booking Details</h2>
       </div>
