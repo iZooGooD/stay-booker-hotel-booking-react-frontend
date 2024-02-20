@@ -23,7 +23,7 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
   // State for date range
   const [dateRange, setDateRange] = useState([
     {
-      startDate: null,
+      startDate: new Date(),
       endDate: null,
       key: 'selection',
     },
