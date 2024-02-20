@@ -11,6 +11,7 @@
     "date-fns": "^3.3.1",
     "husky": "^8.0.3",
     "miragejs": "^0.1.48",
+    "query-string": "^8.2.0",
     "react": "^18.2.0",
     "react-date-range": "^2.0.0-alpha.4",
     "react-dom": "^18.2.0",
