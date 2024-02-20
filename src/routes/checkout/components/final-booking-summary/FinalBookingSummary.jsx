@@ -1,5 +1,18 @@
 import React from 'react';
 
+/**
+ * Component for displaying the final booking summary.
+ * @param {Object} props The component props.
+ * @param {string} props.hotelName The name of the hotel.
+ * @param {string} props.checkIn The check-in date.
+ * @param {string} props.checkOut The check-out date.
+ * @param {boolean} props.isAuthenticated The user authentication status.
+ * @param {string} props.phone The user's phone number.
+ * @param {string} props.email The user's email.
+ * @param {string} props.fullName The user's full name.
+ *
+ * @returns {JSX.Element} The rendered FinalBookingSummary component.
+ */
 const FinalBookingSummary = ({
   hotelName,
   checkIn,
