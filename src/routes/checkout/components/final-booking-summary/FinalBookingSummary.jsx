@@ -1,4 +1,5 @@
 import React from 'react';
+import { differenceInCalendarDays } from 'date-fns';
 
 /**
  * Component for displaying the final booking summary.
@@ -22,14 +23,35 @@ const FinalBookingSummary = ({
   email,
   fullName,
 }) => {
+  const numNights = differenceInCalendarDays(
+    new Date(checkOut),
+    new Date(checkIn)
+  );
   return (
     <div className="bg-white border-gray-200 border rounded-lg p-6 mb-6 shadow w-full max-w-lg mx-auto mt-4">
       <div className="mb-4">
         <h3 className="text-2xl font-bold text-gray-800">{hotelName}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-3">
           <div>
             <p className="text-sm font-semibold text-gray-600">Check-in</p>
             <p className="text-sm text-gray-800">{checkIn}</p>
+          </div>
+          <div>
+            <p
+              className="text-sm text-gray-800"
+              style={{
+                border: '1px solid #ccc',
+                borderRadius: '20px',
+                paddingLeft: '20px',
+                paddingRight: '20px',
+                paddingTop: '5px',
+                paddingBottom: '5px',
+                display: 'inline-flex',
+                backgroundColor: '#ADD8E6',
+              }}
+            >
+              {numNights} Nights
+            </p>
           </div>
           <div>
             <p className="text-sm font-semibold text-gray-600">Check-out</p>
