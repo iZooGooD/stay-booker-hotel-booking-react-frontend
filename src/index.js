@@ -14,6 +14,7 @@ import Register from './routes/register/Register';
 import AboutUs from './routes/about-us/AboutUs';
 import BaseLayout from './routes/layouts/base-layout/BaseLayout';
 import ForgotPassword from './routes/forgot-password/ForgotPassword';
+import Checkout from 'routes/checkout/Checkout';
 
 // if (process.env.NODE_ENV === 'development') {
 //   makeServer();
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/forgot-password',
         element: <ForgotPassword />,
+      },
+      {
+        path: '/checkout',
+        element: <Checkout />,
       },
     ],
   },

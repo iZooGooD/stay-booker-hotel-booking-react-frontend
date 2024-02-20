@@ -4,6 +4,9 @@ import { differenceInCalendarDays } from 'date-fns';
 import DateRangePicker from 'components/ux/data-range-picker/DateRangePicker';
 import { networkAdapter } from 'services/NetworkAdapter';
 import { DEFAULT_TAX_DETAILS } from 'utils/constants';
+import { useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
+import { formatDate } from 'utils/date-helpers';
 
 /**
  * A component that displays the booking details for a hotel, including date range, room type, and pricing.
@@ -14,6 +17,8 @@ import { DEFAULT_TAX_DETAILS } from 'utils/constants';
 const HotelBookingDetailsCard = ({ hotelCode }) => {
   // State for date picker visibility
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
+
+  const navigate = useNavigate();
 
   // State for date range
   const [dateRange, setDateRange] = useState([
@@ -112,6 +117,26 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
     setTaxes(`${totalGst} INR`);
   };
 
+  const onBookingConfirm = () => {
+    const queryParams = {
+      hotelCode,
+      checkIn: formatDate(dateRange[0].startDate),
+      checkOut: formatDate(dateRange[0].endDate),
+      guests: selectedGuests.value,
+      rooms: selectedRooms.value,
+      hotelName: bookingDetails.name,
+    };
+
+    const url = `/checkout?${queryString.stringify(queryParams)}`;
+    navigate(url, {
+      state: {
+        total,
+        checkInTime: bookingDetails.checkInTime,
+        checkOutTime: bookingDetails.checkOutTime,
+      },
+    });
+  };
+
   // Effect for initial price calculation
   useEffect(() => {
     calculatePrices();
@@ -205,7 +230,10 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
         </div>
       </div>
       <div className="px-6 py-4 bg-gray-50">
-        <button className="w-full bg-brand-secondary text-white py-2 rounded hover:bg-yellow-600 transition duration-300">
+        <button
+          onClick={onBookingConfirm}
+          className="w-full bg-brand-secondary text-white py-2 rounded hover:bg-yellow-600 transition duration-300"
+        >
           Confirm Booking
         </button>
       </div>
