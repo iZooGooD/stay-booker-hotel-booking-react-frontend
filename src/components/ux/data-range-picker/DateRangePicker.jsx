@@ -68,6 +68,7 @@ const DateRangePicker = (props) => {
             onChange={onDateChangeHandler}
             moveRangeOnFirstSelection={false}
             ranges={dateRange}
+            minDate={new Date()}
             direction="horizontal"
             className={`sb__date-range-picker`}
           />
