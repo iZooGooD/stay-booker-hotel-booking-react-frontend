@@ -13,12 +13,15 @@ import { useContext } from 'react';
  * @returns {JSX.Element} The rendered Checkout component.
  */
 const Checkout = () => {
+  const [errors, setErrors] = useState({});
+
   const location = useLocation();
 
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
 
+  // Form state for collecting user payment and address information
   const [formData, setFormData] = useState({
     email: '',
     nameOnCard: '',
@@ -51,8 +54,10 @@ const Checkout = () => {
     }
   }, [location, navigate, searchParams]);
 
-  const [errors, setErrors] = useState({});
-
+  /**
+   * Handle form input changes and validate the input.
+   * @param {React.ChangeEvent<HTMLInputElement>} e The input change event.
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     const isValid = validationSchema[name](value);
@@ -60,6 +65,17 @@ const Checkout = () => {
     setErrors({ ...errors, [name]: !isValid });
   };
 
+  /**
+   * Handle form submission and validate the form.
+   * @param {React.FormEvent<HTMLFormElement>} e The form submission event.
+   * @returns {void}
+   * @todo Implement form submission logic.
+   * @todo Implement form validation logic.
+   * @todo Implement form submission error handling.
+   * @todo Implement form submission success handling.
+   * @todo Implement form submission loading state.
+   * @todo Implement form submission error state.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     let isValid = true;
@@ -204,6 +220,20 @@ const Checkout = () => {
   );
 };
 
+/**
+ * Generic Input field component for collecting user information.
+ * @param {Object} props The component props.
+ * @param {string} props.label The input field label.
+ * @param {string} props.type The input field type.
+ * @param {string} props.name The input field name.
+ * @param {string} props.value The input field value.
+ * @param {Function} props.onChange The input field change handler.
+ * @param {string} props.placeholder The input field placeholder.
+ * @param {boolean} props.required The input field required status.
+ * @param {boolean} props.error The input field error status.
+ *
+ * @returns {JSX.Element} The rendered InputField component.
+ */
 const InputField = ({
   label,
   type,
@@ -240,6 +270,7 @@ const InputField = ({
   </div>
 );
 
+// Validation schema for form fields
 const validationSchema = {
   email: (value) => /\S+@\S+\.\S+/.test(value),
   nameOnCard: (value) => value.trim() !== '',
