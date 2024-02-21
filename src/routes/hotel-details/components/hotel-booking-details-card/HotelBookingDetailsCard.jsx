@@ -104,9 +104,6 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
  * @param {number} number - The number to format.
  * @returns {string} - The formatted number.
  */
-const formatNumberWithCommas = (number) => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
 
 const calculatePrices = () => {
   const pricePerNight = bookingDetails.currentNightRate * selectedRooms.value;
@@ -114,13 +111,14 @@ const calculatePrices = () => {
     pricePerNight <= 2500 ? 0.12 : pricePerNight > 7500 ? 0.18 : 0.12;
   const totalGst = (pricePerNight * bookingPeriodDays * gstRate).toFixed(2);
   const totalGstNumber = parseFloat(totalGst);
-  const formattedTotalGst = formatNumberWithCommas(totalGstNumber);
+  const formattedTotalGst = parseFloat(totalGst).toLocaleString('en-IN')
+
   const totalPrice = (
     pricePerNight * bookingPeriodDays +
-    totalGstNumber
+    parseFloat(totalGst)
   ).toFixed(2);
   if (!isNaN(totalPrice)) {
-    const formattedTotalPrice = formatNumberWithCommas(totalPrice);
+    const formattedTotalPrice = parseFloat(totalPrice).toLocaleString('en-IN')
     setTotal(`${formattedTotalPrice} INR`);
   }
   setTaxes(`${formattedTotalGst} INR`);
