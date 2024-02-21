@@ -20,7 +20,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
     "sass": "^1.69.7",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^3.5.2"
   },
   "scripts": {
     "start": "react-scripts start",
