@@ -7,7 +7,6 @@ import { useRef, useState } from 'react';
 import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import { MAX_RESULTS_PER_PAGE } from 'utils/constants';
 
 /**
  * ResultsContainer Component
