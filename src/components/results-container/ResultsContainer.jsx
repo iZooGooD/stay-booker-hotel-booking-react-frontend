@@ -81,20 +81,18 @@ const ResultsContainer = (props) => {
               <HotelViewCardSkeleton key={index} />
             ))
           ) : hotelsResults.data.length > 0 ? (
-            hotelsResults.data
-              .slice(0, MAX_RESULTS_PER_PAGE)
-              .map((hotel) => (
-                <HotelViewCard
-                  key={hotel.hotelCode}
-                  id={hotel.hotelCode}
-                  title={hotel.title}
-                  image={hotel.image}
-                  subtitle={hotel.subtitle}
-                  benefits={hotel.benefits}
-                  ratings={hotel.ratings}
-                  price={hotel.price}
-                />
-              ))
+            hotelsResults.data.map((hotel) => (
+              <HotelViewCard
+                key={hotel.hotelCode}
+                id={hotel.hotelCode}
+                title={hotel.title}
+                image={hotel.image}
+                subtitle={hotel.subtitle}
+                benefits={hotel.benefits}
+                ratings={hotel.ratings}
+                price={hotel.price}
+              />
+            ))
           ) : (
             <EmptyHotelsState />
           )}
