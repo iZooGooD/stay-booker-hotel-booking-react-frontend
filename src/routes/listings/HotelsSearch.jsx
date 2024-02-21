@@ -7,6 +7,7 @@ import { MAX_GUESTS_INPUT_VALUE } from 'utils/constants';
 import { formatDate } from 'utils/date-helpers';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { parse } from 'date-fns';
+import PaginationController from 'components/ux/pagination-controller/PaginationController';
 
 /**
  * Component for searching hotels.
@@ -24,6 +25,9 @@ const HotelsSearch = () => {
 
   // State for storing available cities
   const [availableCities, setAvailableCities] = useState([]);
+
+  // State for managing current results page
+  const [currentResultsPage, setCurrentResultsPage] = useState(1);
 
   // State for managing filters data
   const [filtersData, setFiltersData] = useState({
@@ -169,12 +173,15 @@ const HotelsSearch = () => {
     });
     const hotelsResultsResponse = await networkAdapter.get('/api/hotels', {
       filters: JSON.stringify(filters),
+      currentPage: currentResultsPage,
     });
     if (hotelsResultsResponse) {
       setHotelsResults({
         isLoading: false,
         data: hotelsResultsResponse.data.elements,
         errors: hotelsResultsResponse.errors,
+        metadata: hotelsResultsResponse.metadata,
+        pagination: hotelsResultsResponse.paging,
       });
     }
   };
@@ -190,6 +197,24 @@ const HotelsSearch = () => {
         errors: filtersDataResponse.errors,
       });
     }
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentResultsPage(page);
+  };
+
+  const handlePreviousPageChange = () => {
+    setCurrentResultsPage((prev) => {
+      if (prev <= 1) return prev;
+      return prev - 1;
+    });
+  };
+
+  const handleNextPageChange = () => {
+    setCurrentResultsPage((prev) => {
+      if (prev >= hotelsResults.pagination.totalPages) return prev;
+      return prev + 1;
+    });
   };
 
   // Fetches the list of available cities
@@ -246,7 +271,7 @@ const HotelsSearch = () => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFiltersState]);
+  }, [selectedFiltersState, currentResultsPage]);
 
   useEffect(() => {
     if (location.state) {
@@ -293,6 +318,17 @@ const HotelsSearch = () => {
         onClearFiltersAction={onClearFiltersAction}
         selectedFiltersState={selectedFiltersState}
       />
+      {hotelsResults.pagination?.totalPages > 1 && (
+        <div className="my-4">
+          <PaginationController
+            currentPage={currentResultsPage}
+            totalPages={hotelsResults.pagination?.totalPages}
+            handlePageChange={handlePageChange}
+            handlePreviousPageChange={handlePreviousPageChange}
+            handleNextPageChange={handleNextPageChange}
+          />
+        </div>
+      )}
     </div>
   );
 };
