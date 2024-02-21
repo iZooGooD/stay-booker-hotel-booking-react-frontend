@@ -99,32 +99,23 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
     calculatePrices();
   };
 
-/**
- * Format a number with commas for every thousand.
- * @param {number} number - The number to format.
- * @returns {string} - The formatted number.
- */
-
-const calculatePrices = () => {
-  const pricePerNight = bookingDetails.currentNightRate * selectedRooms.value;
-  const gstRate =
-    pricePerNight <= 2500 ? 0.12 : pricePerNight > 7500 ? 0.18 : 0.12;
-  const totalGst = (pricePerNight * bookingPeriodDays * gstRate).toFixed(2);
-  const totalGstNumber = parseFloat(totalGst);
-  const formattedTotalGst = parseFloat(totalGst).toLocaleString('en-IN')
-
-  const totalPrice = (
-    pricePerNight * bookingPeriodDays +
-    parseFloat(totalGst)
-  ).toFixed(2);
-  if (!isNaN(totalPrice)) {
-    const formattedTotalPrice = parseFloat(totalPrice).toLocaleString('en-IN')
-    setTotal(`${formattedTotalPrice} INR`);
-  }
-  setTaxes(`${formattedTotalGst} INR`);
-};
-
-
+  /**
+   * Calculates the total price and taxes based on the selected room and booking period.
+   */
+  const calculatePrices = () => {
+    const pricePerNight = bookingDetails.currentNightRate * selectedRooms.value;
+    const gstRate =
+      pricePerNight <= 2500 ? 0.12 : pricePerNight > 7500 ? 0.18 : 0.12;
+    const totalGst = (pricePerNight * bookingPeriodDays * gstRate).toFixed(2);
+    const totalPrice = (
+      pricePerNight * bookingPeriodDays +
+      parseFloat(totalGst)
+    ).toFixed(2);
+    if (!isNaN(totalPrice)) {
+      setTotal(`${totalPrice} INR`);
+    }
+    setTaxes(`${totalGst} INR`);
+  };
 
   const onBookingConfirm = () => {
     const queryParams = {
