@@ -18,7 +18,7 @@ import { Link, useNavigate } from 'react-router-dom';
  */
 const HotelViewCard = (props) => {
   const {
-    id: hoteCode,
+    id: hotelCode,
     image,
     title,
     subtitle,
@@ -28,8 +28,11 @@ const HotelViewCard = (props) => {
   } = props;
   const navigate = useNavigate();
   const onBookNowClick = () => {
-    navigate(`/hotel/${hoteCode}`);
+    navigate(`/hotel/${hotelCode}`);
   };
+
+  // Format price with commas for every thousand
+  const formattedPrice = parseFloat(price).toLocaleString('en-IN');
 
   return (
     <div
@@ -38,7 +41,7 @@ const HotelViewCard = (props) => {
     >
       <div className="cursor-pointer">
         <Link
-          to={`/hotel/${hoteCode}`}
+          to={`/hotel/${hotelCode}`}
           className="block text-slate-700 hover:text-brand transition-colors duration-300"
         >
           <img
@@ -51,7 +54,7 @@ const HotelViewCard = (props) => {
       <div className="flex flex-col justify-between ml-0 md:ml-2 flex-1">
         <div>
           <Link
-            to={`/hotel/${hoteCode}`}
+            to={`/hotel/${hotelCode}`}
             className="block text-slate-700 hover:text-brand transition-colors duration-300"
           >
             <h4 className="text-2xl font-bold text-slate-600">{title}</h4>
@@ -73,7 +76,7 @@ const HotelViewCard = (props) => {
             {ratings} <FontAwesomeIcon icon={faStar} />
           </h4>
           <p className="text-slate-600 font-bold whitespace-nowrap">
-            ₹ {price}
+            ₹ {formattedPrice} {/* Display formatted price */}
           </p>
         </div>
         <button
