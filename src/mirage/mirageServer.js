@@ -450,6 +450,7 @@ export function makeServer({ environment = 'development' } = {}) {
       });
 
       this.get('/hotels', (_schema, request) => {
+        let currentPage = request.queryParams.currentPage;
         const filters = request.queryParams.filters;
         const parsedFilters = JSON.parse(filters);
         const city = parsedFilters.city;
@@ -480,14 +481,32 @@ export function makeServer({ environment = 'development' } = {}) {
           return false;
         });
 
+        // pagination config
+        const pageSize = 6;
+        const totalPages =
+          Math.floor((filteredResults.length - 1) / pageSize) + 1;
+        currentPage = currentPage > totalPages ? totalPages : currentPage;
+        const paging = {
+          currentPage: currentPage || 1,
+          totalPages: Math.floor((filteredResults.length - 1) / pageSize) + 1,
+          pageSize,
+        };
+
         return new Response(
           200,
           {},
           {
             errors: [],
             data: {
-              elements: filteredResults,
+              elements: filteredResults.slice(
+                (paging.currentPage - 1) * pageSize,
+                paging.currentPage * pageSize
+              ),
             },
+            metadata: {
+              totalResults: filteredResults.length,
+            },
+            paging,
           }
         );
       });
