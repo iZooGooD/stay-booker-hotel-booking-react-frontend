@@ -19,7 +19,7 @@
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
-    "sass": "^1.69.7",
+    "sass": "^1.71.1",
     "web-vitals": "^3.5.2"
   },
   "scripts": {
