@@ -15,7 +15,7 @@ import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 
 const RatingsOverview = ({ averageRating, ratingsCount, starCounts }) => {
   return (
-    <div className="w-3/5">
+    <div className=" w-full md:w-3/5">
       <div className="text-lg font-semibold text-gray-700">Overall Rating</div>
       <div className="text-3xl font-bold text-gray-700">{averageRating}/5</div>
       <div className="text-sm">Based on {ratingsCount} reviews</div>

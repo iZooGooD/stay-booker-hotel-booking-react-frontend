@@ -70,7 +70,7 @@ const UserReviews = ({
   return (
     <div className="flex flex-col p-4 border-t">
       <h1 className="text-xl font-bold text-gray-700">User Reviews</h1>
-      <div className="flex py-4 bg-white shadow-sm gap-x-6">
+      <div className="flex flex-col md:flex-row py-4 bg-white shadow-sm gap-6">
         {reviewData.data.length === 0 ? (
           <div className="w-3/5">
             <span className="text-gray-500 italic">

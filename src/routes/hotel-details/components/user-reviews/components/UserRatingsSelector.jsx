@@ -14,8 +14,8 @@ const UserRatingsSelector = ({
   return (
     <div
       className={`${
-        isEmpty ? 'w-full' : 'w-2/5'
-      } pl-4 border-l flex flex-col items-center justify-center`}
+        isEmpty ? 'md:w-full' : 'md:w-2/5'
+      } pl-4 md:border-l flex flex-col items-center justify-center`}
     >
       <div className="text-lg font-semibold text-gray-700">Your Rating</div>
       <div className="flex">
