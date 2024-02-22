@@ -11,7 +11,7 @@
       "Free cancellation",
       "No prepayment needed – pay at the property"
     ],
-    "price": "18,900",
+    "price": "18900",
     "ratings": "5",
     "city": "pune",
     "reviews": {
@@ -123,7 +123,7 @@
       "Free wifi",
       "Free lunch"
     ],
-    "price": "25,300",
+    "price": "25300",
     "ratings": "4",
     "city": "pune"
   },
@@ -140,7 +140,7 @@
       "No prepayment needed – pay at the property",
       "Free wifi"
     ],
-    "price": "11,300",
+    "price": "11300",
     "ratings": "5",
     "city": "pune"
   },
@@ -158,7 +158,7 @@
       "Free wifi",
       "Free taxi from airport"
     ],
-    "price": "14,599",
+    "price": "14599",
     "ratings": "3",
     "city": "pune"
   },
@@ -176,7 +176,7 @@
       "Free cancellation",
       "No prepayment needed – pay at the property"
     ],
-    "price": "9,799",
+    "price": "9799",
     "ratings": "4.3",
     "city": "pune"
   },
@@ -194,7 +194,7 @@
       "Free wifi",
       "Outdoor swimming pool"
     ],
-    "price": "34,100",
+    "price": "34100",
     "ratings": "4.2",
     "city": "mumbai"
   },
@@ -213,7 +213,7 @@
       "Tea/coffee maker in all rooms",
       "Fitness centre"
     ],
-    "price": "38,460",
+    "price": "38460",
     "ratings": "3.9",
     "city": "mumbai"
   },
@@ -232,7 +232,7 @@
       "Free parking",
       "Bar"
     ],
-    "price": "17,460",
+    "price": "17460",
     "ratings": "4.9",
     "city": "mumbai"
   },
@@ -251,7 +251,7 @@
       "Free parking",
       "24-hour front desk"
     ],
-    "price": "12,460",
+    "price": "12460",
     "ratings": "3.5",
     "city": "mumbai"
   },
@@ -269,7 +269,7 @@
       "Free wifi",
       "Tea/coffee maker in all rooms"
     ],
-    "price": "5,460",
+    "price": "5460",
     "ratings": "3.5",
     "city": "bangalore"
   },
@@ -287,7 +287,7 @@
       "Airport shuttle",
       "Bar"
     ],
-    "price": "21,460",
+    "price": "21460",
     "ratings": "5",
     "city": "bangalore"
   }
