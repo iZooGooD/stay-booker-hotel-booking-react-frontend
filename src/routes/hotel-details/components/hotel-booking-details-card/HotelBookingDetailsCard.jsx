@@ -7,6 +7,7 @@ import { DEFAULT_TAX_DETAILS } from 'utils/constants';
 import { useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 import { formatDate } from 'utils/date-helpers';
+import { formatPrice } from 'utils/price-helpers';
 
 /**
  * A component that displays the booking details for a hotel, including date range, room type, and pricing.
@@ -115,19 +116,6 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
       setTotal(`${formatPrice(totalPrice)} INR`);
     }
     setTaxes(`${formatPrice(totalGst)} INR`);
-  };
-
-  /**
-   * Formats the price with commas for every thousand.
-   * @param {number} price - The price to format.
-   * @returns {string} - The formatted price.
-   *
-   * @example
-   * const formattedPrice = formatPrice(1000000); // Returns '10,00,000'
-   * const formattedPrice = formatPrice(1000); // Returns '1,000'
-   */
-  const formatPrice = (price) => {
-    return parseFloat(price).toLocaleString('en-IN');
   };
 
   const onBookingConfirm = () => {

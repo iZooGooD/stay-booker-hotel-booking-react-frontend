@@ -1,6 +1,7 @@
 import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
+import { formatPrice } from 'utils/price-helpers';
 
 /**
  * HotelViewCard Component
@@ -30,9 +31,6 @@ const HotelViewCard = (props) => {
   const onBookNowClick = () => {
     navigate(`/hotel/${hotelCode}`);
   };
-
-  // Format price with commas for every thousand
-  const formattedPrice = parseFloat(price).toLocaleString('en-IN');
 
   return (
     <div
@@ -76,7 +74,7 @@ const HotelViewCard = (props) => {
             {ratings} <FontAwesomeIcon icon={faStar} />
           </h4>
           <p className="text-slate-600 font-bold whitespace-nowrap">
-            ₹ {formattedPrice} {/* Display formatted price */}
+            ₹ {formatPrice(price)}
           </p>
         </div>
         <button
