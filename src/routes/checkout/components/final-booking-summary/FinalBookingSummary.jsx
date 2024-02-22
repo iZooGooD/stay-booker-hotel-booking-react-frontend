@@ -37,19 +37,7 @@ const FinalBookingSummary = ({
             <p className="text-sm text-gray-800">{checkIn}</p>
           </div>
           <div>
-            <p
-              className="text-sm text-gray-800"
-              style={{
-                border: '1px solid #ccc',
-                borderRadius: '20px',
-                paddingLeft: '20px',
-                paddingRight: '20px',
-                paddingTop: '5px',
-                paddingBottom: '5px',
-                display: 'inline-flex',
-                backgroundColor: '#ADD8E6',
-              }}
-            >
+            <p className="text-sm text-gray-800 inline-flex py-1 px-5 rounded-2xl border">
               {numNights} Nights
             </p>
           </div>
