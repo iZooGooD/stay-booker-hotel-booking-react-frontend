@@ -7,7 +7,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/user-event": "^14.5.2",
     "date-fns": "^3.3.1",
     "husky": "^8.0.3",
     "miragejs": "^0.1.48",
