@@ -112,9 +112,22 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
       parseFloat(totalGst)
     ).toFixed(2);
     if (!isNaN(totalPrice)) {
-      setTotal(`${totalPrice} INR`);
+      setTotal(`${formatPrice(totalPrice)} INR`);
     }
-    setTaxes(`${totalGst} INR`);
+    setTaxes(`${formatPrice(totalGst)} INR`);
+  };
+
+  /**
+   * Formats the price with commas for every thousand.
+   * @param {number} price - The price to format.
+   * @returns {string} - The formatted price.
+   *
+   * @example
+   * const formattedPrice = formatPrice(1000000); // Returns '10,00,000'
+   * const formattedPrice = formatPrice(1000); // Returns '1,000'
+   */
+  const formatPrice = (price) => {
+    return parseFloat(price).toLocaleString('en-IN');
   };
 
   const onBookingConfirm = () => {
@@ -218,7 +231,7 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
         <div className="mb-4">
           <div className="font-semibold text-gray-800">Per day rate</div>
           <div className="text-gray-600">
-            {bookingDetails.currentNightRate} INR
+            {formatPrice(bookingDetails.currentNightRate)} INR
           </div>
         </div>
 
