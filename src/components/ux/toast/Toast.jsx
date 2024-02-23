@@ -7,7 +7,10 @@ const Toast = ({ type, message, dismissError }) => {
     success: 'bg-green-100 border-l-4 border-green-500 text-green-700 my-2',
   };
   return (
-    <div className={`${typeToClassMap[type]} p-4 mb-4 flex justify-between`}>
+    <div
+      className={`${typeToClassMap[type]} p-4 mb-4 flex justify-between`}
+      data-testid="toast__outlet"
+    >
       <p>{message}</p>
       <FontAwesomeIcon
         onClick={() => dismissError()}
