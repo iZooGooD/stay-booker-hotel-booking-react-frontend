@@ -47,7 +47,7 @@ const DateRangePicker = (props) => {
       <FontAwesomeIcon
         icon={faCalendar}
         color="#074498"
-        className="left-[4%] md:left-[4%] transform-center-y"
+        className="left-[18px] transform-center-y"
         onClick={onDatePickerIconClick}
       />
       <input
