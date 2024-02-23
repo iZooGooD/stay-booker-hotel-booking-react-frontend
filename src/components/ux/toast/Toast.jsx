@@ -11,12 +11,13 @@ const Toast = ({ type, message, dismissError }) => {
       className={`${typeToClassMap[type]} p-4 mb-4 flex justify-between`}
       data-testid="toast__outlet"
     >
-      <p>{message}</p>
+      <p data-testid="toast__message">{message}</p>
       <FontAwesomeIcon
         onClick={() => dismissError()}
         className="text-red-500 hover:text-red-700 ml-2"
         icon={faXmark}
         size="lg"
+        data-testid="toast__dismiss"
       />
     </div>
   );
