@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 import { formatDate } from 'utils/date-helpers';
 import { formatPrice } from 'utils/price-helpers';
+import Toast from 'components/ux/toast/Toast';
 
 /**
  * A component that displays the booking details for a hotel, including date range, room type, and pricing.
@@ -20,6 +21,9 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
 
   const navigate = useNavigate();
+
+  // State for error message
+  const [errorMessage, setErrorMessage] = useState('');
 
   // State for date range
   const [dateRange, setDateRange] = useState([
@@ -119,6 +123,12 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
   };
 
   const onBookingConfirm = () => {
+    const checkIn = formatDate(dateRange[0].startDate);
+    const checkOut = formatDate(dateRange[0].endDate);
+    if (!checkIn || !checkOut) {
+      setErrorMessage('Please select check-in and check-out dates.');
+      return;
+    }
     const queryParams = {
       hotelCode,
       checkIn: formatDate(dateRange[0].startDate),
@@ -136,6 +146,11 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
         checkOutTime: bookingDetails.checkOutTime,
       },
     });
+  };
+
+  // Handler for dismissing error message
+  const dismissError = () => {
+    setErrorMessage('');
   };
 
   // Effect for initial price calculation
@@ -229,6 +244,14 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
           <div className="text-gray-600">{taxes}</div>
           <div className="text-xs text-gray-500">{DEFAULT_TAX_DETAILS}</div>
         </div>
+
+        {errorMessage && (
+          <Toast
+            type="error"
+            message={errorMessage}
+            dismissError={dismissError}
+          />
+        )}
       </div>
       <div className="px-6 py-4 bg-gray-50">
         <button
