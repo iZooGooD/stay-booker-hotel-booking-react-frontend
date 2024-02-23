@@ -206,7 +206,7 @@ export function makeServer({ environment = 'development' } = {}) {
               cancellationPolicy: 'Free cancellation 1 day prior to stay',
               checkInTime: '12:00 PM',
               checkOutTime: '10:00 AM',
-              currentNightRate: '9542',
+              currentNightRate: result.price,
               maxGuestsAllowed: 5,
               maxRoomsAllowedPerGuest: 3,
             },
