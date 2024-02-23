@@ -21,9 +21,11 @@ const Checkout = () => {
 
   const [searchParams] = useSearchParams();
 
+  const { isAuthenticated, userDetails } = useContext(AuthContext);
+
   // Form state for collecting user payment and address information
   const [formData, setFormData] = useState({
-    email: '',
+    email: userDetails?.email ? userDetails?.email : '',
     nameOnCard: '',
     cardNumber: '',
     expiry: '',
@@ -41,8 +43,6 @@ const Checkout = () => {
   const checkOutDateTime = `${getReadableMonthFormat(
     searchParams.get('checkOut')
   )}, ${location.state?.checkOutTime}`;
-
-  const { isAuthenticated, userDetails } = useContext(AuthContext);
 
   useEffect(() => {
     const locationState = location.state;
