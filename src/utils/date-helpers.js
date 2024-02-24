@@ -22,17 +22,17 @@ function formatDate(date) {
 }
 
 /**
- * Formats a date string in the format "DD/MM/YYYY" into a more readable format.
+ * Formats a date string in the format "DD-MM-YYYY" into a more readable format.
  *
  * @param dateString - The date string to format.
  * @returns A string representing the formatted date.
- * @example getReadableMonthFormat('01/01/2022') // "1 January 2022"
+ * @example getReadableMonthFormat('01-01-2022') // "1 January 2022"
  */
 function getReadableMonthFormat(dateString) {
   if (!dateString) {
     return '';
   }
-  return format(parse(dateString, 'dd/MM/yyyy', new Date()), 'd MMMM yyyy');
+  return format(parse(dateString, 'dd-MM-yyyy', new Date()), 'd MMMM yyyy');
 }
 
 export { formatDate, getReadableMonthFormat };
