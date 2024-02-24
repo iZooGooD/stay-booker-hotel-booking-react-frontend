@@ -1,6 +1,6 @@
 class NetworkAdapter {
   API_CONFIG = {
-    baseURL: 'http://localhost:3000', // express server port
+    baseURL: 'https://localhost:3000', // express server port
   };
   async get(endpoint, params = {}) {
     const endpointURL = new URL(endpoint, this.API_CONFIG.baseURL);
