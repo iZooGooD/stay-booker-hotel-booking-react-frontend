@@ -51,12 +51,33 @@ const HotelsSearch = () => {
     },
   ]);
 
+  // State for managing sorting filter value
+  const [sortByFilterValue, setSortByFilterValue] = useState({
+    value: 'default',
+    label: 'Sort by',
+  });
+
   // State for managing selected filters
   const [selectedFiltersState, setSelectedFiltersState] = useState({});
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const location = useLocation();
+
+  // Options for sorting filter
+  const sortingFilterOptions = [
+    { value: 'default', label: 'Sort by' },
+    { value: 'priceLowToHigh', label: 'Price: Low to High' },
+    { value: 'priceHighToLow', label: 'Price: High to Low' },
+  ];
+
+  /**
+   * Handles updates to sorting filter.
+   * @param {Object} selectedOption - The selected option.
+   */
+  const onSortingFilterChange = (selectedOption) => {
+    setSortByFilterValue(selectedOption);
+  };
 
   /**
    * Handles updates to filters.
@@ -174,6 +195,11 @@ const HotelsSearch = () => {
     const hotelsResultsResponse = await networkAdapter.get('/api/hotels', {
       filters: JSON.stringify(filters),
       currentPage: currentResultsPage,
+      advancedFilters: JSON.stringify([
+        {
+          sortBy: sortByFilterValue.value,
+        },
+      ]),
     });
     if (hotelsResultsResponse) {
       setHotelsResults({
@@ -271,7 +297,7 @@ const HotelsSearch = () => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFiltersState, currentResultsPage]);
+  }, [selectedFiltersState, currentResultsPage, sortByFilterValue]);
 
   useEffect(() => {
     if (location.state) {
@@ -310,6 +336,7 @@ const HotelsSearch = () => {
         />
       </div>
       <div className="my-4"></div>
+      <div className="w-[180px]"></div>
       <ResultsContainer
         hotelsResults={hotelsResults}
         enableFilters={true}
@@ -317,6 +344,9 @@ const HotelsSearch = () => {
         onFiltersUpdate={onFiltersUpdate}
         onClearFiltersAction={onClearFiltersAction}
         selectedFiltersState={selectedFiltersState}
+        sortByFilterValue={sortByFilterValue}
+        onSortingFilterChange={onSortingFilterChange}
+        sortingFilterOptions={sortingFilterOptions}
       />
       {hotelsResults.pagination?.totalPages > 1 && (
         <div className="my-4">
