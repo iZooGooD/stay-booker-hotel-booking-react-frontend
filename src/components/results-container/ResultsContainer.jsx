@@ -107,7 +107,7 @@ const ResultsContainer = (props) => {
                   key={hotel.hotelCode}
                   id={hotel.hotelCode}
                   title={hotel.title}
-                  image={hotel.image}
+                  image={hotel.images[0]}
                   subtitle={hotel.subtitle}
                   benefits={hotel.benefits}
                   ratings={hotel.ratings}
