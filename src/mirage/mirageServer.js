@@ -87,7 +87,7 @@ export function makeServer({ environment = 'development' } = {}) {
         }
       });
 
-      this.post('/login', (schema, request) => {
+      this.post('/users/login', (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
         const user = schema.users.findBy({ email: attrs.email });
 
@@ -130,7 +130,7 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
-      this.post('/register', (schema, request) => {
+      this.post('/users/register', (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
         const existingUser = schema.users.findBy({ email: attrs.email });
 
