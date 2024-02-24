@@ -123,19 +123,19 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
   };
 
   const onBookingConfirm = () => {
-    const checkIn = format(dateRange[0].startDate, 'dd-MM-yyyy');
-    const checkOut = format(dateRange[0].endDate, 'dd-MM-yyyy');
-    if (!checkIn || !checkOut) {
+    if (!dateRange[0].startDate || !dateRange[0].endDate) {
       setErrorMessage('Please select check-in and check-out dates.');
       return;
     }
+    const checkIn = format(dateRange[0].startDate, 'dd-MM-yyyy');
+    const checkOut = format(dateRange[0].endDate, 'dd-MM-yyyy');
     const queryParams = {
       hotelCode,
       checkIn,
       checkOut,
       guests: selectedGuests.value,
       rooms: selectedRooms.value,
-      hotelName: bookingDetails.name,
+      hotelName: bookingDetails.name.replaceAll(' ', '-'), // url friendly hotel name
     };
 
     const url = `/checkout?${queryString.stringify(queryParams)}`;

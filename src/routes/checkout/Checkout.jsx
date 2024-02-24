@@ -101,7 +101,7 @@ const Checkout = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <FinalBookingSummary
-        hotelName={searchParams.get('hotelName')}
+        hotelName={searchParams.get('hotelName').replaceAll('-', ' ')}
         checkIn={checkInDateTime}
         checkOut={checkOutDateTime}
         isAuthenticated={isAuthenticated}
