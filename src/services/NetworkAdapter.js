@@ -3,8 +3,10 @@ class NetworkAdapter {
     MIRAGE: window.location.origin,
     EXPRESS: 'http://localhost:4000',
   };
+
+  static API_URL = this.API_CONFIG.MIRAGE;
   async get(endpoint, params = {}) {
-    const endpointURL = new URL(endpoint, this.API_CONFIG.MIRAGE);
+    const endpointURL = new URL(endpoint, this.API_URL);
     try {
       const url = new URL(endpointURL, window.location.origin);
 
@@ -25,7 +27,7 @@ class NetworkAdapter {
 
   async post(endpoint, data = {}) {
     try {
-      const endpointURL = new URL(endpoint, this.API_CONFIG.MIRAGE);
+      const endpointURL = new URL(endpoint, this.API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'POST',
@@ -48,7 +50,7 @@ class NetworkAdapter {
 
   async put(endpoint, data = {}) {
     try {
-      const endpointURL = new URL(endpoint, this.API_CONFIG.MIRAGE);
+      const endpointURL = new URL(endpoint, this.API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'PUT',
