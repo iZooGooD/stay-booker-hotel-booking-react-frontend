@@ -127,7 +127,7 @@ const Register = () => {
                   name="firstName"
                   placeholder="First Name"
                   value={formData.firstName}
-                  onChangeCapture={(e) => {
+                  onChange={(e) => {
                     handleChange(e);
                   }}
                   onBlur={(e) => {
@@ -142,7 +142,7 @@ const Register = () => {
                   name="lastName"
                   placeholder="Last Name"
                   value={formData.lastName}
-                  onChangeCapture={(e) => {
+                  onChange={(e) => {
                     handleChange(e);
                   }}
                   onBlur={(e) => {
@@ -156,7 +156,7 @@ const Register = () => {
               <input
                 type="email"
                 name="email"
-                onChangeCapture={(e) => {
+                onChange={(e) => {
                   handleChange(e);
                 }}
                 onBlur={(e) => {
@@ -173,7 +173,7 @@ const Register = () => {
                 name="phone"
                 placeholder="Phone"
                 value={formData.phone}
-                onChangeCapture={handleChange}
+                onChange={handleChange}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               />
             </div>
@@ -183,7 +183,7 @@ const Register = () => {
                 name="password"
                 placeholder="Password"
                 value={formData.password}
-                onChangeCapture={(e) => {
+                onChange={(e) => {
                   handleChange(e);
                 }}
                 onBlur={(e) => {
@@ -198,7 +198,7 @@ const Register = () => {
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
-                onChangeCapture={(e) => {
+                onChange={(e) => {
                   handleChange(e);
                 }}
                 onBlur={(e) => {
