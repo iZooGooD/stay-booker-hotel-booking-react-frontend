@@ -63,6 +63,19 @@ const Register = () => {
     }
   };
 
+  /**
+   * Checks if the given first name is a valid name.
+   * @param {string} firstName - The first name to be checked.
+   * @returns {boolean} `true` if the given first name is a valid name, `false` otherwise.
+   * @param {string} lastName - The last name to be checked.
+   * @returns {boolean} `true` if the given last name is a valid name, `false` otherwise.
+   * @param {string} email - The email address to be checked.
+   * @returns {boolean} `true` if the given email is a valid email address, `false` otherwise.
+   * @param {string} password - The password to be checked.
+   * @returns {boolean} `true` if the given password is a valid password, `false` otherwise.
+   * @param {string} confirmPassword - The confirm password to be checked.
+   * @returns {boolean} `true` if the given password and confirm password match, `false` otherwise.
+   */
   useEffect(() => {
     if (validName.test(formData.firstName)) {
       if (validName.test(formData.lastName)) {
