@@ -453,9 +453,15 @@ export function makeServer({ environment = 'development' } = {}) {
         let currentPage = request.queryParams.currentPage;
         const filters = request.queryParams.filters;
         const parsedFilters = JSON.parse(filters);
+        const parsedAdvancedFilters = JSON.parse(
+          request.queryParams.advancedFilters
+        );
         const city = parsedFilters.city;
         const star_ratings = parsedFilters.star_ratings;
         const priceFilter = parsedFilters.priceFilter;
+        const sortByFilter = parsedAdvancedFilters.find((filter) => {
+          return filter.sortBy;
+        });
 
         const filteredResults = hotelsData.filter((hotel) => {
           const hotelRating = parseFloat(hotel.ratings);
@@ -480,6 +486,20 @@ export function makeServer({ environment = 'development' } = {}) {
           }
           return false;
         });
+
+        if (sortByFilter) {
+          const sortType = sortByFilter.sortBy;
+          if (sortType === 'priceLowToHigh') {
+            filteredResults.sort((a, b) => {
+              return a.price - b.price;
+            });
+          }
+          if (sortType === 'priceHighToLow') {
+            filteredResults.sort((a, b) => {
+              return b.price - a.price;
+            });
+          }
+        }
 
         // pagination config
         const pageSize = 6;
