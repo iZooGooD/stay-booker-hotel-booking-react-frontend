@@ -19,7 +19,7 @@ const Register = () => {
     firstName: '',
     lastName: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
     password: '',
     confirmPassword: '',
   });
@@ -44,8 +44,8 @@ const Register = () => {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await networkAdapter.post('/api/register', formData);
-    if (response && !response.errors) {
+    const response = await networkAdapter.put('/api/users/register', formData);
+    if (response) {
       setSuccessMessage(REGISTRATION_MESSAGES.SUCCESS);
       setShowSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
@@ -103,9 +103,9 @@ const Register = () => {
             <div className="mb-6">
               <input
                 type="tel"
-                name="phone"
+                name="phoneNumber"
                 placeholder="Phone"
-                value={formData.phone}
+                value={formData.phoneNumber}
                 onChange={handleChange}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               />

@@ -1,7 +1,11 @@
 class NetworkAdapter {
+  API_CONFIG = {
+    baseURL: 'http://localhost:4000', // express server
+  };
   async get(endpoint, params = {}) {
+    const endpointURL = new URL(endpoint, this.API_CONFIG.baseURL);
     try {
-      const url = new URL(endpoint, window.location.origin);
+      const url = new URL(endpointURL, window.location.origin);
 
       Object.entries(params).forEach(([key, value]) => {
         url.searchParams.append(key, value);
@@ -20,7 +24,8 @@ class NetworkAdapter {
 
   async post(endpoint, data = {}) {
     try {
-      const url = new URL(endpoint, window.location.origin);
+      const endpointURL = new URL(endpoint, this.API_CONFIG.baseURL);
+      const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'POST',
         headers: {
@@ -42,7 +47,8 @@ class NetworkAdapter {
 
   async put(endpoint, data = {}) {
     try {
-      const url = new URL(endpoint, window.location.origin);
+      const endpointURL = new URL(endpoint, this.API_CONFIG.baseURL);
+      const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'PUT',
         headers: {
