@@ -254,101 +254,16 @@ export function makeServer({ environment = 'development' } = {}) {
       });
 
       this.get('/nearbyHotels', () => {
+        const hotels = hotelsData.filter((hotel) => {
+          return hotel.city === 'pune';
+        });
         return new Response(
           200,
           {},
           {
             errors: [],
             data: {
-              elements: [
-                {
-                  hotelCode: 71222,
-                  image: {
-                    imageUrl: '/images/hotels/481481762/481481762.jpg',
-                    accessibleText: 'hyatt pune hotel',
-                  },
-                  title: 'Hyatt Pune',
-                  subtitle: 'Kalyani Nagar, Pune | 3.3 kms from city center',
-                  benefits: [
-                    'Free cancellation',
-                    'No prepayment needed – pay at the property',
-                  ],
-                  price: '18900',
-                  ratings: '8.8',
-                  city: 'pune',
-                },
-                {
-                  hotelCode: 71223,
-                  image: {
-                    imageUrl: '/images/hotels/465660377/465660377.jpg',
-                    accessibleText: 'Courtyard by Marriott Pune',
-                  },
-                  title: 'Courtyard by Marriott Pune Hinjewadi',
-                  subtitle: '500 meters from the Rajiv Gandhi Infotech Park',
-                  benefits: [
-                    'Free cancellation',
-                    'No prepayment needed – pay at the property',
-                    'Free wifi',
-                    'Free lunch',
-                  ],
-                  price: '25300',
-                  ratings: '8.8',
-                  city: 'pune',
-                },
-                {
-                  hotelCode: 71224,
-                  image: {
-                    imageUrl: '/images/hotels/469186143/469186143.jpg',
-                    accessibleText: 'The Westin Pune Koregaon Park',
-                  },
-                  title: 'The Westin Pune Koregaon Park',
-                  subtitle: '5.4 km from centre',
-                  benefits: [
-                    'Free cancellation',
-                    'No prepayment needed – pay at the property',
-                    'Free wifi',
-                  ],
-                  price: '11300',
-                  ratings: '5.8',
-                  city: 'pune',
-                },
-                {
-                  hotelCode: 71225,
-                  image: {
-                    imageUrl: '/images/hotels/252004905/252004905.jpg',
-                    accessibleText: 'Novotel Pune Viman Nagar Road',
-                  },
-                  title: 'Novotel Pune Viman Nagar Road',
-                  subtitle: 'Weikfield IT City Infopark | 7.1 km from centre',
-                  benefits: [
-                    'Pets allowed',
-                    'Dinner + Lunch included',
-                    'Free wifi',
-                    'Free taxi from airport',
-                  ],
-                  price: '14599',
-                  ratings: '7.8',
-                  city: 'pune',
-                },
-                {
-                  hotelCode: 71226,
-                  image: {
-                    imageUrl: '/images/hotels/54360345/54360345.jpg',
-                    accessibleText: 'Vivanta Pune',
-                  },
-                  title: 'Vivanta Pune',
-                  subtitle: 'Xion Complex, | 14.2 km from centre',
-                  benefits: [
-                    'Pets allowed',
-                    'Free wifi',
-                    'Free cancellation',
-                    'No prepayment needed – pay at the property',
-                  ],
-                  price: '9799',
-                  ratings: '9.3',
-                  city: 'pune',
-                },
-              ],
+              elements: hotels,
             },
           }
         );
