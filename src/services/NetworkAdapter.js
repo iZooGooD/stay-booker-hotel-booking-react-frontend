@@ -3,9 +3,9 @@ class NetworkAdapter {
     MIRAGE: window.location.origin,
     EXPRESS: 'http://localhost:4000',
   };
-
-  static API_URL = this.API_CONFIG.MIRAGE;
+  API_URL = this.API_CONFIG.MIRAGE;
   async get(endpoint, params = {}) {
+    console.log('API_URL', this.API_URL);
     const endpointURL = new URL(endpoint, this.API_URL);
     try {
       const url = new URL(endpointURL, window.location.origin);
