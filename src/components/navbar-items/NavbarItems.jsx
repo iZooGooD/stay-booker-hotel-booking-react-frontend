@@ -19,12 +19,9 @@ const NavbarItems = ({ isAuthenticated }) => {
    * Handles the logout action by calling the logout API and updating the authentication state.
    */
   const handleLogout = async () => {
-    const response = await networkAdapter.post('/api/logout');
-    const expectedResult = 'User logged out';
-    if (response && response.data.status === expectedResult) {
-      context.triggerAuthCheck();
-      navigate('/login');
-    }
+    await networkAdapter.post('api/users/logout');
+    context.triggerAuthCheck();
+    navigate('/login');
   };
 
   const dropdownOptions = [

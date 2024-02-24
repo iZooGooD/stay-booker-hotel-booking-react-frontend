@@ -45,7 +45,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await networkAdapter.put('/api/users/register', formData);
-    if (response) {
+    if (response && response.errors && response.errors.length < 1) {
       setSuccessMessage(REGISTRATION_MESSAGES.SUCCESS);
       setShowSuccess(true);
       setTimeout(() => navigate('/login'), 2000);

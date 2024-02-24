@@ -16,7 +16,6 @@ class NetworkAdapter {
       const response = await fetch(url.toString(), { credentials: 'include' });
       return await response.json();
     } catch (error) {
-      console.error(error);
       return {
         data: {},
         errors: [error.message],
@@ -39,7 +38,6 @@ class NetworkAdapter {
 
       return await response.json();
     } catch (error) {
-      console.error(error);
       return {
         data: {},
         errors: [error.message],
@@ -62,7 +60,6 @@ class NetworkAdapter {
 
       return await response.json();
     } catch (error) {
-      console.error(error);
       return {
         data: {},
         errors: [error.message],

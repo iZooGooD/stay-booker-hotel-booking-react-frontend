@@ -64,9 +64,10 @@ const UserProfile = () => {
 
   useEffect(() => {
     const getInitialData = async () => {
-      const userBookingsDataResponse =
-        await networkAdapter.get('/api/bookings');
-      if (userBookingsDataResponse) {
+      const userBookingsDataResponse = await networkAdapter.get(
+        '/api/users/bookings'
+      );
+      if (userBookingsDataResponse && userBookingsDataResponse.data) {
         setUserBookingsData({
           isLoading: false,
           data: userBookingsDataResponse.data.elements,

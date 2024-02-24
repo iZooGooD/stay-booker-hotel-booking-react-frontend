@@ -49,7 +49,7 @@ export function makeServer({ environment = 'development' } = {}) {
         return new Response(200, {}, { name: 'John' });
       });
 
-      this.get('/authUser', () => {
+      this.get('/users/auth-user', () => {
         if (loggedInUser) {
           return new Response(
             200,
@@ -116,7 +116,7 @@ export function makeServer({ environment = 'development' } = {}) {
         }
       });
 
-      this.post('/logout', (_schema, _request) => {
+      this.post('/users/logout', (_schema, _request) => {
         loggedInUser = null;
         return new Response(
           200,
@@ -124,13 +124,13 @@ export function makeServer({ environment = 'development' } = {}) {
           {
             errors: [],
             data: {
-              status: 'User logged out',
+              status: 'User logged out successfully',
             },
           }
         );
       });
 
-      this.post('/users/register', (schema, request) => {
+      this.put('/users/register', (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
         const existingUser = schema.users.findBy({ email: attrs.email });
 
@@ -153,7 +153,7 @@ export function makeServer({ environment = 'development' } = {}) {
         }
       });
 
-      this.get('/bookings', () => {
+      this.get('/users/bookings', () => {
         return new Response(
           200,
           {},

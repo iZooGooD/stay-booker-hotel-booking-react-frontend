@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkAuthStatus = async () => {
-      const response = await networkAdapter.get('api/authUser');
+      const response = await networkAdapter.get('api/users/auth-user');
       if (response && response.data) {
         setIsAuthenticated(response.data.isAuthenticated);
         setUserDetails(response.data.userDetails);
