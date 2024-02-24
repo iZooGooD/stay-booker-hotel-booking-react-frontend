@@ -2,8 +2,16 @@ import HotelBookingDetailsCard from '../hotel-booking-details-card/HotelBookingD
 import UserReviews from '../user-reviews/UserReviews';
 import { networkAdapter } from 'services/NetworkAdapter';
 import React, { useEffect, useState } from 'react';
+import ReactImageGallery from 'react-image-gallery';
 
 const HotelDetailsViewCard = ({ hotelDetails }) => {
+  const images = hotelDetails.images.map((image) => ({
+    original: image.imageUrl,
+    thumbnail: image.imageUrl,
+    thumbnailClass: 'h-[80px]',
+    thumbnailLoading: 'lazy',
+  }));
+
   const [reviewData, setReviewData] = useState({
     isLoading: true,
     data: [],
@@ -36,13 +44,14 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
           currentPage: currentReviewsPage,
         }
       );
-      if (response && response.data)
+      if (response && response.data) {
         setReviewData({
           isLoading: false,
           data: response.data.elements,
           metadata: response.metadata,
           pagination: response.paging,
         });
+      }
     };
     fetchHotelReviews();
   }, [hotelDetails.hotelCode, currentReviewsPage]);
@@ -51,11 +60,11 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
     <div className="flex items-start justify-center flex-wrap md:flex-nowrap container mx-auto p-4">
       <div className="w-[800px] bg-white shadow-lg rounded-lg overflow-hidden">
         <div>
-          <div className="relative">
-            <img
-              className="w-full h-72 object-cover"
-              src={hotelDetails.image.imageUrl}
-              alt={hotelDetails.image.accessibleText}
+          <div className="relative w-full">
+            <ReactImageGallery
+              items={images}
+              showPlayButton={false}
+              showFullscreenButton={false}
             />
             {hotelDetails.discount && (
               <div className="absolute top-0 right-0 m-4 px-2 py-1 bg-yellow-500 text-white font-semibold text-xs rounded">

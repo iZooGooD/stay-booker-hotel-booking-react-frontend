@@ -32,7 +32,7 @@ const DateRangePicker = (props) => {
     : 'Check-out';
 
   return (
-    <div className="relative flex">
+    <div className="relative flex" data-testid="date-range-picker">
       <input
         className={`${
           inputStyle

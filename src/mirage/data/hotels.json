@@ -1,10 +1,28 @@
 [
   {
     "hotelCode": 71222,
-    "image": {
-      "imageUrl": "/images/hotels/481481762/481481762.jpg",
-      "accessibleText": "hyatt pune hotel"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/481481762/481481762.jpg",
+        "accessibleText": "hyatt pune hotel"
+      },
+      {
+        "imageUrl": "/images/hotels/481481762/525626081.jpg",
+        "accessibleText": "hyatt pune hotel"
+      },
+      {
+        "imageUrl": "/images/hotels/481481762/525626095.jpg",
+        "accessibleText": "hyatt pune hotel"
+      },
+      {
+        "imageUrl": "/images/hotels/481481762/525626104.jpg",
+        "accessibleText": "hyatt pune hotel"
+      },
+      {
+        "imageUrl": "/images/hotels/481481762/525626212.jpg",
+        "accessibleText": "hyatt pune hotel"
+      }
+    ],
     "title": "Hyatt Pune",
     "subtitle": "Kalyani Nagar, Pune | 3.3 kms from city center",
     "benefits": [
@@ -111,10 +129,12 @@
   },
   {
     "hotelCode": 71223,
-    "image": {
-      "imageUrl": "/images/hotels/465660377/465660377.jpg",
-      "accessibleText": "Courtyard by Marriott Pune"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/465660377/465660377.jpg",
+        "accessibleText": "Courtyard by Marriott Pune"
+      }
+    ],
     "title": "Courtyard by Marriott Pune Hinjewadi",
     "subtitle": "500 meters from the Rajiv Gandhi Infotech Park",
     "benefits": [
@@ -129,10 +149,12 @@
   },
   {
     "hotelCode": 71224,
-    "image": {
-      "imageUrl": "/images/hotels/469186143/469186143.jpg",
-      "accessibleText": "The Westin Pune Koregaon Park"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/469186143/469186143.jpg",
+        "accessibleText": "The Westin Pune Koregaon Park"
+      }
+    ],
     "title": "The Westin Pune Koregaon Park",
     "subtitle": "5.4 km from centre",
     "benefits": [
@@ -146,10 +168,12 @@
   },
   {
     "hotelCode": 71225,
-    "image": {
-      "imageUrl": "/images/hotels/252004905/252004905.jpg",
-      "accessibleText": "Novotel Pune Viman Nagar Road"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/252004905/252004905.jpg",
+        "accessibleText": "Novotel Pune Viman Nagar Road"
+      }
+    ],
     "title": "Novotel Pune Viman Nagar Road",
     "subtitle": "Weikfield IT City Infopark | 7.1 km from centre",
     "benefits": [
@@ -164,10 +188,12 @@
   },
   {
     "hotelCode": 71226,
-    "image": {
-      "imageUrl": "/images/hotels/54360345/54360345.jpg",
-      "accessibleText": "Vivanta Pune"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/54360345/54360345.jpg",
+        "accessibleText": "Vivanta Pune"
+      }
+    ],
     "title": "Vivanta Pune",
     "subtitle": "Xion Complex, | 14.2 km from centre",
     "benefits": [
@@ -182,10 +208,12 @@
   },
   {
     "hotelCode": 81223,
-    "image": {
-      "imageUrl": "/images/hotels/13800549/13800549.jpg",
-      "accessibleText": "Taj Lands End"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/13800549/13800549.jpg",
+        "accessibleText": "Taj Lands End"
+      }
+    ],
     "title": "Taj Lands End",
     "subtitle": "200 metres from the seafrontBandstand",
     "benefits": [
@@ -200,10 +228,12 @@
   },
   {
     "hotelCode": 81224,
-    "image": {
-      "imageUrl": "/images/hotels/32810889/32810889.jpg",
-      "accessibleText": "Trident Nariman Point"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/32810889/32810889.jpg",
+        "accessibleText": "Trident Nariman Point"
+      }
+    ],
     "title": "Trident Nariman Point",
     "subtitle": "24 km from Chhatrapati Shivaji International Airport",
     "benefits": [
@@ -219,10 +249,12 @@
   },
   {
     "hotelCode": 81225,
-    "image": {
-      "imageUrl": "/images/hotels/503567645/503567645.jpg",
-      "accessibleText": "Aurika - Luxury by Lemon Tree Hotels"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/503567645/503567645.jpg",
+        "accessibleText": "Aurika - Luxury by Lemon Tree Hotels"
+      }
+    ],
     "title": "Aurika - Luxury by Lemon Tree Hotels",
     "subtitle": "5.1 km from Phoenix Market City Mall, Aurika",
     "benefits": [
@@ -238,10 +270,12 @@
   },
   {
     "hotelCode": 81226,
-    "image": {
-      "imageUrl": "/images/hotels/472036509/472036509.jpg",
-      "accessibleText": "Four Seasons Hotel Mumbai"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/472036509/472036509.jpg",
+        "accessibleText": "Four Seasons Hotel Mumbai"
+      }
+    ],
     "title": "Four Seasons Hotel Mumbai",
     "subtitle": "In the heart of Worli, the business hub of India’s largest city",
     "benefits": [
@@ -257,10 +291,12 @@
   },
   {
     "hotelCode": 81227,
-    "image": {
-      "imageUrl": "/images/hotels/516847915/516847915.jpg",
-      "accessibleText": "Treebo Trend New Light Suites"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/516847915/516847915.jpg",
+        "accessibleText": "Treebo Trend New Light Suites"
+      }
+    ],
     "title": "Treebo Trend New Light Suites",
     "subtitle": "6.2 km from The Heritage Centre & Aerospace Museum",
     "benefits": [
@@ -275,10 +311,12 @@
   },
   {
     "hotelCode": 81228,
-    "image": {
-      "imageUrl": "/images/hotels/513923904/513923904.jpg",
-      "accessibleText": "Renaissance Bengaluru Race Course Hotel"
-    },
+    "images": [
+      {
+        "imageUrl": "/images/hotels/513923904/513923904.jpg",
+        "accessibleText": "Renaissance Bengaluru Race Course Hotel"
+      }
+    ],
     "title": "Renaissance Bengaluru Race Course Hotel",
     "subtitle": "Located in the heart of Bengaluru Renaissance Bengaluru Race Course Hotel",
     "benefits": [

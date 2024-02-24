@@ -6,9 +6,9 @@ import { networkAdapter } from 'services/NetworkAdapter';
 import { DEFAULT_TAX_DETAILS } from 'utils/constants';
 import { useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
-import { formatDate } from 'utils/date-helpers';
 import { formatPrice } from 'utils/price-helpers';
 import Toast from 'components/ux/toast/Toast';
+import format from 'date-fns/format';
 
 /**
  * A component that displays the booking details for a hotel, including date range, room type, and pricing.
@@ -123,19 +123,19 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
   };
 
   const onBookingConfirm = () => {
-    const checkIn = formatDate(dateRange[0].startDate);
-    const checkOut = formatDate(dateRange[0].endDate);
-    if (!checkIn || !checkOut) {
+    if (!dateRange[0].startDate || !dateRange[0].endDate) {
       setErrorMessage('Please select check-in and check-out dates.');
       return;
     }
+    const checkIn = format(dateRange[0].startDate, 'dd-MM-yyyy');
+    const checkOut = format(dateRange[0].endDate, 'dd-MM-yyyy');
     const queryParams = {
       hotelCode,
-      checkIn: formatDate(dateRange[0].startDate),
-      checkOut: formatDate(dateRange[0].endDate),
+      checkIn,
+      checkOut,
       guests: selectedGuests.value,
       rooms: selectedRooms.value,
-      hotelName: bookingDetails.name,
+      hotelName: bookingDetails.name.replaceAll(' ', '-'), // url friendly hotel name
     };
 
     const url = `/checkout?${queryString.stringify(queryParams)}`;
