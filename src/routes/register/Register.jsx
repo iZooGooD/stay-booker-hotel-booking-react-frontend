@@ -74,27 +74,27 @@ const Register = () => {
                 setDisabled(false);
               } else {
                 setDisabled(true);
-                console.log('stuck on matching ps');
+                //setErrorMessage("Passowrds do not match")
               }
             } else {
               setDisabled(true);
-              console.log('stuck on p2');
+              //setErrorMessage("Confirmed password is invalid")
             }
           } else {
             setDisabled(true);
-            console.log('stuck on p1');
+            //setErrorMessage("Password is invalid")
           }
         } else {
           setDisabled(true);
-          console.log('stuck on email');
+          //setErrorMessage("Email is invalid")
         }
       } else {
         setDisabled(true);
-        console.log('stuck on lastName');
+        //setErrorMessage("Last name is invalid")
       }
     } else {
       setDisabled(true);
-      console.log('stuck on firstName');
+      //setErrorMessage("First name is invalid")
     }
   }, [
     firstNameBlur,
