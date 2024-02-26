@@ -186,6 +186,12 @@ const HotelsSearch = () => {
     }
   };
 
+  /**
+   * Fetches hotels based on the provided filters.
+   * @param {Object} filters - The filters to apply.
+   * @returns {Promise<void>}
+   * @async
+   */
   const fetchHotels = async (filters) => {
     setHotelsResults({
       isLoading: true,
@@ -299,6 +305,7 @@ const HotelsSearch = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFiltersState, currentResultsPage, sortByFilterValue]);
 
+  // Fetch hotels when location input value changes
   useEffect(() => {
     if (location.state) {
       const { city, numGuest, checkInDate, checkOutDate } = location.state;
