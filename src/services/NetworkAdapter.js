@@ -1,3 +1,6 @@
+// Usage: import { networkAdapter } from 'path/to/NetworkAdapter.js';
+// Usage: const response = await networkAdapter.get('/api/hotel/123');
+// Usage: const response = await networkAdapter.post('/api/hotel', { name: 'Hotel Name' });
 class NetworkAdapter {
   API_CONFIG = {
     MIRAGE: window.location.origin,
@@ -51,6 +54,46 @@ class NetworkAdapter {
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        credentials: 'include',
+      });
+
+      return await response.json();
+    } catch (error) {
+      return {
+        data: {},
+        errors: [error.message],
+      };
+    }
+  }
+
+  async delete(endpoint) {
+    try {
+      const endpointURL = new URL(endpoint, this.API_URL);
+      const url = new URL(endpointURL, window.location.origin);
+      const response = await fetch(url.toString(), {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+
+      return await response.json();
+    } catch (error) {
+      return {
+        data: {},
+        errors: [error.message],
+      };
+    }
+  }
+
+  async patch(endpoint, data = {}) {
+    try {
+      const endpointURL = new URL(endpoint, this.API_URL);
+      const url = new URL(endpointURL, window.location.origin);
+      const response = await fetch(url.toString(), {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
