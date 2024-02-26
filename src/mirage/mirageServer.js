@@ -45,10 +45,6 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.passthrough('http://localhost:4000/*');
 
-      this.get('/user', () => {
-        return new Response(200, {}, { name: 'John' });
-      });
-
       this.get('/users/auth-user', () => {
         if (loggedInUser) {
           return new Response(
@@ -346,14 +342,14 @@ export function makeServer({ environment = 'development' } = {}) {
         };
       });
 
-      this.put('/hotel/addReview', (schema, request) => {
+      this.put('/hotel/add-review', (schema, request) => {
         // const attrs = JSON.parse(request.requestBody);
         // const hotelId = attrs.hotelId;
         // const review = attrs.review;
         // const rating = attrs.rating;
         // const user = schema.users.findBy({ email: attrs.email });
         return new Response(
-          500,
+          200,
           {},
           {
             errors: [],

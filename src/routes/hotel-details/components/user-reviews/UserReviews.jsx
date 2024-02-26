@@ -43,7 +43,7 @@ const UserReviews = ({
   const handleReviewSubmit = async () => {
     // TODO: Add validation for userRating and userReview
     // TODO: Add toast for success or failure
-    const response = await networkAdapter.put('/api/hotel/addReview', {
+    const response = await networkAdapter.put('/api/hotel/add-review', {
       rating: userRating,
       review: userReview,
     });
