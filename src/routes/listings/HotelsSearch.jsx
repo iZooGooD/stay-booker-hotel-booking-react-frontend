@@ -8,6 +8,7 @@ import { formatDate } from 'utils/date-helpers';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { parse } from 'date-fns';
 import PaginationController from 'components/ux/pagination-controller/PaginationController';
+import { SORTING_FILTER_LABELS } from 'utils/constants';
 
 /**
  * Component for searching hotels.
@@ -67,8 +68,8 @@ const HotelsSearch = () => {
   // Options for sorting filter
   const sortingFilterOptions = [
     { value: 'default', label: 'Sort by' },
-    { value: 'priceLowToHigh', label: 'Price: Low to High' },
-    { value: 'priceHighToLow', label: 'Price: High to Low' },
+    { value: 'priceLowToHigh', label: SORTING_FILTER_LABELS.PRICE_LOW_TO_HIGH },
+    { value: 'priceHighToLow', label: SORTING_FILTER_LABELS.PRICE_HIGH_TO_LOW },
   ];
 
   /**
