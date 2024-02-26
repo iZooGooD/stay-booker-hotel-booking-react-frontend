@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
+
 /**
  * Renders the ratings overview component.
  *
@@ -10,9 +13,6 @@
  * @param {Function} props.handleRating - The function to handle rating changes made by user.
  * @returns {JSX.Element} The rendered component.
  */
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
-
 const RatingsOverview = ({ averageRating, ratingsCount, starCounts }) => {
   return (
     <div className=" w-full md:w-3/5">

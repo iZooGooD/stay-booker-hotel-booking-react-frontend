@@ -11,8 +11,9 @@ import PaginationController from 'components/ux/pagination-controller/Pagination
 import { SORTING_FILTER_LABELS } from 'utils/constants';
 
 /**
- * Component for searching hotels.
- * It provides options to select location, number of guests, date, and filters.
+ * Represents the hotels search component.
+ * @component
+ * @returns {JSX.Element} The hotels search component.
  */
 const HotelsSearch = () => {
   // State for managing date picker visibility

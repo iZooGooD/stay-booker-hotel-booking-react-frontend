@@ -3,6 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
+/**
+ * Renders the user ratings selector component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {number} props.userRating - The user's rating.
+ * @param {Function} props.handleRating - The function to handle rating changes made by user.
+ * @param {boolean} props.isEmpty - The flag to determine if the user review is empty.
+ * @param {string} props.userReview - The user's review.
+ * @param {Function} props.handleReviewSubmit - The function to handle user review submission.
+ * @param {Function} props.handleUserReviewChange - The function to handle user review changes.
+ * @returns {JSX.Element} The rendered component.
+ */
 const UserRatingsSelector = ({
   userRating,
   handleRating,

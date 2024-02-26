@@ -4,6 +4,11 @@ import { networkAdapter } from 'services/NetworkAdapter';
 import HotelDetailsViewCard from './components/hotel-details-view-card/HotelDetailsViewCard';
 import HotelDetailsViewCardSkeleton from './components/hotel-details-view-card-skeleton/HotelDetailsViewCardSkeleton';
 
+/**
+ * Represents the hotel details component.
+ * @component
+ * @returns {JSX.Element} The hotel details component.
+ */
 const HotelDetails = () => {
   const { hotelId } = useParams();
   const [hotelDetails, setHotelDetails] = useState({
