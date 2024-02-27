@@ -28,7 +28,7 @@ const Review = (props) => {
           <h4 className="font-semibold text-gray-700">
             {reviewerName}{' '}
             {verified && (
-              <span className="text-xs font-mono text-green-500">
+              <span className="text-xs font-medium text-green-500">
                 (Verified)
               </span>
             )}
