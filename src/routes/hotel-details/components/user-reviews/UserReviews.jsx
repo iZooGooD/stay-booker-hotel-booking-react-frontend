@@ -114,6 +114,7 @@ const UserReviews = ({
                 reviewDate={review.date}
                 review={review.review}
                 rating={review.rating}
+                verified={review.verified}
               />
             ))}
           </div>

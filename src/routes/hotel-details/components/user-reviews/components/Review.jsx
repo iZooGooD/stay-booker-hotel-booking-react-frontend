@@ -11,11 +11,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  * @param {string} props.reviewDate - The date of the review.
  * @param {string} props.review - The content of the review.
  * @param {number} props.rating - The rating given by the reviewer.
+ * @param {boolean} props.verified - Whether the review has been verified or not.
  *
  * @returns {JSX.Element} The rendered Review component.
  */
 const Review = (props) => {
-  const { reviewerName, reviewDate, review, rating } = props;
+  const { reviewerName, reviewDate, review, rating, verified } = props;
   return (
     <div className="py-3 border-t">
       <div className="flex justify-between">
@@ -24,7 +25,14 @@ const Review = (props) => {
             icon={faUserCircle}
             className="text-2xl text-gray-300 mr-2"
           />
-          <h4 className="font-semibold text-gray-700">{reviewerName}</h4>
+          <h4 className="font-semibold text-gray-700">
+            {reviewerName}{' '}
+            {verified && (
+              <span className="text-xs font-mono text-green-500">
+                (Verified)
+              </span>
+            )}
+          </h4>
         </div>
         <div className="flex items-center mt-4">
           <p className="text-yellow-500 text-md">{rating}</p>
