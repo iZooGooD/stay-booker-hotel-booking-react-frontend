@@ -1,5 +1,11 @@
 import { useState } from 'react';
 
+/* PaymentMethodsPanel
+ * Renders a list of payment methods with the ability to edit and save changes.
+ * @param {Array} paymentMethods - An array of payment methods.
+ * @param {Function} setPaymentMethods - A function to update the payment methods.
+ * @returns {JSX.Element} - The PaymentMethodsPanel component.
+ */
 const PaymentMethodsPanel = ({ paymentMethods, setPaymentMethods }) => {
   const [editIndex, setEditIndex] = useState(-1); // -1 means no edit is active
   const [currentEdit, setCurrentEdit] = useState({});

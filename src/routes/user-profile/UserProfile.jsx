@@ -17,8 +17,10 @@ import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 import { useNavigate } from 'react-router-dom';
 
 /**
- * User profile page
- */
+ * UserProfile
+ * Renders the user profile page with tabs for personal details, bookings, and payment methods.
+ * @returns {JSX.Element} - The UserProfile component
+ * */
 const UserProfile = () => {
   const { userDetails } = useContext(AuthContext);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -32,6 +34,7 @@ const UserProfile = () => {
   const [paymentMethods, setPaymentMethods] = useState(mockPaymentMethods);
   const [isTabsVisible, setIsTabsVisible] = useState(false);
 
+  // Fetch user bookings data
   const [userBookingsData, setUserBookingsData] = useState({
     isLoading: true,
     data: [],
@@ -49,6 +52,7 @@ const UserProfile = () => {
     }
   });
 
+  // effect to set initial state of user details
   useEffect(() => {
     if (userDetails) {
       setFullName(userDetails.fullName || '');
@@ -62,6 +66,7 @@ const UserProfile = () => {
     }
   }, [navigate, userDetails]);
 
+  // effect to set initial state of user bookings data
   useEffect(() => {
     const getInitialData = async () => {
       const userBookingsDataResponse = await networkAdapter.get(
