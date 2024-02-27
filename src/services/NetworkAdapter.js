@@ -2,13 +2,13 @@
 // Usage: const response = await networkAdapter.get('/api/hotel/123');
 // Usage: const response = await networkAdapter.post('/api/hotel', { name: 'Hotel Name' });
 class NetworkAdapter {
-  API_CONFIG = {
+  static API_CONFIG = {
     MIRAGE: window.location.origin,
     EXPRESS: 'http://localhost:4000',
   };
-  API_URL = this.API_CONFIG.MIRAGE;
+  static API_URL = NetworkAdapter.API_CONFIG.MIRAGE;
   async get(endpoint, params = {}) {
-    const endpointURL = new URL(endpoint, this.API_URL);
+    const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
     try {
       const url = new URL(endpointURL, window.location.origin);
 
@@ -28,7 +28,7 @@ class NetworkAdapter {
 
   async post(endpoint, data = {}) {
     try {
-      const endpointURL = new URL(endpoint, this.API_URL);
+      const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'POST',
@@ -50,7 +50,7 @@ class NetworkAdapter {
 
   async put(endpoint, data = {}) {
     try {
-      const endpointURL = new URL(endpoint, this.API_URL);
+      const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'PUT',
@@ -72,7 +72,7 @@ class NetworkAdapter {
 
   async delete(endpoint) {
     try {
-      const endpointURL = new URL(endpoint, this.API_URL);
+      const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'DELETE',
@@ -90,7 +90,7 @@ class NetworkAdapter {
 
   async patch(endpoint, data = {}) {
     try {
-      const endpointURL = new URL(endpoint, this.API_URL);
+      const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'PATCH',
