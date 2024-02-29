@@ -3,6 +3,11 @@ import { networkAdapter } from 'services/NetworkAdapter';
 
 export const AuthContext = createContext();
 
+/**
+ * Provides authentication state and user details to the application.
+ * @namespace AuthProvider
+ * @component
+ */
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
