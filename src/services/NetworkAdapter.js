@@ -2,13 +2,13 @@
 // Usage: const response = await networkAdapter.get('/api/hotel/123');
 // Usage: const response = await networkAdapter.post('/api/hotel', { name: 'Hotel Name' });
 class NetworkAdapter {
-  static API_CONFIG = {
+  static #API_CONFIG = {
     MIRAGE: window.location.origin,
     EXPRESS: 'http://localhost:4000',
   };
-  static API_URL = NetworkAdapter.API_CONFIG.MIRAGE;
+  static #API_URL = NetworkAdapter.#API_CONFIG.MIRAGE;
   async get(endpoint, params = {}) {
-    const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
+    const endpointURL = new URL(endpoint, NetworkAdapter.#API_URL);
     try {
       const url = new URL(endpointURL, window.location.origin);
 
