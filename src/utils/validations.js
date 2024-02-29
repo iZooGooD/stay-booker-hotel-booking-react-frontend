@@ -1,20 +1,32 @@
-// Define an object for storing validation rules
+/**
+ * Utility object for field validations.
+ * @namespace validations
+ */
 const validations = {
-  // Define validation rules for specific fields
+  /**
+   * Field validation rules.
+   * @memberof validations
+   * @property {object} email - Validation rules for the email field.
+   * @property {boolean} email.required - Indicates if the email field is required.
+   * @property {RegExp} email.pattern - Regular expression pattern to validate the email field.
+   */
   fields: {
     email: {
-      required: true, // Specify if the field is required
-      // Use a regular expression to define the pattern for a valid email address
+      required: true,
       pattern: /^[^\s-]\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}[^\s-]$/i,
     },
   },
 
-  // Define a function for validating a specific field with a given value
+  /**
+   * Validates a field value based on the specified validation rules.
+   * @memberof validations
+   * @param {string} field - The name of the field to validate.
+   * @param {string} value - The value of the field to validate.
+   * @returns {boolean} - Indicates if the field value is valid.
+   */
   validate(field, value) {
-    // Check if the specified field has validation rules defined
     return this.fields[field] ? this.fields[field].pattern.test(value) : false;
   },
 };
 
-// Export the validations object for use in other modules
 export default validations;
