@@ -1,5 +1,22 @@
 import GlobalSearchBox from 'components/global-search-box/GlobalSearchbox';
 
+/**
+ * HeroCover Component
+ * Renders the hero cover section of the home page.
+ * @param {Object} props - The component props.
+ * @param {String} props.locationInputValue - The location input value.
+ * @param {String} props.numGuestsInputValue - The number of guests input value.
+ * @param {Boolean} props.isDatePickerVisible - The date picker visibility state.
+ * @param {Function} props.onLocationChangeInput - The location input change handler.
+ * @param {Function} props.onNumGuestsInputChange - The number of guests input change handler.
+ * @param {Object} props.dateRange - The date range object.
+ * @param {Function} props.onDateChangeHandler - The date change handler.
+ * @param {Function} props.onDatePickerIconClick - The date picker icon click handler.
+ * @param {Function} props.onSearchButtonAction - The search button click handler.
+ * @param {Array} props.locationTypeheadResults - The location typehead results.
+ * @param {Function} props.setisDatePickerVisible - The date picker visibility state setter.
+ * @returns {JSX.Element} - The HeroCover component.
+ */
 const HeroCover = (props) => {
   const {
     locationInputValue,
