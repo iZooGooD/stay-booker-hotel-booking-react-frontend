@@ -25,7 +25,11 @@ import ProfileDetailsPanel from './components/ProfileDetailsPanel';
  * */
 const UserProfile = () => {
   const { userDetails } = useContext(AuthContext);
-  const [paymentMethods, setPaymentMethods] = useState(mockPaymentMethods);
+  const navigate = useNavigate();
+
+  const wrapperRef = useRef();
+  const buttonRef = useRef();
+
   const [isTabsVisible, setIsTabsVisible] = useState(false);
 
   // Fetch user bookings data
@@ -35,16 +39,22 @@ const UserProfile = () => {
     errors: [],
   });
 
-  const wrapperRef = useRef();
-  const buttonRef = useRef();
-
-  const navigate = useNavigate();
+  // Fetch user payment methods data
+  const [userPaymentMethodsData, setUserPaymentMethodsData] = useState({
+    isLoading: true,
+    data: [],
+    errors: [],
+  });
 
   useOutsideClickHandler(wrapperRef, (event) => {
     if (!buttonRef.current.contains(event.target)) {
       setIsTabsVisible(false);
     }
   });
+
+  const onTabsMenuButtonAction = () => {
+    setIsTabsVisible(!isTabsVisible);
+  };
 
   // effect to set initial state of user details
   useEffect(() => {
@@ -59,6 +69,9 @@ const UserProfile = () => {
       const userBookingsDataResponse = await networkAdapter.get(
         '/api/users/bookings'
       );
+      const userPaymentMethodsResponse = await networkAdapter.get(
+        'api/users/payment-methods'
+      );
       if (userBookingsDataResponse && userBookingsDataResponse.data) {
         setUserBookingsData({
           isLoading: false,
@@ -66,13 +79,16 @@ const UserProfile = () => {
           errors: userBookingsDataResponse.errors,
         });
       }
+      if (userPaymentMethodsResponse && userPaymentMethodsResponse.data) {
+        setUserPaymentMethodsData({
+          isLoading: false,
+          data: userPaymentMethodsResponse.data.elements,
+          errors: userPaymentMethodsResponse.errors,
+        });
+      }
     };
     getInitialData();
   }, []);
-
-  const onTabsMenuButtonAction = () => {
-    setIsTabsVisible(!isTabsVisible);
-  };
 
   return (
     <>
@@ -98,8 +114,8 @@ const UserProfile = () => {
           </TabPanel>
           <TabPanel label="Payment details" icon={faCreditCard}>
             <PaymentMethodsPanel
-              paymentMethods={paymentMethods}
-              setPaymentMethods={setPaymentMethods}
+              userPaymentMethodsData={userPaymentMethodsData}
+              setUserPaymentMethodsData={setUserPaymentMethodsData}
             />
           </TabPanel>
         </Tabs>
@@ -107,23 +123,5 @@ const UserProfile = () => {
     </>
   );
 };
-
-const mockPaymentMethods = [
-  {
-    cardType: 'Visa',
-    cardNumber: '**** **** **** 1234',
-    expiryDate: '08/26',
-  },
-  {
-    cardType: 'MasterCard',
-    cardNumber: '**** **** **** 5678',
-    expiryDate: '07/24',
-  },
-  {
-    cardType: 'American Express',
-    cardNumber: '**** **** **** 9012',
-    expiryDate: '05/25',
-  },
-];
 
 export default UserProfile;

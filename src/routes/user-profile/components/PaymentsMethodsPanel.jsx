@@ -6,13 +6,16 @@ import { useState } from 'react';
  * @param {Function} setPaymentMethods - A function to update the payment methods.
  * @returns {JSX.Element} - The PaymentMethodsPanel component.
  */
-const PaymentMethodsPanel = ({ paymentMethods, setPaymentMethods }) => {
+const PaymentMethodsPanel = ({
+  userPaymentMethodsData,
+  setUserPaymentMethodsData,
+}) => {
   const [editIndex, setEditIndex] = useState(-1); // -1 means no edit is active
   const [currentEdit, setCurrentEdit] = useState({});
 
   const handleEdit = (index) => {
     setEditIndex(index);
-    setCurrentEdit({ ...paymentMethods[index] });
+    setCurrentEdit({ ...userPaymentMethodsData.data[index] });
   };
 
   const handleCancel = () => {
@@ -20,9 +23,9 @@ const PaymentMethodsPanel = ({ paymentMethods, setPaymentMethods }) => {
   };
 
   const handleSave = () => {
-    const updatedPaymentMethods = [...paymentMethods];
+    const updatedPaymentMethods = [...userPaymentMethodsData.data];
     updatedPaymentMethods[editIndex] = currentEdit;
-    setPaymentMethods(updatedPaymentMethods);
+    setUserPaymentMethodsData(updatedPaymentMethods);
     setEditIndex(-1);
   };
 
@@ -32,13 +35,13 @@ const PaymentMethodsPanel = ({ paymentMethods, setPaymentMethods }) => {
 
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
-      {paymentMethods.length === 0 ? (
+      {userPaymentMethodsData.data.length === 0 ? (
         <div className="text-center py-6 text-gray-500">
           You have no saved payment methods.
         </div>
       ) : (
         <ul className="divide-y divide-gray-200">
-          {paymentMethods.map((method, index) => (
+          {userPaymentMethodsData.data.map((method, index) => (
             <li
               key={index}
               className="px-4 py-4 flex items-center justify-between sm:px-6"

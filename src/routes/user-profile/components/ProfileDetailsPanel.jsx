@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Toast from 'components/ux/toast/Toast';
 import { networkAdapter } from 'services/NetworkAdapter';
 
+/**
+ * Renders the user profile details panel.
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.userDetails - The user's details.
+ * @returns {JSX.Element} The rendered component.
+ * */
 const ProfileDetailsPanel = ({ userDetails }) => {
+  // states to manage the edit mode and user details
   const [isEditMode, setIsEditMode] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -13,6 +21,7 @@ const ProfileDetailsPanel = ({ userDetails }) => {
   const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [nationality, setNationality] = useState('');
 
+  // effect to set initial state of user details
   useEffect(() => {
     if (userDetails) {
       setFirstName(userDetails.firstName || '');
