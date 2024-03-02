@@ -567,6 +567,27 @@ export function makeServer({ environment = 'development' } = {}) {
           }
         );
       });
+
+      this.get('/payments/confirmation', () => {
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              status: 'Payment successful',
+              bookingDetails: {
+                bookingId: 'BKG123',
+                bookingDate: '2024-01-10',
+                hotelName: 'Seaside Resort',
+                checkInDate: '2024-01-20',
+                checkOutDate: '2024-01-25',
+                totalFare: '₹14,500',
+              },
+            },
+          }
+        );
+      });
     },
   });
 
