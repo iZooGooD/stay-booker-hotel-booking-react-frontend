@@ -25,7 +25,7 @@ const PaymentMethodsPanel = ({
   const handleSave = () => {
     const updatedPaymentMethods = [...userPaymentMethodsData.data];
     updatedPaymentMethods[editIndex] = currentEdit;
-    setUserPaymentMethodsData(updatedPaymentMethods);
+    setUserPaymentMethodsData({ data: updatedPaymentMethods });
     setEditIndex(-1);
   };
 
@@ -35,7 +35,7 @@ const PaymentMethodsPanel = ({
 
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
-      {userPaymentMethodsData.data.length === 0 ? (
+      {userPaymentMethodsData.data?.length === 0 ? (
         <div className="text-center py-6 text-gray-500">
           You have no saved payment methods.
         </div>
