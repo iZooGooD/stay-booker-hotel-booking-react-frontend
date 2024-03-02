@@ -576,14 +576,32 @@ export function makeServer({ environment = 'development' } = {}) {
             errors: [],
             data: {
               status: 'Payment successful',
-              bookingDetails: {
-                bookingId: 'BKG123',
-                bookingDate: '2024-01-10',
-                hotelName: 'Seaside Resort',
-                checkInDate: '2024-01-20',
-                checkOutDate: '2024-01-25',
-                totalFare: '₹14,500',
-              },
+              bookingDetails: [
+                {
+                  label: 'Booking ID',
+                  value: 'BKG123',
+                },
+                {
+                  label: 'Booking Date',
+                  value: '2024-01-10',
+                },
+                {
+                  label: 'Hotel Name',
+                  value: 'Seaside Resort',
+                },
+                {
+                  label: 'Check-in Date',
+                  value: '2024-01-20',
+                },
+                {
+                  label: 'Check-out Date',
+                  value: '2024-01-25',
+                },
+                {
+                  label: 'Total Fare',
+                  value: '₹14,500',
+                },
+              ],
             },
           }
         );
