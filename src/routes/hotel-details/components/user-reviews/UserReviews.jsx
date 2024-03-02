@@ -105,7 +105,7 @@ const UserReviews = ({
       )}
       <div>
         {reviewData.isLoading ? (
-          <Loader height="600px" />
+          <Loader height={'600px'} />
         ) : (
           <div>
             {reviewData.data.map((review, index) => (

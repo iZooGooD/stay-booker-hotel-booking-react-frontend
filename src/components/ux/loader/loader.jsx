@@ -1,5 +1,5 @@
 const Loader = ({ height }) => {
-  const heightClass = height ? `h-[${height}]` : `h-[120px]`;
+  const heightClass = height ? `min-h-[${height}]` : `h-[120px]`;
   return (
     <div>
       <div
