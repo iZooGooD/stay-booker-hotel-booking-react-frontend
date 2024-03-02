@@ -91,8 +91,11 @@ const UserProfile = () => {
     setIsEditMode(!isEditMode);
   };
 
+  /**
+   * Handles the save button click event.
+   * Updates the user details and sets the edit mode to false.
+   * */
   const handleSaveClick = () => {
-    // Perform save logic here
     setIsEditMode(false);
   };
 
@@ -136,11 +139,6 @@ const UserProfile = () => {
                         label="Name"
                         value={fullName}
                         onChange={setFullName}
-                      />
-                      <TextField
-                        label="Email address"
-                        value={email}
-                        onChange={setEmail}
                       />
                       <TextField
                         label="Phone number"
@@ -245,7 +243,7 @@ const TextField = ({ label, value, onChange, type = 'text' }) => (
     <dd className="mt-1 sm:mt-0 sm:col-span-2">
       <input
         type={type}
-        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-sm md:text-base border-gray-300 rounded-md"
+        className="mt-1 border py-1 px-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full text-sm md:text-base  rounded-md"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />

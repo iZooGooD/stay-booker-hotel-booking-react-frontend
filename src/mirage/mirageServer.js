@@ -149,6 +149,34 @@ export function makeServer({ environment = 'development' } = {}) {
         }
       });
 
+      this.patch('/users/update-profile', (schema, request) => {
+        const attrs = JSON.parse(request.requestBody);
+        const user = schema.users.findBy({ email: attrs.email });
+
+        if (user) {
+          user.update(attrs);
+          return new Response(
+            200,
+            {},
+            {
+              errors: [],
+              data: {
+                status: 'Profile updated successfully',
+              },
+            }
+          );
+        } else {
+          return new Response(
+            404,
+            {},
+            {
+              errors: ['User not found'],
+              data: {},
+            }
+          );
+        }
+      });
+
       this.get('/users/bookings', () => {
         return new Response(
           200,
