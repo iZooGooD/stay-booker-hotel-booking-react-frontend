@@ -568,43 +568,49 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
-      this.get('/payments/confirmation', () => {
-        return new Response(
-          200,
-          {},
-          {
-            errors: [],
-            data: {
-              status: 'Payment successful',
-              bookingDetails: [
+      this.post('/payments/confirmation', () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(
+              new Response(
+                200,
+                {},
                 {
-                  label: 'Booking ID',
-                  value: 'BKG123',
-                },
-                {
-                  label: 'Booking Date',
-                  value: '2024-01-10',
-                },
-                {
-                  label: 'Hotel Name',
-                  value: 'Seaside Resort',
-                },
-                {
-                  label: 'Check-in Date',
-                  value: '2024-01-20',
-                },
-                {
-                  label: 'Check-out Date',
-                  value: '2024-01-25',
-                },
-                {
-                  label: 'Total Fare',
-                  value: '₹14,500',
-                },
-              ],
-            },
-          }
-        );
+                  errors: [],
+                  data: {
+                    status: 'Payment successful',
+                    bookingDetails: [
+                      {
+                        label: 'Booking ID',
+                        value: 'BKG123',
+                      },
+                      {
+                        label: 'Booking Date',
+                        value: '2024-01-10',
+                      },
+                      {
+                        label: 'Hotel Name',
+                        value: 'Seaside Resort',
+                      },
+                      {
+                        label: 'Check-in Date',
+                        value: '2024-01-20',
+                      },
+                      {
+                        label: 'Check-out Date',
+                        value: '2024-01-25',
+                      },
+                      {
+                        label: 'Total Fare',
+                        value: '₹14,500',
+                      },
+                    ],
+                  },
+                }
+              )
+            );
+          }, 6000); // 2000 milliseconds = 2 seconds
+        });
       });
     },
   });

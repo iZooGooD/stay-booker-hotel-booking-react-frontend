@@ -6,6 +6,9 @@ import { getReadableMonthFormat } from 'utils/date-helpers';
 import { useSearchParams } from 'react-router-dom';
 import { AuthContext } from 'contexts/AuthContext';
 import { useContext } from 'react';
+import { networkAdapter } from 'services/NetworkAdapter';
+import Loader from 'components/ux/loader/loader';
+import Toast from 'components/ux/toast/Toast';
 
 /**
  * Checkout component for processing payments and collecting user information.
@@ -21,7 +24,20 @@ const Checkout = () => {
 
   const [searchParams] = useSearchParams();
 
+  const [toastMessage, setToastMessage] = useState('');
+
   const { isAuthenticated, userDetails } = useContext(AuthContext);
+
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+
+  const [paymentConfirmationDetails, setPaymentConfirmationDetails] = useState({
+    isLoading: false,
+    data: {},
+  });
+
+  const dismissToast = () => {
+    setToastMessage('');
+  };
 
   // Form state for collecting user payment and address information
   const [formData, setFormData] = useState({
@@ -76,7 +92,7 @@ const Checkout = () => {
    * @todo Implement form submission loading state.
    * @todo Implement form submission error state.
    */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let isValid = true;
     const newErrors = {};
@@ -94,8 +110,31 @@ const Checkout = () => {
       return; // Stop form submission if there are errors
     }
 
-    // If all validations pass
-    console.log('Paying:', formData);
+    setIsSubmitDisabled(true);
+    setPaymentConfirmationDetails({
+      isLoading: true,
+      data: {},
+    });
+    const response = await networkAdapter.post(
+      '/api/payments/confirmation',
+      formData
+    );
+    if (response && response.data && response.errors.length === 0) {
+      setPaymentConfirmationDetails({
+        isLoading: false,
+        data: response.data,
+      });
+      navigate('/booking-confirmation');
+    } else {
+      setToastMessage('Payment failed. Please try again.');
+      setIsSubmitDisabled(false);
+      setPaymentConfirmationDetails({
+        isLoading: false,
+        data: {},
+      });
+
+      console.log('Paying:', formData);
+    }
   };
 
   return (
@@ -109,113 +148,138 @@ const Checkout = () => {
         email={userDetails?.email}
         fullName={userDetails?.fullName}
       />
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white border shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-lg mx-auto"
-      >
-        <InputField
-          label="Email address"
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          required={true}
-          error={errors.email}
-        />
-        <InputField
-          label="Name on card"
-          type="text"
-          name="nameOnCard"
-          value={formData.nameOnCard}
-          onChange={handleChange}
-          placeholder="Name as it appears on card"
-          required={true}
-          error={errors.nameOnCard}
-        />
-        <InputField
-          label="Card number"
-          type="text"
-          name="cardNumber"
-          value={formData.cardNumber}
-          onChange={handleChange}
-          placeholder="0000 0000 0000 0000"
-          required={true}
-          error={errors.cardNumber}
-        />
-        <div className="flex mb-4 justify-between">
+      <div className="relative bg-white border shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-lg mx-auto">
+        {paymentConfirmationDetails.isLoading && (
+          <Loader
+            isFullScreen={true}
+            loaderText={'Payment in progress, hold tight!'}
+          />
+        )}
+        <form
+          onSubmit={handleSubmit}
+          className={` ${
+            paymentConfirmationDetails.isLoading ? 'opacity-40' : ''
+          }`}
+        >
           <InputField
-            label="Expiration date (MM/YY)"
-            type="text"
-            name="expiry"
-            value={formData.expiry}
+            label="Email address"
+            type="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
-            placeholder="MM/YY"
+            placeholder="Email"
             required={true}
-            error={errors.expiry}
+            error={errors.email}
           />
           <InputField
-            label="CVC"
+            label="Name on card"
             type="text"
-            name="cvc"
-            value={formData.cvc}
+            name="nameOnCard"
+            value={formData.nameOnCard}
             onChange={handleChange}
-            placeholder="CVC"
+            placeholder="Name as it appears on card"
             required={true}
-            error={errors.cvc}
-          />
-        </div>
-        <InputField
-          label="Address"
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          placeholder="Street Address"
-          required={true}
-          error={errors.address}
-        />
-        <InputField
-          label="City"
-          type="text"
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-          placeholder="City"
-          required={true}
-          error={errors.city}
-        />
-        <div className="flex mb-4 justify-between">
-          <InputField
-            label="State / Province"
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            placeholder="State"
-            required={true}
-            error={errors.state}
+            error={errors.nameOnCard}
           />
           <InputField
-            label="Postal code"
+            label="Card number"
             type="text"
-            name="postalCode"
-            value={formData.postalCode}
+            name="cardNumber"
+            value={formData.cardNumber}
             onChange={handleChange}
-            placeholder="Postal Code"
+            placeholder="0000 0000 0000 0000"
             required={true}
-            error={errors.postalCode}
+            error={errors.cardNumber}
           />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300"
-            type="submit"
-          >
-            Pay ₹ {location.state?.total}
-          </button>
-        </div>
-      </form>
+          <div className="flex mb-4 justify-between">
+            <InputField
+              label="Expiration date (MM/YY)"
+              type="text"
+              name="expiry"
+              value={formData.expiry}
+              onChange={handleChange}
+              placeholder="MM/YY"
+              required={true}
+              error={errors.expiry}
+            />
+            <InputField
+              label="CVC"
+              type="text"
+              name="cvc"
+              value={formData.cvc}
+              onChange={handleChange}
+              placeholder="CVC"
+              required={true}
+              error={errors.cvc}
+            />
+          </div>
+          <InputField
+            label="Address"
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Street Address"
+            required={true}
+            error={errors.address}
+          />
+          <InputField
+            label="City"
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            placeholder="City"
+            required={true}
+            error={errors.city}
+          />
+          <div className="flex mb-4 justify-between">
+            <InputField
+              label="State / Province"
+              type="text"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              placeholder="State"
+              required={true}
+              error={errors.state}
+            />
+            <InputField
+              label="Postal code"
+              type="text"
+              name="postalCode"
+              value={formData.postalCode}
+              onChange={handleChange}
+              placeholder="Postal Code"
+              required={true}
+              error={errors.postalCode}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              className={`bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300 ${
+                isSubmitDisabled
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:bg-blue-700'
+              }`}
+              type="submit"
+              disabled={isSubmitDisabled}
+            >
+              Pay ₹ {location.state?.total}
+            </button>
+          </div>
+        </form>
+
+        {toastMessage && (
+          <div className="my-4">
+            <Toast
+              message={toastMessage}
+              type={'error'}
+              dismissError={dismissToast}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -265,7 +329,7 @@ const InputField = ({
       aria-invalid={error ? 'true' : 'false'}
     />
     {error && (
-      <p className="text-red-500 text-xs italic">Please check this field.</p>
+      <p className="text-red-500 text-xs my-1">Please check this field.</p>
     )}
   </div>
 );
