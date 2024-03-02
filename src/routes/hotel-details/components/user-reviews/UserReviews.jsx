@@ -5,6 +5,7 @@ import UserRatingsSelector from './components/UserRatingsSelector';
 import { networkAdapter } from 'services/NetworkAdapter';
 import Toast from 'components/ux/toast/Toast';
 import PaginationController from 'components/ux/pagination-controller/PaginationController';
+import Loader from 'components/ux/loader/loader';
 
 /**
  * Renders the user reviews component.
@@ -104,7 +105,7 @@ const UserReviews = ({
       )}
       <div>
         {reviewData.isLoading ? (
-          <span>Loading...</span>
+          <Loader height="600px" />
         ) : (
           <div>
             {reviewData.data.map((review, index) => (

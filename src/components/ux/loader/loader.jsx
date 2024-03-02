@@ -1,7 +1,10 @@
-const Loader = () => {
+const Loader = ({ height }) => {
+  const heightClass = height ? `h-[${height}]` : `h-[120px]`;
   return (
     <div>
-      <div className="text-center">
+      <div
+        className={`text-center ${heightClass} flex justify-center items-center`}
+      >
         <div role="status">
           <svg
             aria-hidden="true"

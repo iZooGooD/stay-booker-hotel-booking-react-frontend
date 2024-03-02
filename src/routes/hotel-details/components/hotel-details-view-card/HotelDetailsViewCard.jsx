@@ -37,6 +37,10 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
   };
 
   useEffect(() => {
+    setReviewData({
+      isLoading: true,
+      data: [],
+    });
     const fetchHotelReviews = async () => {
       const response = await networkAdapter.get(
         `/api/hotel/${hotelDetails.hotelCode}/reviews`,
@@ -95,14 +99,12 @@ const HotelDetailsViewCard = ({ hotelDetails }) => {
             </div>
           </div>
         </div>
-        {!reviewData.isLoading && (
-          <UserReviews
-            reviewData={reviewData}
-            handlePageChange={handlePageChange}
-            handlePreviousPageChange={handlePreviousPageChange}
-            handleNextPageChange={handleNextPageChange}
-          />
-        )}
+        <UserReviews
+          reviewData={reviewData}
+          handlePageChange={handlePageChange}
+          handlePreviousPageChange={handlePreviousPageChange}
+          handleNextPageChange={handleNextPageChange}
+        />
       </div>
       <HotelBookingDetailsCard hotelCode={hotelDetails.hotelCode} />
     </div>
