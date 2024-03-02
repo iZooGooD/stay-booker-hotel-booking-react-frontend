@@ -25,7 +25,7 @@ const BookingConfirmation = () => {
   }, [bookingDetails, location.state, navigate]);
 
   return (
-    <div className="flex mx-auto px-4 py-12 items-center justify-center flex-col my-40 border rounded-md max-w-[800px]">
+    <div className="flex mx-2 md:mx-auto px-4 py-12 items-center justify-center flex-col my-40 border rounded-md max-w-[800px]">
       <div className="flex items-center justify-center">
         <FontAwesomeIcon icon={faStar} className="text-gray-400 text-xl" />
         <FontAwesomeIcon icon={faStar} className="text-gray-400 text-3xl" />
