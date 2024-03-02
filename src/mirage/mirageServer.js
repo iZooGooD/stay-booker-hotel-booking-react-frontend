@@ -151,7 +151,7 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.patch('/users/update-profile', (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
-        const user = schema.users.findBy({ email: attrs.email });
+        const user = schema.users.findBy({ email: loggedInUser.email });
 
         if (user) {
           user.update(attrs);

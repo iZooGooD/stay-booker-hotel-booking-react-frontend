@@ -15,6 +15,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 import { useNavigate } from 'react-router-dom';
+import Toast from 'components/ux/toast/Toast';
 
 /**
  * UserProfile
@@ -24,7 +25,8 @@ import { useNavigate } from 'react-router-dom';
 const UserProfile = () => {
   const { userDetails } = useContext(AuthContext);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [fullName, setFullName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -33,6 +35,12 @@ const UserProfile = () => {
   const [nationality, setNationality] = useState('');
   const [paymentMethods, setPaymentMethods] = useState(mockPaymentMethods);
   const [isTabsVisible, setIsTabsVisible] = useState(false);
+
+  const [toastMessage, setToastMessage] = useState('');
+
+  const clearToastMessage = () => {
+    setToastMessage('');
+  };
 
   // Fetch user bookings data
   const [userBookingsData, setUserBookingsData] = useState({
@@ -55,7 +63,8 @@ const UserProfile = () => {
   // effect to set initial state of user details
   useEffect(() => {
     if (userDetails) {
-      setFullName(userDetails.fullName || '');
+      setFirstName(userDetails.firstName || '');
+      setLastName(userDetails.lastName || '');
       setEmail(userDetails.email || '');
       setPhoneNumber(userDetails.phone || '');
       setNationality(userDetails.country || '');
@@ -95,7 +104,46 @@ const UserProfile = () => {
    * Handles the save button click event.
    * Updates the user details and sets the edit mode to false.
    * */
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
+    // check if newstate is different from old state
+    if (
+      firstName === userDetails.firstName &&
+      lastName === userDetails.lastName &&
+      phoneNumber === userDetails.phone &&
+      nationality === userDetails.country
+    ) {
+      setIsEditMode(false);
+      return;
+    }
+
+    const updatedUserDetails = {
+      firstName,
+      lastName,
+      phoneNumber,
+      country: nationality,
+    };
+    // Call the API to update the user details
+    const response = await networkAdapter.patch(
+      '/api/users/update-profile',
+      updatedUserDetails
+    );
+    if (response && response.data.status) {
+      setToastMessage({
+        type: 'success',
+        message: response.data.status,
+      });
+    } else {
+      // revert to original state
+      setFirstName(userDetails.firstName);
+      setLastName(userDetails.lastName);
+      setPhoneNumber(userDetails.phone);
+      setNationality(userDetails.country);
+      setToastMessage({
+        type: 'error',
+        message: 'Oops, something went wrong. Please try again later.',
+      });
+    }
+
     setIsEditMode(false);
   };
 
@@ -120,7 +168,7 @@ const UserProfile = () => {
         </div>
         <Tabs isTabsVisible={isTabsVisible} wrapperRef={wrapperRef}>
           <TabPanel label="Personal Details" icon={faAddressCard}>
-            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+            <div className="bg-white shadow overflow-hidden sm:rounded-lg flex flex-col">
               <div className="px-4 py-5 sm:px-6">
                 <h3 className="text-xl leading-6 font-medium text-gray-900">
                   Personal details
@@ -136,9 +184,14 @@ const UserProfile = () => {
                     // Editable fields
                     <>
                       <TextField
-                        label="Name"
-                        value={fullName}
-                        onChange={setFullName}
+                        label="Firstname"
+                        value={firstName}
+                        onChange={setFirstName}
+                      />
+                      <TextField
+                        label="Lastname"
+                        value={lastName}
+                        onChange={setLastName}
                       />
                       <TextField
                         label="Phone number"
@@ -161,7 +214,8 @@ const UserProfile = () => {
                   ) : (
                     // Display fields
                     <>
-                      <DisplayField label="Name" value={fullName} />
+                      <DisplayField label="Firstname" value={firstName} />
+                      <DisplayField label="Lastname" value={lastName} />
                       <DisplayField
                         label="Email address"
                         value={email}
@@ -206,6 +260,15 @@ const UserProfile = () => {
                   </button>
                 )}
               </div>
+              {toastMessage && (
+                <div className="m-2">
+                  <Toast
+                    type={toastMessage.type}
+                    message={toastMessage.message}
+                    dismissError={clearToastMessage}
+                  />
+                </div>
+              )}
             </div>
           </TabPanel>
           <TabPanel label="Bookings" icon={faHotel}>
