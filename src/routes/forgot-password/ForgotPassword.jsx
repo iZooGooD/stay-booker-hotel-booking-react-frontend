@@ -57,14 +57,17 @@ const ForgotPassword = () => {
                 ></path>
               </svg>
               <div className="text-center">
-                <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center">
+                <h3 className="md:text-2xl text-base text-gray-700 font-semibold text-center">
                   Recovery Email has been sent!
                 </h3>
-                <p className="text-red-500"> Don't forgot to check you spam </p>
-                <div className="py-10 text-center">
+                <p className="text-green-500">
+                  {' '}
+                  Don't forgot to check you spam{' '}
+                </p>
+                <div className="my-6  text-center">
                   <Link
                     to="/"
-                    className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3"
+                    className="px-12 bg-brand hover:bg-indigo-500 text-white font-semibold py-3"
                   >
                     GO BACK
                   </Link>
