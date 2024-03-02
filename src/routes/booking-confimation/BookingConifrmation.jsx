@@ -3,16 +3,21 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+/**
+ * Represents the booking confirmation component.
+ * @component
+ * @returns {JSX.Element} The booking confirmation component.
+ */
 const BookingConfirmation = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const [bookingDetails, setBookingDetails] = useState(null);
 
+  // Set booking details from location state passed from the previous page(checkout page)
   useEffect(() => {
     if (location.state) {
       const { bookingDetails } = location.state.confirmationData;
-      console.log(bookingDetails);
       setBookingDetails(bookingDetails);
     } else {
       navigate('/');
