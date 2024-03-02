@@ -215,6 +215,38 @@ export function makeServer({ environment = 'development' } = {}) {
         );
       });
 
+      this.get('/users/payment-methods', () => {
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              elements: [
+                {
+                  id: '1',
+                  cardType: 'Visa',
+                  cardNumber: '**** **** **** 1234',
+                  expiryDate: '08/26',
+                },
+                {
+                  id: '2',
+                  cardType: 'MasterCard',
+                  cardNumber: '**** **** **** 5678',
+                  expiryDate: '07/24',
+                },
+                {
+                  id: '3',
+                  cardType: 'American Express',
+                  cardNumber: '**** **** **** 9012',
+                  expiryDate: '05/25',
+                },
+              ],
+            },
+          }
+        );
+      });
+
       this.get('/hotel/:hotelId/booking/enquiry', (_schema, request) => {
         let hotelId = request.params.hotelId;
         const result = hotelsData.find((hotel) => {
