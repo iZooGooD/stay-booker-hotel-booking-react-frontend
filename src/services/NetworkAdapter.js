@@ -28,7 +28,7 @@ class NetworkAdapter {
 
   async post(endpoint, data = {}) {
     try {
-      const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
+      const endpointURL = new URL(endpoint, NetworkAdapter.#API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'POST',
@@ -50,7 +50,7 @@ class NetworkAdapter {
 
   async put(endpoint, data = {}) {
     try {
-      const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
+      const endpointURL = new URL(endpoint, NetworkAdapter.#API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'PUT',
@@ -72,7 +72,7 @@ class NetworkAdapter {
 
   async delete(endpoint) {
     try {
-      const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
+      const endpointURL = new URL(endpoint, NetworkAdapter.#API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'DELETE',
@@ -90,7 +90,7 @@ class NetworkAdapter {
 
   async patch(endpoint, data = {}) {
     try {
-      const endpointURL = new URL(endpoint, NetworkAdapter.API_URL);
+      const endpointURL = new URL(endpoint, NetworkAdapter.#API_URL);
       const url = new URL(endpointURL, window.location.origin);
       const response = await fetch(url.toString(), {
         method: 'PATCH',
