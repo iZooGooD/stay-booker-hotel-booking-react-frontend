@@ -1,33 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const BookingConfirmation = () => {
-  const bookingDetails = [
-    {
-      label: 'Booking ID',
-      value: 'BKG123',
-    },
-    {
-      label: 'Booking Date',
-      value: '2024-01-10',
-    },
-    {
-      label: 'Hotel Name',
-      value: 'Seaside Resort',
-    },
-    {
-      label: 'Check-in Date',
-      value: '2024-01-20',
-    },
-    {
-      label: 'Check-out Date',
-      value: '2024-01-25',
-    },
-    {
-      label: 'Total Fare',
-      value: '₹14,500',
-    },
-  ];
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [bookingDetails, setBookingDetails] = useState(null);
+
+  useEffect(() => {
+    if (location.state) {
+      const { bookingDetails } = location.state.confirmationData;
+      console.log(bookingDetails);
+      setBookingDetails(bookingDetails);
+    } else {
+      navigate('/');
+    }
+  }, [bookingDetails, location.state, navigate]);
+
   return (
     <div className="flex mx-auto px-4 py-12 items-center justify-center flex-col my-40 border rounded-md max-w-[800px]">
       <div className="flex items-center justify-center">

@@ -124,7 +124,11 @@ const Checkout = () => {
         isLoading: false,
         data: response.data,
       });
-      navigate('/booking-confirmation');
+      navigate('/booking-confirmation', {
+        state: {
+          confirmationData: response.data,
+        },
+      });
     } else {
       setToastMessage('Payment failed. Please try again.');
       setIsSubmitDisabled(false);
