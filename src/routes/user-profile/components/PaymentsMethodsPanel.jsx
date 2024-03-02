@@ -53,19 +53,19 @@ const PaymentMethodsPanel = ({
                     type="text"
                     value={currentEdit.cardType}
                     onChange={(e) => handleChange(e, 'cardType')}
-                    className="text-lg font-medium text-gray-900 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="text-lg border px-2 py-1 my-2 font-medium text-gray-900 block w-full sm:text-sm border-gray-300 rounded-md"
                   />
                   <input
                     type="text"
                     value={currentEdit.cardNumber}
                     onChange={(e) => handleChange(e, 'cardNumber')}
-                    className="text-sm text-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="text-sm border px-2 py-1 my-2 text-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
                   />
                   <input
                     type="text"
                     value={currentEdit.expiryDate}
                     onChange={(e) => handleChange(e, 'expiryDate')}
-                    className="text-sm text-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="text-sm border px-2 py-1 my-2 text-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               ) : (
