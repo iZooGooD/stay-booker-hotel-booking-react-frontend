@@ -135,7 +135,7 @@ const ProfileDetailsPanel = ({ userDetails }) => {
                 onChange={setDateOfBirth}
               />
               <TextField
-                label="Nationality"
+                label="Country"
                 value={nationality}
                 onChange={setNationality}
               />
