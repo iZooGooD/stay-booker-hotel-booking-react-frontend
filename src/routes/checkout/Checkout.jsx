@@ -106,7 +106,6 @@ const Checkout = () => {
     setErrors(newErrors);
 
     if (!isValid) {
-      console.log('Validation errors:', newErrors);
       return; // Stop form submission if there are errors
     }
 

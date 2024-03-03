@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Toast from 'components/ux/toast/Toast';
 import { networkAdapter } from 'services/NetworkAdapter';
+import Select from 'react-select';
 
 /**
  * Renders the user profile details panel.
@@ -20,20 +21,7 @@ const ProfileDetailsPanel = ({ userDetails }) => {
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [isPhoneVerified, setIsPhoneVerified] = useState(false);
   const [nationality, setNationality] = useState('');
-
-  // effect to set initial state of user details
-  useEffect(() => {
-    if (userDetails) {
-      setFirstName(userDetails.firstName || '');
-      setLastName(userDetails.lastName || '');
-      setEmail(userDetails.email || '');
-      setPhoneNumber(userDetails.phone || '');
-      setNationality(userDetails.country || '');
-      setIsEmailVerified(userDetails.isEmailVerified || '');
-      setIsPhoneVerified(userDetails.isPhoneVerified || '');
-      setDateOfBirth(userDetails.dateOfBirth || '');
-    }
-  }, [userDetails]);
+  const [countries, setCountries] = useState([]);
 
   const [toastMessage, setToastMessage] = useState('');
 
@@ -96,8 +84,37 @@ const ProfileDetailsPanel = ({ userDetails }) => {
     setIsEditMode(false);
   };
 
+  // effect to set initial state of user details
+  useEffect(() => {
+    if (userDetails) {
+      setFirstName(userDetails.firstName || '');
+      setLastName(userDetails.lastName || '');
+      setEmail(userDetails.email || '');
+      setPhoneNumber(userDetails.phone || '');
+      setNationality(userDetails.country || '');
+      setIsEmailVerified(userDetails.isEmailVerified || '');
+      setIsPhoneVerified(userDetails.isPhoneVerified || '');
+      setDateOfBirth(userDetails.dateOfBirth || '');
+    }
+  }, [userDetails]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      const countriesData = await networkAdapter.get('/api/misc/countries');
+      if (countriesData && countriesData.data) {
+        console.log('countriesData', countriesData.data);
+        const mappedValues = countriesData.data.elements.map((country) => ({
+          label: country.name,
+          value: country.name,
+        }));
+        setCountries(mappedValues);
+      }
+    };
+    fetchCountries();
+  }, []);
+
   return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg flex flex-col">
+    <div className="bg-white shadow sm:rounded-lg flex flex-col">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="text-xl leading-6 font-medium text-gray-900">
           Personal details
@@ -134,11 +151,15 @@ const ProfileDetailsPanel = ({ userDetails }) => {
                 value={dateOfBirth}
                 onChange={setDateOfBirth}
               />
-              <TextField
-                label="Country"
-                value={nationality}
-                onChange={setNationality}
-              />
+              <div className="relative">
+                <TextField
+                  label="Country"
+                  value={nationality}
+                  onChange={setNationality}
+                  isSelectable={true}
+                  selectableData={countries}
+                />
+              </div>
             </>
           ) : (
             // Display fields
@@ -216,16 +237,31 @@ const DisplayField = ({ label, value, verified }) => (
   </div>
 );
 
-const TextField = ({ label, value, onChange, type = 'text' }) => (
+const TextField = ({
+  label,
+  value,
+  onChange,
+  type = 'text',
+  isSelectable,
+  selectableData,
+}) => (
   <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
     <dt className="font-medium text-gray-500">{label}</dt>
     <dd className="mt-1 sm:mt-0 sm:col-span-2">
-      <input
-        type={type}
-        className="mt-1 border py-1 px-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full text-sm md:text-base  rounded-md"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      />
+      {isSelectable ? (
+        <Select
+          options={selectableData}
+          value={selectableData.find((country) => country.value === value)}
+          onChange={(selectedOption) => onChange(selectedOption.value)}
+        />
+      ) : (
+        <input
+          type={type}
+          className="mt-1 border py-1 px-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full text-sm md:text-base  rounded-md"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      )}
     </dd>
   </div>
 );

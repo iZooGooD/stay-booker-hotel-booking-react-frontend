@@ -1,5 +1,6 @@
 import { createServer, Model, Response } from 'miragejs';
 import hotelsData from './data/hotels.json';
+import countriesData from './data/countries.json';
 
 export function makeServer({ environment = 'development' } = {}) {
   let server = createServer({
@@ -611,6 +612,19 @@ export function makeServer({ environment = 'development' } = {}) {
             );
           }, 6000); // 2000 milliseconds = 2 seconds
         });
+      });
+
+      this.get('/misc/countries', () => {
+        return new Response(
+          200,
+          {},
+          {
+            errors: [],
+            data: {
+              elements: countriesData,
+            },
+          }
+        );
       });
     },
   });
