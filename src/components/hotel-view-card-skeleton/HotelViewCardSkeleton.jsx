@@ -1,7 +1,7 @@
 const HotelViewCardSkeleton = () => {
   return (
     <div
-      className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full"
+      className="card border p-4 flex flex-col md:flex-row gap-x-2 w-full animate-pulse"
       data-testid="hotel-view-card-skeleton"
     >
       <div className="md:w-[220px] md:h-[140px]">
