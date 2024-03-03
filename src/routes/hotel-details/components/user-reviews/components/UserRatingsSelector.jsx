@@ -45,7 +45,7 @@ const UserRatingsSelector = ({
       </div>
       <textarea
         rows={3}
-        className="w-full border my-2"
+        className="w-full border my-2 p-2"
         value={userReview}
         onChange={(e) => handleUserReviewChange(e.target.value)}
       />
