@@ -10,8 +10,14 @@ const DropdownButton = (props) => {
     useState(false);
 
   const onDropdownClickTrigger = () => {
+    console.log('triggerType', triggerType);
     triggerType === 'click' &&
       setIsDropdownContainerVisible(!isDropdownContainerVisible);
+  };
+
+  const onDropdownItemClick = (onClikCallback) => {
+    setIsDropdownContainerVisible(false);
+    onClikCallback();
   };
 
   useOutsideClickHandler(wrapperRef, (event) => {
@@ -62,7 +68,9 @@ const DropdownButton = (props) => {
             props.options.map((option, index) => (
               <li key={index}>
                 <button
-                  onClick={option.onClick}
+                  onClick={() => {
+                    onDropdownItemClick(option.onClick);
+                  }}
                   className="w-full block text-left px-4 py-2 hover:bg-brand  dark:hover:text-white"
                 >
                   {option.name}
