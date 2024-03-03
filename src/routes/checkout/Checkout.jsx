@@ -124,7 +124,8 @@ const Checkout = () => {
         isLoading: false,
         data: response.data,
       });
-      navigate('/booking-confirmation', {
+      const hotelName = searchParams.get('hotelName').replaceAll('-', '_');
+      navigate(`/booking-confirmation?payment=sucess&hotel=${hotelName}`, {
         state: {
           confirmationData: response.data,
         },
@@ -136,8 +137,6 @@ const Checkout = () => {
         isLoading: false,
         data: {},
       });
-
-      console.log('Paying:', formData);
     }
   };
 
