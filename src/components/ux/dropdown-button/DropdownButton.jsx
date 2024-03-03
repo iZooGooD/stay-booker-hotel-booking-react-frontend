@@ -10,7 +10,6 @@ const DropdownButton = (props) => {
     useState(false);
 
   const onDropdownClickTrigger = () => {
-    console.log('triggerType', triggerType);
     triggerType === 'click' &&
       setIsDropdownContainerVisible(!isDropdownContainerVisible);
   };
