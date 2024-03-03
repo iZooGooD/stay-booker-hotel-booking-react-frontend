@@ -11,14 +11,12 @@ const HotelDetailsViewCardSkeleton = () => {
           <div className="h-4 bg-gray-200 rounded-full w-40 mb-4"></div>
           <div className="h-2 bg-gray-200 rounded-full w-60 mb-4"></div>
           <div className="mt-2 space-y-2">
-            <div className="h-2 bg-gray-200 rounded-full w-full mb-4"></div>
-            <div className="h-2 bg-gray-200 rounded-full w-full mb-4"></div>
-            <div className="h-2 bg-gray-200 rounded-full w-full mb-4"></div>
-            <div className="h-2 bg-gray-200 rounded-full w-full mb-4"></div>
-            <div className="h-2 bg-gray-200 rounded-full w-full mb-4"></div>
-            <div className="h-2 bg-gray-200 rounded-full w-full mb-4"></div>
-            <div className="h-2 bg-gray-200 rounded-full w-full mb-4"></div>
-            <div className="h-2 bg-gray-200 rounded-full w-full mb-4"></div>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="h-2 bg-gray-200 rounded-full w-full mb-4"
+              ></div>
+            ))}
           </div>
           <div className="flex justify-between items-center mt-4">
             <div>
