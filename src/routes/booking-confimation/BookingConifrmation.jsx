@@ -3,6 +3,8 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useReactToPrint } from 'react-to-print';
+import { useRef } from 'react';
 
 /**
  * Represents the booking confirmation component.
@@ -10,6 +12,7 @@ import { Link } from 'react-router-dom';
  * @returns {JSX.Element} The booking confirmation component.
  */
 const BookingConfirmation = () => {
+  const contentToPrint = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,9 +23,10 @@ const BookingConfirmation = () => {
    * @function
    * @returns {void}
    */
-  const onPrintHandler = () => {
-    window.print();
-  };
+  const handlePrint = useReactToPrint({
+    documentTitle: 'Booking Confirmation',
+    removeAfterPrint: true,
+  });
 
   // Set booking details from location state passed from the previous page(checkout page)
   useEffect(() => {
@@ -44,13 +48,18 @@ const BookingConfirmation = () => {
           Back to home
         </Link>
         <button
-          onClick={onPrintHandler}
+          onClick={() => {
+            handlePrint(null, () => contentToPrint.current);
+          }}
           className="border p-2 min-w-[120px] transition-all delay-75 hover:bg-gray-500 hover:text-white"
         >
           Print
         </button>
       </div>
-      <div className="flex mx-2  px-4 py-12 items-center justify-center flex-col border rounded-md">
+      <div
+        ref={contentToPrint}
+        className="flex mx-2  px-4 py-12 items-center justify-center flex-col border rounded-md"
+      >
         <div className="flex items-center justify-center mb-2">
           <FontAwesomeIcon icon={faStar} className="text-brand text-xl" />
           <FontAwesomeIcon icon={faStar} className="text-brand text-3xl" />
