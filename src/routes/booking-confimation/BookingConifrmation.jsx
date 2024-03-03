@@ -43,7 +43,7 @@ const BookingConfirmation = () => {
       <div className="flex justify-between mx-2 rounded-md my-2">
         <Link
           to="/"
-          className={`border p-2 min-w-[120px] transition-all delay-100 hover:bg-brand hover:text-white`}
+          className={`border p-2 min-w-[120px] text-center transition-all delay-100 hover:bg-brand hover:text-white`}
         >
           Back to home
         </Link>
@@ -51,7 +51,7 @@ const BookingConfirmation = () => {
           onClick={() => {
             handlePrint(null, () => contentToPrint.current);
           }}
-          className="border p-2 min-w-[120px] transition-all delay-75 hover:bg-gray-500 hover:text-white"
+          className="border p-2 min-w-[120px] transition-all delay-75 hover:bg-gray-500 hover:text-white hover:animate-bounce"
         >
           Print
         </button>
