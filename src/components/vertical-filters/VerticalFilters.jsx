@@ -18,6 +18,19 @@ const VerticalFilters = (props) => {
     isVerticalFiltersOpen,
   } = props;
 
+  const isActiveFilterSelected = () => {
+    for (const filterGroup of filtersData) {
+      for (const subfilter of filterGroup.filters) {
+        if (subfilter.isSelected) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  console.log(isActiveFilterSelected());
+
   return (
     <div
       className={`hotels-filters__container shadow-lg border w-[240px] z-10 ${
@@ -30,7 +43,11 @@ const VerticalFilters = (props) => {
           Filters
         </h4>
         <button
-          className="text-sm inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className={
+            isActiveFilterSelected() === true
+              ? `text-sm inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`
+              : `text-sm inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white cursor-not-allowed`
+          }
           onClick={onClearFiltersAction}
         >
           Clear
