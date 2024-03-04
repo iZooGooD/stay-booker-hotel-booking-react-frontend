@@ -20,7 +20,7 @@ const VerticalFilters = (props) => {
 
   return (
     <div
-      className={`hotels-filters__container shadow-lg border w-[240px] ${
+      className={`hotels-filters__container shadow-lg border w-[240px] z-10 ${
         isVerticalFiltersOpen ? '' : 'hidden'
       } absolute top-10 left-2 bg-white md:block md:static md:shadow-none `}
       data-testid="vertical-filters"
