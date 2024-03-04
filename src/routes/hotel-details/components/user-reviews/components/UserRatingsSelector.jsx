@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
-
+import { AuthContext } from 'contexts/AuthContext';
 /**
  * Renders the user ratings selector component.
  *
@@ -24,7 +24,9 @@ const UserRatingsSelector = ({
   handleReviewSubmit,
   handleUserReviewChange,
 }) => {
-  return (
+  const { isAuthenticated } = React.useContext(AuthContext);
+
+  return isAuthenticated ? (
     <div
       className={`${
         isEmpty ? 'md:w-full' : 'md:w-2/5'
@@ -45,17 +47,19 @@ const UserRatingsSelector = ({
       </div>
       <textarea
         rows={3}
-        className="w-full border my-2 p-2"
+        className="w-full p-2 my-2 border"
         value={userReview}
         onChange={(e) => handleUserReviewChange(e.target.value)}
       />
       <button
-        className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline my-2 w-full"
+        className="w-full px-4 py-2 my-2 font-bold text-white rounded bg-brand hover:bg-blue-700 focus:outline-none focus:shadow-outline"
         onClick={handleReviewSubmit}
       >
         Submit
       </button>
     </div>
+  ) : (
+    'Login to submit your rating'
   );
 };
 
