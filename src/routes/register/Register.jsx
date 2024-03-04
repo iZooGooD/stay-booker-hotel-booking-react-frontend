@@ -58,9 +58,9 @@ const Register = () => {
         <div className="container mx-auto p-4 flex justify-center min-h-[600px] items-center">
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-lg p-4 md:p-10 shadow-md"
+            className="w-full max-w-lg p-4 shadow-md md:p-10"
           >
-            <div className="text-center mb-10">
+            <div className="mb-10 text-center">
               <h2 className="text-3xl font-extrabold text-brand">
                 Join the Adventure!
               </h2>
@@ -68,25 +68,27 @@ const Register = () => {
                 Create your account and start your journey with us
               </p>
             </div>
-            <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div className="flex flex-wrap mb-6 -mx-3">
+              <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
                 <input
                   type="text"
                   name="firstName"
                   placeholder="First Name"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  autoComplete="given-name"
+                  className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                 />
               </div>
-              <div className="w-full md:w-1/2 px-3">
+              <div className="w-full px-3 md:w-1/2">
                 <input
                   type="text"
                   name="lastName"
                   placeholder="Last Name"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                  autoComplete="family-name"
+                  className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                 />
               </div>
             </div>
@@ -97,7 +99,8 @@ const Register = () => {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                autoComplete="email"
+                className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               />
             </div>
             <div className="mb-6">
@@ -107,7 +110,8 @@ const Register = () => {
                 placeholder="Phone"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                autoComplete="tel"
+                className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               />
             </div>
             <div className="mb-6">
@@ -117,7 +121,8 @@ const Register = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                autoComplete="new-password"
+                className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               />
             </div>
             <div className="mb-6">
@@ -127,20 +132,21 @@ const Register = () => {
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                autoComplete="new-password"
+                className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               />
             </div>
-            <div className="flex items-center my-3 w-full">
+            <div className="flex items-center w-full my-3">
               <button
                 type="submit"
-                className="bg-brand hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                className="w-full px-4 py-2 font-bold text-white rounded bg-brand hover:bg-blue-700 focus:outline-none focus:shadow-outline"
               >
                 Register
               </button>
             </div>
             <Link
               to="/login"
-              className="inline-block align-baseline text-lg text-gray-500 hover:text-blue-800 text-center w-full"
+              className="inline-block w-full text-lg text-center text-gray-500 align-baseline hover:text-blue-800"
             >
               Back to login
             </Link>
