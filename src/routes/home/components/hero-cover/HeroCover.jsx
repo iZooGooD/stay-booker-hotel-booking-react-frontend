@@ -32,7 +32,7 @@ const HeroCover = (props) => {
     setisDatePickerVisible,
   } = props;
   return (
-    <div className="bg-brand min-h-[400px] md:min-h-72 lg:min-h-60 text-slate-100 relative">
+    <div className="bg-brand min-h-[400px] md:min-h-72 lg:min-h-60 text-slate-100">
       <div className="hero-content__container flex flex-col items-center container mx-auto px-2 md:px-0">
         <></>
         <div className="hero-content__text py-4">
