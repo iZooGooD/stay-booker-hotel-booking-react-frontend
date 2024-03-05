@@ -42,6 +42,13 @@ const UserReviews = ({
   };
 
   const handleReviewSubmit = async () => {
+    if (userRating === 0) {
+      setToastMessage({
+        type: 'error',
+        message: 'Please select a rating before submitting.',
+      });
+      return;
+    }
     // TODO: Add validation for userRating and userReview
     const response = await networkAdapter.put('/api/hotel/add-review', {
       rating: userRating,
