@@ -9,8 +9,9 @@ import { AuthContext } from 'contexts/AuthContext';
  *
  * @param {Object} props - The component's props.
  * @param {boolean} props.isAuthenticated - A flag indicating whether the user is authenticated.
+ * @param {Function} props.onHamburgerMenuToggle
  */
-const NavbarItems = ({ isAuthenticated }) => {
+const NavbarItems = ({ isAuthenticated, onHamburgerMenuToggle }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const context = useContext(AuthContext);
@@ -44,7 +45,10 @@ const NavbarItems = ({ isAuthenticated }) => {
       <li className="p-4 hover:bg-blue-900 md:hover:bg-brand">
         <Link
           to="/"
-          className={`uppercase font-medium text-slate-100 hover-underline-animation`}
+          className={`uppercase font-medium text-slate-100 hover-underline-animation ${
+            isActive('/') && 'active-link'
+          }`}
+          onClick={onHamburgerMenuToggle}
         >
           Home
         </Link>
@@ -55,6 +59,7 @@ const NavbarItems = ({ isAuthenticated }) => {
           className={`uppercase font-medium text-slate-100 hover-underline-animation ${
             isActive('/hotels') && 'active-link'
           }`}
+          onClick={onHamburgerMenuToggle}
         >
           Hotels
         </Link>
@@ -65,11 +70,14 @@ const NavbarItems = ({ isAuthenticated }) => {
           className={`uppercase font-medium text-slate-100 hover-underline-animation ${
             isActive('/about-us') && 'active-link'
           }`}
+          onClick={onHamburgerMenuToggle}
         >
           About us
         </Link>
       </li>
-      <li className={`${!isAuthenticated && 'p-4'}`}>
+      <li
+        className={`${!isAuthenticated && 'p-4 hover:bg-blue-900 md:hover:bg-brand'}`}
+      >
         {isAuthenticated ? (
           <DropdownButton triggerType="click" options={dropdownOptions} />
         ) : (
@@ -78,6 +86,7 @@ const NavbarItems = ({ isAuthenticated }) => {
             className={`uppercase font-medium text-slate-100 hover-underline-animation ${
               isActive('/login') && 'active-link'
             }`}
+            onClick={onHamburgerMenuToggle}
           >
             Login/Register
           </Link>
