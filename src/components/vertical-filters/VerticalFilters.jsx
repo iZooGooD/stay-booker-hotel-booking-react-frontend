@@ -29,7 +29,6 @@ const VerticalFilters = (props) => {
     return false;
   };
 
-
   return (
     <div
       className={`hotels-filters__container shadow-lg border w-[240px] z-10 ${
