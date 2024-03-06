@@ -43,11 +43,11 @@ const VerticalFilters = (props) => {
           Filters
         </h4>
         <button
-          className={
+          className={`text-sm inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white ${
             isActiveFilterSelected() === true
-              ? `text-sm inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`
-              : `text-sm inline-flex items-center px-2.5 py-1.5 border border-gray-300 font-medium rounded text-gray-700 bg-white cursor-not-allowed`
-          }
+              ? 'hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+              : 'cursor-not-allowed'
+          }`}
           onClick={onClearFiltersAction}
         >
           Clear
