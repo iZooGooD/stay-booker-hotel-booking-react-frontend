@@ -29,7 +29,6 @@ const VerticalFilters = (props) => {
     return false;
   };
 
-  console.log(isActiveFilterSelected());
 
   return (
     <div
