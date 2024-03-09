@@ -59,7 +59,9 @@ const UserRatingsSelector = ({
       </button>
     </div>
   ) : (
-    'Login to submit your rating'
+    <p className="font-semibold text-gray-700">
+      Please login to submit your review
+    </p>
   );
 };
 
