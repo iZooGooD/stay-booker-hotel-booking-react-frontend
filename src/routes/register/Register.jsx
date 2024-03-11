@@ -15,6 +15,14 @@ const Register = () => {
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({
+    firstNameError: false,
+    lastNameError: false,
+    emailError: false,
+    phoneNumberError: false,
+    passwordError: false,
+    confirmPasswordError: false,
+  });
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -45,10 +53,121 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await networkAdapter.put('/api/users/register', formData);
+
     if (response && response.errors && response.errors.length < 1) {
       setSuccessMessage(REGISTRATION_MESSAGES.SUCCESS);
       setShowSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
+    }
+
+    /*
+      Firstname input validation
+    */
+    if (formData.firstName.length < 2) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        firstNameError: 'Must be at least 2 characters long',
+      }));
+      return;
+    } else if (/\d/.test(formData.firstName)) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        firstNameError: 'The field cannot contain numbers',
+      }));
+      return;
+    } else {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        firstNameError: false,
+      }));
+    }
+
+    /*
+      Lastname input validation
+    */
+    if (formData.lastName.length < 2) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        lastNameError: 'Must be at least 2 characters long',
+      }));
+      return;
+    } else if (/\d/.test(formData.lastName)) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        lastNameError: 'The field cannot contain numbers',
+      }));
+      return;
+    } else {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        lastNameError: false,
+      }));
+    }
+
+    /*
+      Email input validation
+    */
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) === false) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        emailError: 'Incorrect email adress',
+      }));
+      return;
+    } else {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        emailError: false,
+      }));
+    }
+
+    /*
+      Phone number validation
+    */
+    if (/^\+\d{2}\d{1,2}\d{7,8}$/.test(formData.phoneNumber) === false) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        phoneNumberError: 'Incorrect phone number format e.g.(+36302748465)',
+      }));
+      return;
+    } else {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        phoneNumberError: false,
+      }));
+    }
+
+    /*
+      Password validator
+    */
+    if (
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(formData.password) === false
+    ) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        passwordError: 'Min. 8 characters, upper and lowercase',
+      }));
+      return;
+    } else if (
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(formData.confirmPassword) ===
+      false
+    ) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        confirmPasswordError: 'Min. 8 characters, upper and lowercase',
+      }));
+      return;
+    } else if (formData.password !== formData.confirmPassword) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        passwordError: "The passwords don't match",
+      }));
+      return;
+    } else {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        passwordError: false,
+        confirmPasswordError: false,
+      }));
     }
   };
 
@@ -80,6 +199,9 @@ const Register = () => {
                   className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                 />
               </div>
+              {errorMessage.firstNameError && (
+                <Toast type="error" message={errorMessage.firstNameError} />
+              )}
               <div className="w-full px-3 md:w-1/2">
                 <input
                   type="text"
@@ -91,10 +213,13 @@ const Register = () => {
                   className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                 />
               </div>
+              {errorMessage.lastNameError && (
+                <Toast type="error" message={errorMessage.lastNameError} />
+              )}
             </div>
             <div className="mb-6">
               <input
-                type="email"
+                type="text"
                 name="email"
                 placeholder="Email"
                 value={formData.email}
@@ -103,17 +228,23 @@ const Register = () => {
                 className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               />
             </div>
+            {errorMessage.emailError && (
+              <Toast type="error" message={errorMessage.emailError} />
+            )}
             <div className="mb-6">
               <input
                 type="tel"
                 name="phoneNumber"
-                placeholder="Phone"
+                placeholder="+36303674565"
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 autoComplete="tel"
                 className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               />
             </div>
+            {errorMessage.phoneNumberError && (
+              <Toast type="error" message={errorMessage.phoneNumberError} />
+            )}
             <div className="mb-6">
               <input
                 type="password"
@@ -125,6 +256,9 @@ const Register = () => {
                 className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               />
             </div>
+            {errorMessage.passwordError && (
+              <Toast type="error" message={errorMessage.passwordError} />
+            )}
             <div className="mb-6">
               <input
                 type="password"
@@ -136,6 +270,9 @@ const Register = () => {
                 className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
               />
             </div>
+            {errorMessage.confirmPasswordError && (
+              <Toast type="error" message={errorMessage.confirmPasswordError} />
+            )}
             <div className="flex items-center w-full my-3">
               <button
                 type="submit"
