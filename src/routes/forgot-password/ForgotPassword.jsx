@@ -4,6 +4,10 @@ import { networkAdapter } from 'services/NetworkAdapter';
 import validations from 'utils/validations';
 import Toast from 'components/ux/toast/Toast';
 
+/**
+ * ForgotPassword component responsible for handling the forgot password form.
+ * @returns {jsx}
+ */
 const ForgotPassword = () => {
   const [success, setsuccess] = useState(false);
   const [loginData, setLoginData] = useState({
