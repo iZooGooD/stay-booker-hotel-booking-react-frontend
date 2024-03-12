@@ -40,7 +40,6 @@ const GlobalSearchBox = (props) => {
         size="sm"
         value={locationInputValue}
         typeheadResults={locationTypeheadResults}
-        maxTypeheadResults={5}
         icon={faLocationDot}
         onChangeInput={onLocationChangeInput}
       />

@@ -63,9 +63,9 @@ const Home = () => {
    *
    */
   function queryResults(query) {
-    const filteredResults = availableCities.filter((city) =>
-      city.toLowerCase().includes(query.toLowerCase())
-    );
+    const filteredResults = availableCities
+      .filter((city) => city.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 5);
     setFilteredTypeheadResults(filteredResults);
   }
 
