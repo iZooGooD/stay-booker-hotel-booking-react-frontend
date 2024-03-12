@@ -165,7 +165,7 @@ const HotelsSearch = () => {
   const onLocationChangeInput = async (newValue) => {
     setLocationInputValue(newValue);
     // Debounce the queryResults function to avoid making too many requests
-    debounceFn(newValue);
+    debounceFn(newValue, availableCities);
   };
 
   /**
@@ -174,7 +174,7 @@ const HotelsSearch = () => {
    * @returns {void}
    *
    */
-  function queryResults(query) {
+  function queryResults(query, availableCities) {
     const filteredResults = availableCities
       .filter((city) => city.toLowerCase().includes(query.toLowerCase()))
       .slice(0, 5);

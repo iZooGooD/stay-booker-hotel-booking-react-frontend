@@ -53,7 +53,7 @@ const Home = () => {
   const onLocationChangeInput = async (newValue) => {
     setLocationInputValue(newValue);
     // Debounce the queryResults function to avoid making too many requests
-    debounceFn(newValue);
+    debounceFn(newValue, availableCities);
   };
 
   /**
@@ -62,10 +62,10 @@ const Home = () => {
    * @returns {void}
    *
    */
-  function queryResults(query) {
-    const filteredResults = availableCities
-      .filter((city) => city.toLowerCase().includes(query.toLowerCase()))
-      .slice(0, 5);
+  function queryResults(query, availableCities) {
+    const filteredResults = availableCities.filter((city) =>
+      city.toLowerCase().includes(query.toLowerCase())
+    );
     setFilteredTypeheadResults(filteredResults);
   }
 
