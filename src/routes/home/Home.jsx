@@ -52,9 +52,16 @@ const Home = () => {
 
   const onLocationChangeInput = async (newValue) => {
     setLocationInputValue(newValue);
+    // Debounce the queryResults function to avoid making too many requests
     debounceFn(newValue);
   };
 
+  /**
+   * Queries the available cities based on the user's input.
+   * @param {string} query - The user's input.
+   * @returns {void}
+   *
+   */
   function queryResults(query) {
     const filteredResults = availableCities.filter((city) =>
       city.toLowerCase().includes(query.toLowerCase())
