@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import GlobalSearchBox from 'components/global-search-box/GlobalSearchbox';
 import ResultsContainer from 'components/results-container/ResultsContainer';
 import { networkAdapter } from 'services/NetworkAdapter';
@@ -9,6 +9,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { parse } from 'date-fns';
 import PaginationController from 'components/ux/pagination-controller/PaginationController';
 import { SORTING_FILTER_LABELS } from 'utils/constants';
+import _debounce from 'lodash/debounce';
 
 /**
  * Represents the hotels search component.
@@ -61,6 +62,11 @@ const HotelsSearch = () => {
 
   // State for managing selected filters
   const [selectedFiltersState, setSelectedFiltersState] = useState({});
+
+  const [filteredTypeheadResults, setFilteredTypeheadResults] = useState([]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debounceFn = useCallback(_debounce(queryResults, 1000), []);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -156,9 +162,24 @@ const HotelsSearch = () => {
    * Refreshes hotel data if the location is valid.
    * @param {string} value - The new location value.
    */
-  const onLocationChangeInput = (value) => {
-    setLocationInputValue(value.toLowerCase());
+  const onLocationChangeInput = async (newValue) => {
+    setLocationInputValue(newValue);
+    // Debounce the queryResults function to avoid making too many requests
+    debounceFn(newValue, availableCities);
   };
+
+  /**
+   * Queries the available cities based on the user's input.
+   * @param {string} query - The user's input.
+   * @returns {void}
+   *
+   */
+  function queryResults(query, availableCities) {
+    const filteredResults = availableCities
+      .filter((city) => city.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 5);
+    setFilteredTypeheadResults(filteredResults);
+  }
 
   /**
    * Handles changes in the number of guests input.
@@ -332,7 +353,7 @@ const HotelsSearch = () => {
       <div className="bg-brand px-2 lg:h-[120px] h-[220px] flex items-center justify-center">
         <GlobalSearchBox
           locationInputValue={locationInputValue}
-          locationTypeheadResults={availableCities}
+          locationTypeheadResults={filteredTypeheadResults}
           numGuestsInputValue={numGuestsInputValue}
           isDatePickerVisible={isDatePickerVisible}
           setisDatePickerVisible={setisDatePickerVisible}

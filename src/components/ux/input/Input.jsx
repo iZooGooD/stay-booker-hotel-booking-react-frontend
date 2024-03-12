@@ -10,14 +10,8 @@ const Input = (props) => {
     type,
     placeholder,
     typeheadResults,
-    maxTypeheadResults,
   } = props;
   const [isTypeheadVisible, setIsTypeheadVisible] = useState(false);
-  const filteredResults = (value) => {
-    return typeheadResults
-      .filter((result) => result.includes(value.toLowerCase()))
-      .slice(0, maxTypeheadResults);
-  };
 
   const onTypeheadResultClick = (value) => {
     onChangeInput(value);
@@ -58,7 +52,7 @@ const Input = (props) => {
         <ul>
           {typeheadResults &&
             value.length > 0 &&
-            filteredResults(value).map((result, index) => (
+            typeheadResults.map((result, index) => (
               <li
                 key={index}
                 className="text-base  text-slate-600 p-2 capitalize cursor-pointer border-b-2 hover:bg-slate-100"
