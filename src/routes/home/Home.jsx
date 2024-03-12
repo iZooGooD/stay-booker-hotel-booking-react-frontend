@@ -1,11 +1,12 @@
 import HeroCover from './components/hero-cover/HeroCover';
 import PopularLocations from './components/popular-locations/popular-locations';
 import { networkAdapter } from 'services/NetworkAdapter';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { MAX_GUESTS_INPUT_VALUE } from 'utils/constants';
 import ResultsContainer from 'components/results-container/ResultsContainer';
 import { formatDate } from 'utils/date-helpers';
 import { useNavigate } from 'react-router-dom';
+import _debounce from 'lodash/debounce';
 
 /**
  * Home component that renders the main page of the application.
@@ -32,6 +33,11 @@ const Home = () => {
   // State for storing available cities
   const [availableCities, setAvailableCities] = useState([]);
 
+  const [filteredTypeheadResults, setFilteredTypeheadResults] = useState([]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debounceFn = useCallback(_debounce(queryResults, 1000), []);
+
   const [dateRange, setDateRange] = useState([
     {
       startDate: null,
@@ -44,9 +50,17 @@ const Home = () => {
     setisDatePickerVisible(!isDatePickerVisible);
   };
 
-  const onLocationChangeInput = (newValue) => {
+  const onLocationChangeInput = async (newValue) => {
     setLocationInputValue(newValue);
+    debounceFn(newValue);
   };
+
+  function queryResults(query) {
+    const filteredResults = availableCities.filter((city) =>
+      city.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredTypeheadResults(filteredResults);
+  }
 
   const onNumGuestsInputChange = (numGuests) => {
     if (
@@ -123,7 +137,7 @@ const Home = () => {
       <HeroCover
         locationInputValue={locationInputValue}
         numGuestsInputValue={numGuestsInputValue}
-        locationTypeheadResults={availableCities}
+        locationTypeheadResults={filteredTypeheadResults}
         isDatePickerVisible={isDatePickerVisible}
         setisDatePickerVisible={setisDatePickerVisible}
         onLocationChangeInput={onLocationChangeInput}
