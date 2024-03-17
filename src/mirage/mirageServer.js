@@ -135,7 +135,7 @@ export function makeServer({ environment = 'development' } = {}) {
           return new Response(
             409,
             {},
-            { error: 'User already exists with that email' }
+            { errors: ['User already exists with that email'] }
           );
         } else {
           // Create a new user
@@ -146,7 +146,14 @@ export function makeServer({ environment = 'development' } = {}) {
             phone: attrs.phone,
             password: attrs.password,
           });
-          return new Response(200, {}, { user: newUser.attrs });
+          return new Response(
+            200,
+            {},
+            {
+              errors: [],
+              user: newUser.attrs,
+            }
+          );
         }
       });
 
