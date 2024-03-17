@@ -15,8 +15,9 @@ import * as Yup from 'yup';
  */
 const Register = () => {
   const navigate = useNavigate();
-  const [successMessage, setSuccessMessage] = useState('');
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('success');
+  const [showToast, setShowToast] = useState(false);
 
   /**
    * Submits the registration form data to the server.
@@ -30,9 +31,13 @@ const Register = () => {
     const response = await networkAdapter.put('/api/users/register', values);
     console.log('response', response);
     if (response && response.errors && response.errors.length < 1) {
-      setSuccessMessage(REGISTRATION_MESSAGES.SUCCESS);
-      setShowSuccess(true);
+      setToastMessage(REGISTRATION_MESSAGES.SUCCESS);
+      setShowToast(true);
       setTimeout(() => navigate('/login'), 2000);
+    } else {
+      setToastType('error');
+      setToastMessage(response.errors[0]);
+      setShowToast(true);
     }
   };
 
@@ -148,10 +153,10 @@ const Register = () => {
                   >
                     Back to login
                   </Link>
-                  {showSuccess && (
+                  {showToast && (
                     <Toast
-                      type="success"
-                      message={successMessage}
+                      type={toastType}
+                      message={toastMessage}
                       dismissError
                     />
                   )}
