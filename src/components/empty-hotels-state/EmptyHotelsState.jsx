@@ -1,5 +1,5 @@
 const EmptyHotelsState = () => (
-  <div className="text-center my-10">
+  <div className="text-center my-10 min-h-96">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
