@@ -59,7 +59,7 @@ const Register = () => {
     password: Yup.string()
       .min(8, 'Password is too short - should be 8 chars minimum.')
       .required('Required'),
-    confirmPassword: Yup.string(),
+    confirmPassword: Yup.string().required('Required'),
   });
 
   return (
@@ -132,7 +132,7 @@ const Register = () => {
                     />
                   </div>
                   <div className="mb-6">
-                    <input
+                    <Field
                       name="confirmPassword"
                       placeholder="Confirm Password"
                       autoComplete="new-password"
