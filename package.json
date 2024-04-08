@@ -22,7 +22,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
     "react-to-print": "^2.15.1",
-    "sass": "^1.72.0",
+    "sass": "^1.74.1",
     "web-vitals": "^3.5.2",
     "yup": "^1.4.0"
   },
