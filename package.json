@@ -15,7 +15,7 @@
     "miragejs": "^0.1.48",
     "query-string": "^9.0.0",
     "react": "^18.3.1",
-    "react-date-range": "^2.0.0-alpha.4",
+    "react-date-range": "^2.0.1",
     "react-dom": "^18.2.0",
     "react-image-gallery": "^1.3.0",
     "react-router-dom": "^6.23.1",
