@@ -19,7 +19,7 @@
     "react-dom": "^18.2.0",
     "react-image-gallery": "^1.3.0",
     "react-router-dom": "^6.23.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-select": "^5.8.0",
     "react-to-print": "^2.15.1",
     "sass": "^1.75.0",
