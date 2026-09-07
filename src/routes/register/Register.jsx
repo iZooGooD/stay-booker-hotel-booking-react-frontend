@@ -20,6 +20,14 @@ const Register = () => {
   const [showToast, setShowToast] = useState(false);
 
   /**
+   * Hides the toast message displayed after form submission.
+   */
+  const dismissToast = () => {
+    setShowToast(false);
+    setToastMessage('');
+  };
+
+  /**
    * Submits the registration form data to the server.
    * It performs an asynchronous operation to post the form data to a registration endpoint.
    * If registration is successful, a success message is displayed, and the user is redirected to the login page after a brief delay.
@@ -136,7 +144,7 @@ const Register = () => {
                     <Toast
                       type={toastType}
                       message={toastMessage}
-                      dismissError
+                      dismissError={dismissToast}
                     />
                   )}
                 </div>
